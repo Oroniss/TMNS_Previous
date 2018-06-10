@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('packages\NUnit.3.10.1\build\NUnit.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{EF134163-45C9-467B-9D3C-B91F77A306E7}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>RLEngineSetup</RootNamespace>
+    <AssemblyName>RLEngineSetup</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="MainProgram.cs" />
+    <Compile Include="Resources\Palette.cs" />
+    <Compile Include="ErrorLogger.cs" />
+    <Compile Include="UserInterface\BackConsole.cs" />
+    <Compile Include="UserInterface\BaseConsole.cs" />
+    <Compile Include="UserInterface\CharacterConsole.cs" />
+    <Compile Include="UserInterface\MainGraphicDisplay.cs" />
+    <Compile Include="UserInterface\MapConsole.cs" />
+    <Compile Include="UserInterface\MenuConsole.cs" />
+    <Compile Include="UserInterface\TextConsole.cs" />
+    <Compile Include="Levels\Level.cs" />
+    <Compile Include="Entities\EntityInterfaces\IBackgroundDrawing.cs" />
+    <Compile Include="Entities\EntityInterfaces\IMovementFunctions.cs" />
+    <Compile Include="Entities\Trait.cs" />
+    <Compile Include="Entities\EntityInterfaces\ITrait.cs" />
+    <Compile Include="Entities\MapTiles\MapTile.cs" />
+    <Compile Include="Entities\MapTiles\MapTileDetails.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="OpenTK">
+      <HintPath>packages\OpenTK.1.1.1589.5942\lib\NET40\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="RLNET">
+      <HintPath>packages\RLNET.1.0.6\lib\RLNET.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="DesignDoc.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Levels\" />
+    <Folder Include="UserInterface\" />
+    <Folder Include="GameEvents\" />
+    <Folder Include="Entities\EntityInterfaces\" />
+    <Folder Include="Entities\MapTiles\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
