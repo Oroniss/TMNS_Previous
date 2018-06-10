@@ -40,10 +40,9 @@
     <Compile Include="UserInterface\TextConsole.cs" />
     <Compile Include="Levels\Level.cs" />
     <Compile Include="Entities\EntityInterfaces\IBackgroundDrawing.cs" />
-    <Compile Include="Entities\EntityInterfaces\IMovementFunctions.cs" />
     <Compile Include="Entities\Trait.cs" />
     <Compile Include="Entities\EntityInterfaces\ITrait.cs" />
-    <Compile Include="Entities\MapTiles\MapTile.cs" />
+    <Compile Include="Entities\MapTiles\TileType.cs" />
     <Compile Include="Entities\MapTiles\MapTileDetails.cs" />
   </ItemGroup>
   <ItemGroup>

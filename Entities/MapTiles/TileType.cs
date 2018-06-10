@@ -1,6 +1,6 @@
 ﻿namespace RLEngine.Entities.MapTiles
 {
-	public enum MapTile
+	public enum TileType
 	{
 		TestTile1,
 		TestTile2,

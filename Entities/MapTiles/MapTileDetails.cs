@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System;
 using RLEngine.Entities.EntityInterfaces;
 
@@ -7,14 +7,14 @@ namespace RLEngine.Entities.MapTiles
 	[Serializable]
 	public class MapTileDetails:IBackgroundDrawing,ITrait
 	{
-		static Dictionary<MapTile, MapTileDetails> mapTileDetails;
+		static Dictionary<TileType, MapTileDetails> mapTileDetails;
 
-		readonly MapTile _tileType;
+		readonly TileType _tileType;
 		readonly string _backgroundColor;
 		readonly string _fogColor;
 		readonly List<Trait> _traits;
 
-		MapTileDetails(MapTile tileType, string backgroundColor, string fogColor, Trait[] traits)
+		MapTileDetails(TileType tileType, string backgroundColor, string fogColor, Trait[] traits)
 		{
 			_tileType = tileType;
 			_backgroundColor = backgroundColor;
@@ -24,7 +24,7 @@ namespace RLEngine.Entities.MapTiles
 				_traits.Add(trait);
 		}
 
-		public MapTile TileType
+		public TileType TileType
 		{
 			get { return _tileType; }
 		}
@@ -54,17 +54,17 @@ namespace RLEngine.Entities.MapTiles
 			// TODO: Add error messages here.
 		}
 
-		public static MapTileDetails GetTileDetails(MapTile tileType)
+		public static MapTileDetails GetTileDetails(TileType tileType)
 		{
 			if (!mapTileDetails.ContainsKey(tileType))
 				mapTileDetails[tileType] = QueryTileDatabase(tileType);
 			return mapTileDetails[tileType];
 		}
 
-		static MapTileDetails QueryTileDatabase(MapTile tileType)
+		static MapTileDetails QueryTileDatabase(TileType tileType)
 		{
 			// TODO: Fix this to query a db file at least.
-			if (tileType == MapTile.TestTile1)
+			if (tileType == TileType.TestTile1)
 				return new MapTileDetails(tileType, "Blue", "LightBlue", new Trait[] { Trait.TestTrait1 });
 			else
 				return new MapTileDetails(tileType, "GreySeven", "Grey12", new Trait[] { Trait.TestTrait2 });
