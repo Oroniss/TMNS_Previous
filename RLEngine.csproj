@@ -44,6 +44,9 @@
     <Compile Include="Entities\EntityInterfaces\ITrait.cs" />
     <Compile Include="Entities\MapTiles\TileType.cs" />
     <Compile Include="Entities\MapTiles\MapTileDetails.cs" />
+    <Compile Include="Levels\LevelFiles\LevelDatabase.cs" />
+    <Compile Include="Levels\LevelTemplate.cs" />
+    <Compile Include="Levels\LevelFiles\LevelId.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -69,6 +72,7 @@
     <Folder Include="GameEvents\" />
     <Folder Include="Entities\EntityInterfaces\" />
     <Folder Include="Entities\MapTiles\" />
+    <Folder Include="Levels\LevelFiles\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

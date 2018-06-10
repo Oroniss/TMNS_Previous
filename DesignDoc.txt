@@ -1,1 +1,32 @@
-﻿
+﻿Version 0.1 - Begun 10 June 2018
+
+10/6/18 - Setup project.
+10/6/18 - Added Palette.
+10/6/18 - Added the user interface classes.
+10/6/18 - Started on a basic Level class.
+10/6/18 - Added a MapTileDetails class.
+10/6/18 - Added some basic entity interfaces.
+
+
+For Version 0.1.
+
+Get the basic level class working.
+Load one up and draw it.
+Get starting menus done.
+Serialisation of current state.
+
+Tests/TODOs/Code Quality.
+
+ToDos:
+
+Fix Palette
+Fix AddDebugText
+Write text array length into a config file somewhere.
+Write console sizes into a config file somewhere.
+Add error messages to MapTileDetails Trait functions.
+Add MapTileDetails DB Query.
+
+Later ToDos:
+
+Figure out movement functions in movement interface.
+Fix draw map once FOV, lighting, player, revealed, etc in game.
