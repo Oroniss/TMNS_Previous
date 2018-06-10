@@ -12,27 +12,25 @@ namespace RLEngine.UserInterface
 
 		public void DrawMap()
 		{
-			DrawMap(MainProgram.CurrentLevelId, MainProgram.PlayerXLoc, MainProgram.PlayerYLoc);
+			DrawMap(MainProgram.CurrentLevel, MainProgram.PlayerXLoc, MainProgram.PlayerYLoc);
 		}
 
-		public void DrawMap(int levelId, int xCentre, int yCentre) // TODO: Add hashset of visible tiles.
+		public void DrawMap(Levels.Level level, int xCentre, int yCentre) // TODO: Add hashset of visible tiles.
 		{
 			Clear();
 
-			var mapComponent = (MapComponent)GameSystems.SystemProvider.EntitySystem.GetComponent(levelId, ComponentType.Map);
-
-			var xLimits = getDrawingLimits(mapComponent.Width, _console.Width, xCentre);
-			var yLimits = getDrawingLimits(mapComponent.Height, _console.Height, yCentre);
+			var xLimits = getDrawingLimits(level.MapWidth, _console.Width, xCentre);
+			var yLimits = getDrawingLimits(level.MapHeight, _console.Height, yCentre);
 
 			for (int y = yLimits.Min; y < yLimits.Max; y++)
 			{
 				for (int x = xLimits.Min; x < xLimits.Max; x++)
 				{
-					if (mapComponent.IsRevealed(x, y))
+					// TODO: Fix this later.
+					if (true) //level.IsRevealed(x, y))
 					{
 						_console.Set(x + xLimits.Offset, y + yLimits.Offset, null,
-									 Palette.GetColor("White"), ' ');
-									 //Palette.GetColor(level.GetFogColor(x, y)), ' ');
+									 Palette.GetColor(level.GetFogColor(x, y)), ' ');
 					}
 				}
 			}

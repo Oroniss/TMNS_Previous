@@ -13,5 +13,20 @@ namespace RLEngine
 		{
 			get { return 0; }
 		}
+
+		public static Levels.Level CurrentLevel
+		{
+			get { return null; }
+		}
+
+		public static int PlayerXLoc
+		{
+			get { return 0; }
+		}
+
+		public static int PlayerYLoc
+		{
+			get { return 0; }
+		}
 	}
 }
