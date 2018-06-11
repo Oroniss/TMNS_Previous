@@ -47,6 +47,9 @@
     <Compile Include="Levels\LevelFiles\LevelDatabase.cs" />
     <Compile Include="Levels\LevelDetails.cs" />
     <Compile Include="Levels\LevelFiles\LevelId.cs" />
+    <Compile Include="UserInterface\UserInputHandler.cs" />
+    <Compile Include="Resources\Geometry\XYCoordinateClass.cs" />
+    <Compile Include="Resources\Geometry\XYCoordinateStruct.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -70,6 +73,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Levels\LevelFiles\LevelFileTemplate.txt" />
+    <None Include="terminal8x8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -81,6 +87,7 @@
     <Folder Include="Entities\MapTiles\" />
     <Folder Include="Levels\LevelFiles\" />
     <Folder Include="Levels\LevelFiles\TestLevels\" />
+    <Folder Include="Resources\Geometry\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

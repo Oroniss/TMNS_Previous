@@ -65,9 +65,9 @@ namespace RLEngine.Entities.MapTiles
 		{
 			// TODO: Fix this to query a db file at least.
 			if (tileType == TileType.TestTile1)
-				return new MapTileDetails(tileType, "Blue", "LightBlue", new Trait[] { Trait.TestTrait1 });
+				return new MapTileDetails(tileType, "GraySeven", "GrayFour", new Trait[] { Trait.TestTrait2 });
 			else
-				return new MapTileDetails(tileType, "GreySeven", "Grey12", new Trait[] { Trait.TestTrait2 });
+				return new MapTileDetails(tileType, "LightBlue", "Blue", new Trait[] { Trait.TestTrait1 });
 		}
 	}
 }

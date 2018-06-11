@@ -1,14 +1,111 @@
 ﻿using System;
+using System.Threading;
+using RLEngine.UserInterface;
+using RLNET;
 
 namespace RLEngine
 {
 	public static class MainProgram
 	{
+		// TODO: Put these into a config file somewhere.
+		static readonly string _fontName = "terminal8x8.png";
+		static readonly int _consoleWidth = 160;
+		static readonly int _consoleHeight = 80;
+		static readonly int _fontSize = 8;
+		static readonly float _scale = 1.0f;
+		static readonly string _windowTitle = "Halfbreed";
+
+		static RLRootConsole rootConsole;
+
+		// Global attributes
+		static Levels.Level _currentLevel;
+		static bool _quit = false;
+
 		public static void Main()
 		{
-			
+			rootConsole = new RLRootConsole(_fontName, _consoleWidth, _consoleHeight, _fontSize, _fontSize, _scale,
+											_windowTitle);
+
+			rootConsole.Update += RootConsoleUpdate;
+            rootConsole.Render += RootConsoleRender;
+
+			var mainLoopThread = new Thread(RunStartMenu);
+			mainLoopThread.Start();
+            rootConsole.Run();
+
 		}
 
+		static void RootConsoleRender(object sender, EventArgs e)
+		{
+			if (MainGraphicDisplay.IsDirty)
+			{
+				rootConsole.Clear();
+				rootConsole = MainGraphicDisplay.CopyDisplayToRootConsole(rootConsole);
+				rootConsole.Draw();
+			}
+		}
+
+		static void RootConsoleUpdate(object sender, EventArgs e)
+		{
+			var key = rootConsole.Keyboard.GetKeyPress();
+			if (key != null)
+			{
+				UserInputHandler.addKeyboardInput(key.Key);
+			}
+		}
+
+		static void RunStartMenu()
+		{
+			_currentLevel = new Levels.Level(Levels.LevelId.TestLevel2);
+			MainGraphicDisplay.MapConsole.DrawMap();
+			Thread.Sleep(10000);
+			Quit();
+
+			/*
+			var gameId = MenuProvider.MainMenu.DisplayMainMenu();
+			if (gameId == -1)
+			{
+				Quit();
+				return;
+			}
+
+			var gameState = UserDataManager.GetGameState(gameId);
+			if (gameState.Summary.CurrentLevelName == "NEWGAME")
+			{
+				SetupNewGame(gameState.Summary.GameData);
+				LevelTransition(_startingLevel, _startingXLoc, _startingYLoc);
+			}
+			else
+				LoadGame(gameState);
+
+			RunGame();
+			Quit();
+			*/
+		}
+
+		static void RunGame()
+		{
+			while (true)
+			{
+				/*
+				_player.Update(_currentLevel);
+				_currentLevel.ActivateEntities();
+				_currentTime++;
+
+				if (_quit)
+				{
+					SaveGame();
+					return;
+				}
+				*/
+			}
+		}
+
+		public static void Quit()
+		{
+			_quit = true;
+			rootConsole.Close();
+		}
 		public static int CurrentTime
 		{
 			get { return 0; }
@@ -16,7 +113,7 @@ namespace RLEngine
 
 		public static Levels.Level CurrentLevel
 		{
-			get { return null; }
+			get { return _currentLevel; }
 		}
 
 		public static int PlayerXLoc

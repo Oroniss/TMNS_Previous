@@ -414,7 +414,6 @@ namespace RLEngine.Resources.Palette
 			{"RosyBrownThree",             	new RLColor(205, 155, 155)},
 			{"RosyBrownFour",             	new RLColor(139, 105, 105)},
 			{"LightCoral",               	new RLColor(240, 128, 128)},
-			{"IndianRed",             		new RLColor(205,  92,  92)},
 			{"IndianRedOne",             	new RLColor(255, 106, 106)},
 			{"IndianRedTwo",             	new RLColor(238,  99,  99)},
 			{"IndianRedThree",             	new RLColor(139,  58,  58)},
