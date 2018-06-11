@@ -1,0 +1,13 @@
+﻿LevelName - string
+LevelId - string (converts to Enum)
+MapWidth - int
+MapHeight - int
+###
+0, TileId - string (converts to Enum)
+1, TileId - string (converts to Enum)
+...
+###
+0,0,0,0,1,1,1 ...
+0,0,0,1,1,1,1 ...
+...
+###

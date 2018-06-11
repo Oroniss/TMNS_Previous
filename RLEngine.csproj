@@ -45,7 +45,7 @@
     <Compile Include="Entities\MapTiles\TileType.cs" />
     <Compile Include="Entities\MapTiles\MapTileDetails.cs" />
     <Compile Include="Levels\LevelFiles\LevelDatabase.cs" />
-    <Compile Include="Levels\LevelTemplate.cs" />
+    <Compile Include="Levels\LevelDetails.cs" />
     <Compile Include="Levels\LevelFiles\LevelId.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +63,13 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="DesignDoc.txt" />
+    <None Include="Levels\LevelFiles\TestLevels\TestLevel1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Levels\LevelFiles\TestLevels\TestLevel2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Levels\LevelFiles\LevelFileTemplate.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -73,6 +80,7 @@
     <Folder Include="Entities\EntityInterfaces\" />
     <Folder Include="Entities\MapTiles\" />
     <Folder Include="Levels\LevelFiles\" />
+    <Folder Include="Levels\LevelFiles\TestLevels\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

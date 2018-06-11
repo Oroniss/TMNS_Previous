@@ -17,10 +17,23 @@ namespace RLEngine.Levels
 		readonly SortedDictionary<int, int> _furnishings;
 		readonly SortedDictionary<int, int> _actors;
 
-		public Level(string levelName)
+		public Level(LevelId levelId)
 		{
 			_furnishings = new SortedDictionary<int, int>();
 			_actors = new SortedDictionary<int, int>();
+
+			var levelTemplate = LevelDatabase.LevelDatabase.GetLevelTemplate(levelId);
+
+			// Basic details
+			_levelName = levelTemplate.LevelName;
+			_mapWidth = levelTemplate.MapWidth;
+			_mapHeight = levelTemplate.MapHeight;
+			_tileGrid = levelTemplate.MapGrid;
+			_revealed = new bool[_mapWidth * _mapHeight];
+
+			_tileInformation = new Dictionary<int, MapTileDetails>();
+			foreach (KeyValuePair<int, TileType> tile in levelTemplate.TileDictionary)
+				_tileInformation[tile.Key] = MapTileDetails.GetTileDetails(tile.Value);
 		}
 
 		// The basic public stuff

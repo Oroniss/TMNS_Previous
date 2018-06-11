@@ -7,7 +7,7 @@ namespace RLEngine.Entities.MapTiles
 	[Serializable]
 	public class MapTileDetails:IBackgroundDrawing,ITrait
 	{
-		static Dictionary<TileType, MapTileDetails> mapTileDetails;
+		static Dictionary<TileType, MapTileDetails> mapTileDetails = new Dictionary<TileType, MapTileDetails>();
 
 		readonly TileType _tileType;
 		readonly string _backgroundColor;
