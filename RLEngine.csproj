@@ -58,6 +58,7 @@
     <Compile Include="UserData\SaveGameSummary.cs" />
     <Compile Include="UserData\GameData.cs" />
     <Compile Include="UserData\UserDataManager.cs" />
+    <Compile Include="Menus\CharacterCreationMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">

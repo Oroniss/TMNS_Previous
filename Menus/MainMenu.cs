@@ -19,8 +19,16 @@ namespace RLEngine.Menus
 				{
 					case 0:
 						{
-							// TODO: Go to character creation menu.
-							return 0;
+							var newGameParameters = MenuProvider.CharacterCreationMenu.CreateNewCharacter();
+							if (newGameParameters == null)
+								break;
+
+							newGameParameters.GameID = UserDataManager.GetNextGameId();
+
+							var saveGameSummary = new UserData.SaveGameSummary(newGameParameters, "NEWGAME", true);
+							UserDataManager.WriteSaveGameSummary(saveGameSummary);
+
+							return newGameParameters.GameID;
 						}
 					case 1:
 						{
