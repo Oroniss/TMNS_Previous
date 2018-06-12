@@ -6,25 +6,46 @@
 10/6/18 - Started on a basic Level class.
 10/6/18 - Added a MapTileDetails class.
 10/6/18 - Added some basic entity interfaces.
+12/6/18 - Added some stuff - had to revert which lost a lot in this file.
+13/6/18 - Added the character creation menu/process.
 
 
 For Version 0.1.
 
-Get the basic level class working.
-Load one up and draw it.
-Get starting menus done.
-Serialisation of current state.
-
 Tests/TODOs/Code Quality.
+
+For Version 0.2.
+
+Actor and Player.
+Timer.
+Movement/Player input.
+Save and Load game state.
+Events - generate them, process at end of each turn.
+Add logging here.
+
+For Version 0.3
+
+Hook up an SQLite DB and a script for turning a text/csv into a DB record.
+Add furnishings and movement functions.
+Add interaction.
+Add LOS and FOV.
+
+For Version 0.4
+
+Add Items and Inventory.
+
+For Version 0.5
+
+And conversation, trading, quests and achievements.
 
 ToDos:
 
-Fix Palette
 Fix AddDebugText
 Write text array length into a config file somewhere.
 Write console sizes into a config file somewhere.
 Add error messages to MapTileDetails Trait functions.
 Add MapTileDetails DB Query.
+Remove as many TODOs as possible.
 
 Later ToDos:
 

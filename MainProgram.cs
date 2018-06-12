@@ -7,6 +7,8 @@ namespace RLEngine
 {
 	public static class MainProgram
 	{
+		const string EngineVersion = "Version 0.1";
+
 		// TODO: Put these into a config file somewhere.
 		static readonly string _fontName = "terminal8x8.png";
 		static readonly int _consoleWidth = 160;
