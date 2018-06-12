@@ -52,12 +52,12 @@
     <Compile Include="Resources\Geometry\XYCoordinateStruct.cs" />
     <Compile Include="Menus\MenuProvider.cs" />
     <Compile Include="Menus\MainMenu.cs" />
-    <Compile Include="UserData\UserDataManager.cs" />
     <Compile Include="Menus\ViewKeysDisplay.cs" />
     <Compile Include="UserData\ConfigParameters.cs" />
     <Compile Include="UserData\SaveGame.cs" />
     <Compile Include="UserData\SaveGameSummary.cs" />
     <Compile Include="UserData\GameData.cs" />
+    <Compile Include="UserData\UserDataManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
