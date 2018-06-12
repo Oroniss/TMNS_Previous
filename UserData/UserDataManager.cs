@@ -3,7 +3,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 
-namespace Halfbreed
+namespace RLEngine
 {
 	// TODO: Put this in application settings.
 	public static class UserDataManager
@@ -14,6 +14,7 @@ namespace Halfbreed
 		static string _configFilePath;
 		static string _saveSummaryFilePath;
 		static string _saveFileFolder;
+		static string _logFileFolder;
 
 		static readonly ConfigParameters _defaultConfigParameters = new ConfigParameters(false, false, false);
 		static readonly SortedDictionary<int, SaveGameSummary> _defaultSaveSummary = 
@@ -24,14 +25,12 @@ namespace Halfbreed
 		{
 			SetFilePaths();
 
-			if (!Directory.Exists(Path.Combine(_homeDirectory, "Config")))
-				Directory.CreateDirectory(Path.Combine(_homeDirectory, "Config"));
-			if (!Directory.Exists(_saveFileFolder))
-				Directory.CreateDirectory(_saveFileFolder);
 			if (!Directory.Exists(Path.Combine(_homeDirectory, "UserData")))
 				Directory.CreateDirectory(Path.Combine(_homeDirectory, "UserData"));
-			if (!Directory.Exists(Path.Combine(_homeDirectory, "Logs")))
-				Directory.CreateDirectory(Path.Combine(_homeDirectory, "Logs"));
+			if (!Directory.Exists(_saveFileFolder))
+				Directory.CreateDirectory(_saveFileFolder);
+			if (!Directory.Exists(_logFileFolder))
+				Directory.CreateDirectory(_logFileFolder);
 
 			if (!File.Exists(_configFilePath))
 				CreateNewConfigFile();
@@ -41,9 +40,10 @@ namespace Halfbreed
 
 		static void SetFilePaths()
 		{
-			_configFilePath = Path.Combine(_homeDirectory, "Config", "config.hb");
-			_saveSummaryFilePath = Path.Combine(_homeDirectory, "Userdata", "SSF.hb");
-			_saveFileFolder = Path.Combine(_homeDirectory, "Saves");
+			_configFilePath = Path.Combine(_homeDirectory, "UserData", "config.gen");
+			_saveSummaryFilePath = Path.Combine(_homeDirectory, "UserData", "SSF.gen");
+			_saveFileFolder = Path.Combine(_homeDirectory, "UserData", "Saves");
+			_logFileFolder = Path.Combine(_homeDirectory, "UserData", "Logs");
 		}
 
 		static void CreateNewConfigFile()
@@ -85,7 +85,7 @@ namespace Halfbreed
 		public static void SaveGame(SaveGame gameState)
 		{
 			WriteSaveGameSummary(gameState.Summary);
-			var filePath = Path.Combine(_saveFileFolder, string.Format("GID{0}.hbs", 
+			var filePath = Path.Combine(_saveFileFolder, string.Format("GID{0}.gen", 
 			                                                           gameState.Summary.GameData.GameID));
 			var fileStream = File.OpenWrite(filePath);
 			var serialiser = new BinaryFormatter();
@@ -100,11 +100,11 @@ namespace Halfbreed
 			// TODO: Perform a check to see if the character is actually dead - also consider GM options, etc.
 			if (summary.CurrentLevelName == "NEWGAME")
 			{
-				gameState = new SaveGame(summary, null, 1, null, null, null, null);
+				gameState = new SaveGame(summary);
 			}
 			else
 			{
-				var filePath = Path.Combine(_saveFileFolder, string.Format("GID{0}.hbs", summary.GameData.GameID));
+				var filePath = Path.Combine(_saveFileFolder, string.Format("GID{0}.gen", summary.GameData.GameID));
 				var fileStream = File.OpenRead(filePath);
 				var serialiser = new BinaryFormatter();
 				gameState = (SaveGame)serialiser.Deserialize(fileStream);
@@ -127,7 +127,7 @@ namespace Halfbreed
 
 		public static void DeleteSaveGame(int gameID)
 		{
-			var filePath = Path.Combine(_saveFileFolder, string.Format("GID{0}.hbs", gameID));
+			var filePath = Path.Combine(_saveFileFolder, string.Format("GID{0}.gen", gameID));
 			if (File.Exists(filePath))
 				File.Delete(filePath);
 			var summaryDict = ReadSummaryFile();
