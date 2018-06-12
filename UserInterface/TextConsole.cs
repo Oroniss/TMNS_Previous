@@ -26,7 +26,10 @@ namespace RLEngine.UserInterface
 			_outputText = new string[_ARRAYLENGTH];
 			_textColors = new string[_ARRAYLENGTH];
 			for (var i = 0; i < _outputText.Length; i++)
+			{
 				_outputText[i] = "";
+				_textColors[i] = "White";
+			}
 		}
 
 		public void AddOutputText(string text)

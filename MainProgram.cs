@@ -19,6 +19,7 @@ namespace RLEngine
 
 		// Global attributes
 		static Levels.Level _currentLevel;
+		static int _currentTime;
 		static bool _quit = false;
 
 		public static void Main()
@@ -57,9 +58,6 @@ namespace RLEngine
 		static void RunStartMenu()
 		{
 			_currentLevel = new Levels.Level(Levels.LevelId.TestLevel2);
-			MainGraphicDisplay.MapConsole.DrawMap();
-			Thread.Sleep(10000);
-			Quit();
 
 			/*
 			var gameId = MenuProvider.MainMenu.DisplayMainMenu();
@@ -77,27 +75,27 @@ namespace RLEngine
 			}
 			else
 				LoadGame(gameState);
-
+			*/
 			RunGame();
 			Quit();
-			*/
 		}
 
 		static void RunGame()
 		{
 			while (true)
 			{
-				/*
-				_player.Update(_currentLevel);
-				_currentLevel.ActivateEntities();
-				_currentTime++;
+				MainGraphicDisplay.UpdateGameScreen();
+
+				var key = UserInputHandler.getNextKey();
+				if (key == "ESCAPE")
+					_quit = true;
 
 				if (_quit)
 				{
-					SaveGame();
+					//SaveGame();
 					return;
 				}
-				*/
+				_currentTime++;
 			}
 		}
 
@@ -108,7 +106,7 @@ namespace RLEngine
 		}
 		public static int CurrentTime
 		{
-			get { return 0; }
+			get { return _currentTime; }
 		}
 
 		public static Levels.Level CurrentLevel
