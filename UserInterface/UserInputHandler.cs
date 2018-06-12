@@ -187,7 +187,7 @@ namespace RLEngine.UserInterface
 		// TODO: See if this is something that comes up enough to generalise.
 		public static void DisplayConfigMenu()
 		{
-			/*
+			
 			var configParameters = UserDataManager.ReadConfigParameters();
 			var logging = configParameters.FullLogging;
 			var keys = configParameters.ExtraKeys;
@@ -224,11 +224,11 @@ namespace RLEngine.UserInterface
 					gm = !gm;
 				if (key == "ESCAPE")
 				{
-					// UserDataManager.WriteConfigFile(new UserData.ConfigParameters(keys, logging, gm));
+					UserDataManager.WriteConfigFile(new UserData.ConfigParameters(keys, logging, gm));
 					return;
 				}
 			}
-			*/
+
 		}
 
 		public static bool ExtraKeys

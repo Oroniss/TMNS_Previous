@@ -24,6 +24,14 @@ namespace RLEngine
 
 		public static void Main()
 		{
+			UserDataManager.SetupDirectoriesAndFiles();
+
+			var configParameters = UserDataManager.ReadConfigParameters();
+
+			UserInputHandler.ExtraKeys = configParameters.ExtraKeys;
+			UserDataManager.FullLogging = configParameters.FullLogging;
+			// TODO: Set the gm option here too.
+
 			rootConsole = new RLRootConsole(_fontName, _consoleWidth, _consoleHeight, _fontSize, _fontSize, _scale,
 											_windowTitle);
 
@@ -57,9 +65,6 @@ namespace RLEngine
 
 		static void RunStartMenu()
 		{
-			_currentLevel = new Levels.Level(Levels.LevelId.TestLevel2);
-
-			/*
 			var gameId = MenuProvider.MainMenu.DisplayMainMenu();
 			if (gameId == -1)
 			{
@@ -67,6 +72,9 @@ namespace RLEngine
 				return;
 			}
 
+			_currentLevel = new Levels.Level(Levels.LevelId.TestLevel2);
+
+			/*
 			var gameState = UserDataManager.GetGameState(gameId);
 			if (gameState.Summary.CurrentLevelName == "NEWGAME")
 			{
