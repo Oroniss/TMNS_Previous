@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{EF134163-45C9-467B-9D3C-B91F77A306E7}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>RLEngineSetup</RootNamespace>
-    <AssemblyName>RLEngineSetup</AssemblyName>
+    <RootNamespace>RLEngine</RootNamespace>
+    <AssemblyName>RLEngine</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -50,6 +50,14 @@
     <Compile Include="UserInterface\UserInputHandler.cs" />
     <Compile Include="Resources\Geometry\XYCoordinateClass.cs" />
     <Compile Include="Resources\Geometry\XYCoordinateStruct.cs" />
+    <Compile Include="Menus\MenuProvider.cs" />
+    <Compile Include="Menus\MainMenu.cs" />
+    <Compile Include="UserData\UserDataManager.cs" />
+    <Compile Include="Menus\ViewKeysDisplay.cs" />
+    <Compile Include="UserData\ConfigParameters.cs" />
+    <Compile Include="UserData\SaveGame.cs" />
+    <Compile Include="UserData\SaveGameSummary.cs" />
+    <Compile Include="UserData\GameData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -88,6 +96,8 @@
     <Folder Include="Levels\LevelFiles\" />
     <Folder Include="Levels\LevelFiles\TestLevels\" />
     <Folder Include="Resources\Geometry\" />
+    <Folder Include="Menus\" />
+    <Folder Include="UserData\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
