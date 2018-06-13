@@ -85,6 +85,9 @@
     <None Include="terminal8x8.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Entities\MapTiles\TileTypes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -99,6 +102,7 @@
     <Folder Include="Resources\Geometry\" />
     <Folder Include="Menus\" />
     <Folder Include="UserData\" />
+    <Folder Include="Tests\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
