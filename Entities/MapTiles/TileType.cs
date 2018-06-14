@@ -1,4 +1,6 @@
-﻿namespace RLEngine.Entities.MapTiles
+﻿// Finished for version 0.1.
+
+namespace RLEngine.Entities.MapTiles
 {
 	public enum TileType
 	{
