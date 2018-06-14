@@ -60,6 +60,8 @@
     <Compile Include="UserData\UserDataManager.cs" />
     <Compile Include="Menus\CharacterCreationMenu.cs" />
     <Compile Include="Tests\EntityTests\MapTileTests.cs" />
+    <Compile Include="Tests\LevelTests\LevelTests.cs" />
+    <Compile Include="Tests\LevelTests\LevelDatabaseTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -105,6 +107,7 @@
     <Folder Include="UserData\" />
     <Folder Include="Tests\" />
     <Folder Include="Tests\EntityTests\" />
+    <Folder Include="Tests\LevelTests\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

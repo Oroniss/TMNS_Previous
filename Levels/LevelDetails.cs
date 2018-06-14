@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Fixed up for version 0.1.
+
+using System.Collections.Generic;
 using System;
 
 namespace RLEngine.Levels

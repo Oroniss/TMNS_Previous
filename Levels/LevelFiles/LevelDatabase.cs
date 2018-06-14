@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Fixed up for version 0.1.
+
+using System.Collections.Generic;
 using System.IO;
 using System;
 using RLEngine.Entities.MapTiles;
@@ -16,6 +18,8 @@ namespace RLEngine.Levels.LevelDatabase
 
 		public static LevelDetails GetLevelTemplate(LevelId levelId)
 		{
+			// TODO: Don't spend too much time here - will get put into a DB in the end anyway.
+
 			var levelFilePath = Path.Combine(filePath, levelFilePaths[levelId]);
 
 			var fileReader = new StreamReader(levelFilePath);
@@ -27,8 +31,8 @@ namespace RLEngine.Levels.LevelDatabase
 
 			if ((LevelId)Enum.Parse(typeof(LevelId), fileReader.ReadLine().Trim()) != levelId)
 			{
-				// TODO: Fix this up.
-				ErrorLogger.AddDebugText("");
+				ErrorLogger.AddDebugText(string.Format("Level template is broken - level id doesn't match for level {0}", levelId));
+				fileReader.Close();
 				return levelTemplate;
 			}
 
@@ -37,7 +41,7 @@ namespace RLEngine.Levels.LevelDatabase
 
 			if (fileReader.ReadLine().Trim() != "###")
 			{
-				// TODO: Fix this too.
+				ErrorLogger.AddDebugText(string.Format("Header section for level {0}, has problems", levelId));
 				return levelTemplate;
 			}
 
@@ -60,10 +64,9 @@ namespace RLEngine.Levels.LevelDatabase
 
 			if (fileReader.ReadLine().Trim() != "###")
 			{
-				// TODO: Fix this
+				ErrorLogger.AddDebugText(string.Format("Map section for level {0} has problems", levelId));
 				return levelTemplate;
 			}
-
 
 			fileReader.Close();
 
