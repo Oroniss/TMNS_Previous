@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Finished for version 0.1.
+
+using System.Collections.Generic;
 using System;
 using RLEngine.Entities.MapTiles;
 
@@ -36,6 +38,7 @@ namespace RLEngine.Levels
 				_tileInformation[tile.Key] = MapTileDetails.GetTileDetails(tile.Value);
 		}
 
+
 		// The basic public stuff
 		public string LevelName
 		{
@@ -52,35 +55,57 @@ namespace RLEngine.Levels
 			get { return _mapHeight; }
 		}
 
+
 		// Public utility functions.
 		public bool IsValidMapCoord(int x, int y)
 		{
 			return 0 <= x && x < _mapWidth && 0 <= y && y < _mapHeight;
 		}
 
+
 		// Graphics functions
 		public bool IsRevealed(int x, int y)
 		{
-			var index = ConvertXYToInt(x, y);
-			return _revealed[index];
+			if (IsValidMapCoord(x, y))
+			{
+				var index = ConvertXYToInt(x, y);
+				return _revealed[index];
+			}
+			ErrorLogger.AddDebugText(string.Format("Checked revealed on invalid tile: {0}, {1}", x, y));
+			return false;
 		}
 
 		public void RevealTile(int x, int y)
 		{
-			var index = ConvertXYToInt(x, y);
-			_revealed[index] = true;
+			if (IsValidMapCoord(x, y))
+			{
+				var index = ConvertXYToInt(x, y);
+				_revealed[index] = true;
+			}
+			else
+				ErrorLogger.AddDebugText(string.Format("Tried to reveal an invalid tile: {0}, {1}", x, y));
 		}
 
 		public string GetBGColor(int x, int y)
 		{
-			var index = ConvertXYToInt(x, y);
-			return _tileInformation[_tileGrid[index]].BackgroundColor;
+			if (IsValidMapCoord(x, y))
+			{
+				var index = ConvertXYToInt(x, y);
+				return _tileInformation[_tileGrid[index]].BackgroundColor;
+			}
+			ErrorLogger.AddDebugText(string.Format("Attempted to get bgcolor on invalid tile: {0}, {1}", x, y));
+			return "Black";
 		}
 
 		public string GetFogColor(int x, int y)
 		{
-			var index = ConvertXYToInt(x, y);
-			return _tileInformation[_tileGrid[index]].FogColor;
+			if (IsValidMapCoord(x, y))
+			{
+				var index = ConvertXYToInt(x, y);
+				return _tileInformation[_tileGrid[index]].FogColor;
+			}
+			ErrorLogger.AddDebugText(string.Format("Attempted to get fogcolor on invalid tile: {0}, {1}", x, y));
+			return "Black";
 		}
 
 
