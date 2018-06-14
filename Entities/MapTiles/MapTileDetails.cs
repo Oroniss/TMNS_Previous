@@ -1,3 +1,5 @@
+// Finished for version 0.1.
+
 using System.Collections.Generic;
 using System;
 using RLEngine.Entities.EntityInterfaces;
@@ -76,7 +78,7 @@ namespace RLEngine.Entities.MapTiles
 					for (int i = 0; i < traits.Length; i++)
 						traits[i] = (Trait)Enum.Parse(typeof(Trait), traitLine[i]);
 
-					returnVal = new MapTileDetails(tileType, splitLine[0], splitLine[1], traits);
+					returnVal = new MapTileDetails(tileType, splitLine[1], splitLine[2], traits);
 					break;
 				}
 			}

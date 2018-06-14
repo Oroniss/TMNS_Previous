@@ -4,7 +4,7 @@
 	{
 		TestTile1,
 		TestTile2,
-
+		TestTile3, // Doesn't exist, used to test errors/defaults.
 
 	}
 }
