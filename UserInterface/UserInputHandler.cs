@@ -172,9 +172,9 @@ namespace RLEngine.UserInterface
 				var key = GetNextKey();
 				var converter = new System.Globalization.CultureInfo("en-US");
 
-				if (LetterKeys.Contains(key) && currentText.Length <= MAXTEXTLENGTH)
+				if (LetterKeys.Contains(key) && currentText.Length < MAXTEXTLENGTH)
 				{
-					currentText += key.ToLower(); // ToLower required since all caps strings are changed.
+					currentText += key.ToLower(); // ToLower required since all caps strings are unchanged.
 					currentText = converter.TextInfo.ToTitleCase(currentText);
 				}
 				if (key == "SPACE")

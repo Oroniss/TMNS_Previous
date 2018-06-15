@@ -89,7 +89,49 @@ namespace RLEngine
 		[Test]
 		public void TestGetText()
 		{
+			var input = new List<string> { "F", "R", "E", "D", "ENTER"};
+
+			UserInputHandler.AddKeyboardInput(input);
+			Assert.AreEqual("Fred", UserInputHandler.GetText(""));
+			UserInputHandler.ClearAllInput();
 			
+			input = new List<string> { "A", "L", "E", "A", "S", "H", "A", "SPACE", 
+				"S", "I", "L", "V", "E", "R", "S", "T", "A", "R", "ENTER" };
+
+			UserInputHandler.AddKeyboardInput(input);
+			Assert.AreEqual("Aleasha Silverstar", UserInputHandler.GetText(""));
+			UserInputHandler.ClearAllInput();
+
+			input = new List<string> { "A", "L", "E", "A", "S", "A", "BACKSPACE", "H", "A", "SPACE", 
+				"S", "I", "L", "V", "E", "R", "S", "T", "A", "R", "ENTER" };
+
+			UserInputHandler.AddKeyboardInput(input);
+			Assert.AreEqual("Aleasha Silverstar", UserInputHandler.GetText(""));
+			UserInputHandler.ClearAllInput();
+
+			input = new List<string> { "A", "L", "E", "A", "S", "ESCAPE" };
+
+			UserInputHandler.AddKeyboardInput(input);
+			Assert.IsNull(UserInputHandler.GetText(""));
+			UserInputHandler.ClearAllInput();
+
+			input = new List<string> { "A", "L", "E", "A", "S", "H", "A", "SPACE", 
+				"A", "L", "E", "A", "S", "H", "A", "SPACE", 
+				"A", "L", "E", "A", "S", "H", "A", "SPACE", 
+				"A", "L", "E", "A", "S", "H", "A", "SPACE", 
+				"A", "L", "E", "A", "S", "H", "A", "SPACE", 
+				"S", "I", "L", "BACKSPACE", "BACKSPACE", "T", "Z", "ENTER" };
+
+			UserInputHandler.AddKeyboardInput(input);
+			Assert.AreEqual("Aleasha Aleasha Aleasha Aleasha Aleashtz", UserInputHandler.GetText(""));
+			UserInputHandler.ClearAllInput();
+
+			input = new List<string> { "A", "L", "E", "A", "S", "H", "A", "SPACE", "COMMA",
+				"S", "I", "L", "V", "E", "R", "S", "T", "A", "R", "ENTER" };
+
+			UserInputHandler.AddKeyboardInput(input);
+			Assert.AreEqual("Aleasha Silverstar", UserInputHandler.GetText(""));
+			UserInputHandler.ClearAllInput();
 		}
 
 		[Test]
