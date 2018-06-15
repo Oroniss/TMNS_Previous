@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace RLEngine.Menus
 {
@@ -25,7 +25,7 @@ namespace RLEngine.Menus
 		public void ViewKeys()
 		{
 			MainGraphicDisplay.MenuConsole.DrawTextBlock("Available commands", _keys, "Press any key to return");
-			UserInterface.UserInputHandler.getNextKey();
+			UserInterface.UserInputHandler.GetNextKey();
 		}
 	}
 }

@@ -7,8 +7,8 @@
 
 		public XYCoordinateClass(int x, int y)
 		{
-			x = _x;
-			y = _y;
+			_x = x;
+			_y = y;
 		}
 
 		public int X

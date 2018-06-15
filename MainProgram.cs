@@ -61,7 +61,7 @@ namespace RLEngine
 			var key = rootConsole.Keyboard.GetKeyPress();
 			if (key != null)
 			{
-				UserInputHandler.addKeyboardInput(key.Key);
+				UserInputHandler.AddKeyboardInput(key.Key);
 			}
 		}
 
@@ -96,7 +96,7 @@ namespace RLEngine
 			{
 				MainGraphicDisplay.UpdateGameScreen();
 
-				var key = UserInputHandler.getNextKey();
+				var key = UserInputHandler.GetNextKey();
 				if (key == "ESCAPE")
 					_quit = true;
 

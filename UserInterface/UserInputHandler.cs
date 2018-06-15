@@ -10,9 +10,9 @@ namespace RLEngine.UserInterface
     {
 		const int MAXTEXTLENGTH = 40;
 
-		static bool _extraKeys;
+		static bool extraKeys;
 
-		static readonly Dictionary<RLKey, string> _keyDict = new Dictionary<RLKey, string>
+		static readonly Dictionary<RLKey, string> keyDict = new Dictionary<RLKey, string>
 		{
 			{RLKey.Number0, "0"}, {RLKey.Number1, "1"}, {RLKey.Number2, "2"}, {RLKey.Number3, "3"}, 
 			{RLKey.Number4, "4"}, {RLKey.Number5, "5"}, {RLKey.Number6, "6"}, {RLKey.Number7, "7"}, 
@@ -47,40 +47,46 @@ namespace RLEngine.UserInterface
 		{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
 		"V", "W", "X", "Y", "Z"};
 
-		static List<string> _queuedInput = new List<string>();
+		static List<string> queuedInput = new List<string>();
 
 
-		public static void addKeyboardInput(RLKey key)
+		public static void AddKeyboardInput(RLKey key)
         {
-			if (_keyDict.ContainsKey(key))
+			if (keyDict.ContainsKey(key))
 			{
-				lock (_queuedInput)
-					_queuedInput.Add(_keyDict[key]);
+				lock (queuedInput)
+					queuedInput.Add(keyDict[key]);
 			}
         }
 
-		public static void addKeyboardInput(string key)
+		public static void AddKeyboardInput(string key)
 		{
-			lock(_queuedInput)
-				_queuedInput.Add(key);
+			lock(queuedInput)
+				queuedInput.Add(key);
 		}
 
-		public static void clearAllInput()
+		public static void AddKeyboardInput(List<string> keys)
 		{
-			lock (_queuedInput)
-				_queuedInput = new List<string>();
+			foreach (string key in keys)
+				AddKeyboardInput(key);
 		}
 
-        public static string getNextKey()
+		public static void ClearAllInput()
+		{
+			lock (queuedInput)
+				queuedInput = new List<string>();
+		}
+
+        public static string GetNextKey()
         {
             while (true)
             {
-                lock (_queuedInput)
+                lock (queuedInput)
                 {
-                    if(_queuedInput.Count > 0)
+                    if(queuedInput.Count > 0)
                     {
-                        var toReturn = _queuedInput[0];
-						_queuedInput.RemoveAt(0);
+                        var toReturn = queuedInput[0];
+						queuedInput.RemoveAt(0);
                         return toReturn;
                     }
                 }
@@ -100,7 +106,7 @@ namespace RLEngine.UserInterface
 				}
 				MainGraphicDisplay.MenuConsole.DrawTextBlock(title, currentDisplay, bottom);
 
-				var key = getNextKey();
+				var key = GetNextKey();
 
 				if (NumberKeys.ContainsKey(key))
 				{
@@ -137,13 +143,10 @@ namespace RLEngine.UserInterface
 
 		public static XYCoordinateClass GetDirection(string queryText, bool centre)
 		{
-			if (queryText == "")
-				queryText = "Which direction?";
-
 			while (true)
 			{
 				MainGraphicDisplay.TextConsole.AddOutputText(queryText);
-				var key = getNextKey();
+				var key = GetNextKey();
 
 				if (DirectionKeys.ContainsKey(key))
 					return new XYCoordinateClass(DirectionKeys[key].X, DirectionKeys[key].Y);
@@ -156,7 +159,7 @@ namespace RLEngine.UserInterface
 
 		public static XYCoordinateClass GetDirection()
 		{
-			return GetDirection("", true);
+			return GetDirection("Which direction?", true);
 		}
 
 		public static string GetText(string headerText)
@@ -166,7 +169,7 @@ namespace RLEngine.UserInterface
 			{
 				MainGraphicDisplay.MenuConsole.DrawTextBlock(headerText, new List<string> { currentText },
 														"Escape to cancel");
-				var key = getNextKey();
+				var key = GetNextKey();
 				var converter = new System.Globalization.CultureInfo("en-US");
 
 				if (LetterKeys.Contains(key) && currentText.Length <= MAXTEXTLENGTH)
@@ -214,7 +217,7 @@ namespace RLEngine.UserInterface
 
 				MainGraphicDisplay.MenuConsole.DrawTextBlock(title, options, bottom);
 
-				var key = getNextKey();
+				var key = GetNextKey();
 
 				if (key == "L")
 					logging = !logging;
@@ -233,9 +236,9 @@ namespace RLEngine.UserInterface
 
 		public static bool ExtraKeys
 		{
-			get { return _extraKeys; }
+			get { return extraKeys; }
 			set {
-				_extraKeys = value;
+				extraKeys = value;
 				if (value)
 					AddExtraKeys();
 				else
@@ -245,22 +248,22 @@ namespace RLEngine.UserInterface
 
 		static void AddExtraKeys()
 		{
-			_keyDict[RLKey.Semicolon] = "DOWN_LEFT";
-			_keyDict[RLKey.Quote] = "DOWN_RIGHT";
-			_keyDict[RLKey.BracketLeft] = "UP_LEFT";
-			_keyDict[RLKey.BracketRight] = "UP_RIGHT";
+			keyDict[RLKey.Semicolon] = "DOWN_LEFT";
+			keyDict[RLKey.Quote] = "DOWN_RIGHT";
+			keyDict[RLKey.BracketLeft] = "UP_LEFT";
+			keyDict[RLKey.BracketRight] = "UP_RIGHT";
 		}
 
 		static void RemoveExtraKeys()
 		{
-			if (_keyDict.ContainsKey(RLKey.Semicolon))
-				_keyDict.Remove(RLKey.Semicolon);
-			if (_keyDict.ContainsKey(RLKey.Quote))
-				_keyDict.Remove(RLKey.Quote);
-			if (_keyDict.ContainsKey(RLKey.BracketLeft))
-				_keyDict.Remove(RLKey.BracketLeft);
-			if (_keyDict.ContainsKey(RLKey.BracketRight))
-				_keyDict.Remove(RLKey.BracketRight);
+			if (keyDict.ContainsKey(RLKey.Semicolon))
+				keyDict.Remove(RLKey.Semicolon);
+			if (keyDict.ContainsKey(RLKey.Quote))
+				keyDict.Remove(RLKey.Quote);
+			if (keyDict.ContainsKey(RLKey.BracketLeft))
+				keyDict.Remove(RLKey.BracketLeft);
+			if (keyDict.ContainsKey(RLKey.BracketRight))
+				keyDict.Remove(RLKey.BracketRight);
 		}
     }
 }
