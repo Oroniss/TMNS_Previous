@@ -63,6 +63,8 @@
     <Compile Include="Tests\LevelTests\LevelTests.cs" />
     <Compile Include="Tests\LevelTests\LevelDatabaseTests.cs" />
     <Compile Include="Tests\UserInterfaceTests\UserInputTests.cs" />
+    <Compile Include="Tests\ResourcesTests\GeometryTests.cs" />
+    <Compile Include="Tests\ResourcesTests\PaletteTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -110,6 +112,7 @@
     <Folder Include="Tests\EntityTests\" />
     <Folder Include="Tests\LevelTests\" />
     <Folder Include="Tests\UserInterfaceTests\" />
+    <Folder Include="Tests\ResourcesTests\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

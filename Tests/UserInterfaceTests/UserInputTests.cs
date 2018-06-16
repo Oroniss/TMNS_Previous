@@ -5,7 +5,7 @@ using RLNET;
 using System.Collections.Generic;
 using RLEngine.UserInterface;
 
-namespace RLEngine
+namespace RLEngine.Tests
 {
 	[TestFixture]
 	public class UserInputTests

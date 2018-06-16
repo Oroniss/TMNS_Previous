@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Finished for version 0.1.
+
+using System.Collections.Generic;
 using RLNET;
 
 namespace RLEngine.Resources.Palette

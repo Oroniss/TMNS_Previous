@@ -3,7 +3,7 @@
 using NUnit.Framework;
 using RLEngine.Entities.MapTiles;
 
-namespace RLEngine
+namespace RLEngine.Tests
 {
 	[TestFixture]
 	public class MapTileTests

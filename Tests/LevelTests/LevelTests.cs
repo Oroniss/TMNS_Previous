@@ -3,7 +3,7 @@
 using NUnit.Framework;
 using RLEngine.Levels;
 
-namespace RLEngine
+namespace RLEngine.Tests
 {
 	[TestFixture]
 	public class LevelTests

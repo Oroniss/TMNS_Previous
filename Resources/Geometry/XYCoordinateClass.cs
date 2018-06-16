@@ -1,4 +1,6 @@
-﻿namespace RLEngine.Resources.Geometry
+﻿// Finished for version 0.1.
+
+namespace RLEngine.Resources.Geometry
 {
 	public class XYCoordinateClass
 	{
