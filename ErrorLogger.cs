@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Finished up for version 0.1.
+
+using System.Collections.Generic;
 
 namespace RLEngine
 {
@@ -15,8 +17,10 @@ namespace RLEngine
 		public static void AddDebugText(string text, string textColor)
 		{
 			if (isTesting)
+			{
 				testMessages.Add(text);
-			// TODO: Add this in once UI done.
+				System.Console.WriteLine(text);
+			}
 		}
 
 		public static void SetToTest()
