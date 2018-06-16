@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Finished for version 0.1.
+
+using System.Collections.Generic;
 
 namespace RLEngine.Menus
 {
@@ -11,7 +13,6 @@ namespace RLEngine.Menus
 		{
 			while (true)
 			{
-				
 				var selection = UserInterface.UserInputHandler.SelectFromMenu("Welcome to Engine Test", mainMenuOptions, 
 				                                                              "Escape to Quit");
 
@@ -57,6 +58,5 @@ namespace RLEngine.Menus
 				}
 			}
 		}
-
 	}
 }

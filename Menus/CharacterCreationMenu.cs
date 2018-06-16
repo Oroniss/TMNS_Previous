@@ -1,10 +1,11 @@
-﻿using RLEngine.UserData;
+﻿// Finished for version 0.1.
+
+using RLEngine.UserData;
 
 namespace RLEngine.Menus
 {
 	public class CharacterCreationMenu
 	{
-
 		public GameData CreateNewCharacter()
 		{
 			GameData parameters = new GameData();
@@ -12,7 +13,6 @@ namespace RLEngine.Menus
 			parameters = GetCharacterName(parameters);
 
 			return parameters;
-
 		}
 
 		GameData GetCharacterName(GameData parameters)
@@ -23,6 +23,5 @@ namespace RLEngine.Menus
 			parameters.GameIdentifier = characterNote;
 			return parameters;
 		}
-
 	}
 }
