@@ -1,3 +1,5 @@
+// Finished for version 0.1.
+
 using System;
 using System.Threading;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ namespace RLEngine.UserInterface
 		const int MAXTEXTLENGTH = 40;
 
 		static bool extraKeys;
+		static List<string> queuedInput = new List<string>();
 
 		static readonly Dictionary<RLKey, string> keyDict = new Dictionary<RLKey, string>
 		{
@@ -46,8 +49,6 @@ namespace RLEngine.UserInterface
 		public static readonly HashSet<string> LetterKeys = new HashSet<string>
 		{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
 		"V", "W", "X", "Y", "Z"};
-
-		static List<string> queuedInput = new List<string>();
 
 
 		public static void AddKeyboardInput(RLKey key)

@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿// Finished for version 0.1.
+
+using NUnit.Framework;
 using RLNET;
 using System.Collections.Generic;
 using RLEngine.UserInterface;
@@ -137,7 +139,38 @@ namespace RLEngine
 		[Test]
 		public void TestSelectFromMenu()
 		{
-			
+			var menuOptions1 = new List<string>();
+			for (int i = 0; i < 6; i++)
+				menuOptions1.Add("");
+
+			var input = new List<string> {"4"};
+			UserInputHandler.AddKeyboardInput(input);
+			Assert.AreEqual(3, UserInputHandler.SelectFromMenu("", menuOptions1, ""));
+			UserInputHandler.ClearAllInput();
+
+			input = new List<string> { "8", "6" };
+			UserInputHandler.AddKeyboardInput(input);
+			Assert.AreEqual(5, UserInputHandler.SelectFromMenu("", menuOptions1, ""));
+			UserInputHandler.ClearAllInput();
+
+			input = new List<string> { "8", "ESCAPE" };
+			UserInputHandler.AddKeyboardInput(input);
+			Assert.AreEqual(-1, UserInputHandler.SelectFromMenu("", menuOptions1, ""));
+			UserInputHandler.ClearAllInput();
+
+			var menuOptions2 = new List<string>();
+			for (int i = 0; i < 45; i++)
+				menuOptions2.Add("");
+
+			input = new List<string> { "RIGHT", "RIGHT", "4" };
+			UserInputHandler.AddKeyboardInput(input);
+			Assert.AreEqual(23, UserInputHandler.SelectFromMenu("", menuOptions2, ""));
+			UserInputHandler.ClearAllInput();
+
+			input = new List<string> { "RIGHT", "RIGHT", "RIGHT", "RIGHT", "8", "LEFT", "0" };
+			UserInputHandler.AddKeyboardInput(input);
+			Assert.AreEqual(39, UserInputHandler.SelectFromMenu("", menuOptions2, ""));
+			UserInputHandler.ClearAllInput();
 		}
 	}
 }
