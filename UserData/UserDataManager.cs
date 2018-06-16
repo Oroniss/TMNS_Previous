@@ -1,4 +1,6 @@
-﻿using RLEngine.UserData;
+﻿// Finished up for version 0.1.
+
+using RLEngine.UserData;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;

@@ -1,3 +1,5 @@
+// Finished up for version 0.1.
+
 using System;
 
 namespace RLEngine.UserData

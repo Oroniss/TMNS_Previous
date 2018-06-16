@@ -8,11 +8,16 @@
 10/6/18 - Added some basic entity interfaces.
 12/6/18 - Added some stuff - had to revert which lost a lot in this file.
 13/6/18 - Added the character creation menu/process.
+14/6/18 - Tidied up the MapTile file and added some error handling and a text file to store them.
+14/6/18 - Added tests for MapTileDetails and the file reading.
+14/6/18 - Added tests to the level reading process.
+15/6/18 - Added tests for level attributes and functions.
+15/6/18 - Added some tests of user input - AddKeyboardInput and GetDirection.
+15/6/18 - Added tests of GetText and SelectFromMenu.
+16/6/18 - Added tests for Geometry and Palette.
+16/6/18 - Added tests of character creation menu.
+16/6/18 - Added tests for the user data classes.
 
-
-For Version 0.1.
-
-Tests/TODOs/Code Quality.
 
 For Version 0.2.
 
@@ -21,7 +26,6 @@ Timer.
 Movement/Player input.
 Save and Load game state.
 Events - generate them, process at end of each turn.
-Add logging here.
 
 For Version 0.3
 
@@ -32,22 +36,36 @@ Add LOS and FOV.
 
 For Version 0.4
 
-Add Items and Inventory.
+Actors and Actions.
+Add logging here.
 
 For Version 0.5
 
+Add Items and Inventory.
+
+For Version 0.6
+
 And conversation, trading, quests and achievements.
+
+For Version 0.7
+
+Pathfinding and AI
+Anything else.
+
 
 ToDos:
 
 Fix AddDebugText
 Write text array length into a config file somewhere.
 Write console sizes into a config file somewhere.
-Add error messages to MapTileDetails Trait functions.
-Add MapTileDetails DB Query.
 Remove as many TODOs as possible.
 
 Later ToDos:
 
+Write tests for the MainMenu.
+Write tests for the UserDataManager.
 Figure out movement functions in movement interface.
 Fix draw map once FOV, lighting, player, revealed, etc in game.
+
+SQLite DB
+Have something serialise each entry in the maptile file and store it in the DB under the TileType.
