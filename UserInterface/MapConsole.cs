@@ -12,7 +12,7 @@ namespace RLEngine.UserInterface
 
 		public void DrawMap()
 		{
-			DrawMap(MainProgram.CurrentLevel, MainProgram.PlayerXLoc, MainProgram.PlayerYLoc);
+			DrawMap(MainProgram.CurrentLevel, MainProgram.Player.XLoc, MainProgram.Player.YLoc);
 		}
 
 		public void DrawMap(Levels.Level level, int xCentre, int yCentre) // TODO: Add hashset of visible tiles.

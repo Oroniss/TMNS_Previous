@@ -22,7 +22,12 @@ namespace RLEngine
 		// Global attributes
 		static int _currentTime;
 		static Levels.Level _currentLevel;
+		static Entities.Player.Player _player;
 		static bool _quit = false;
+
+		static Levels.LevelId _startingLevel = Levels.LevelId.TestLevel2;
+		static int _startingXLoc = 5;
+		static int _startingYLoc = 5;
 
 		public static void Main()
 		{
@@ -74,20 +79,17 @@ namespace RLEngine
 				return;
 			}
 
-			_currentLevel = new Levels.Level(Levels.LevelId.TestLevel2);
-			var player = new Entities.Player.Player();
-			_currentLevel.AddActor(player);
-
-			/*
 			var gameState = UserDataManager.GetGameState(gameId);
+
 			if (gameState.Summary.CurrentLevelName == "NEWGAME")
 			{
 				SetupNewGame(gameState.Summary.GameData);
 				LevelTransition(_startingLevel, _startingXLoc, _startingYLoc);
 			}
-			else
-				LoadGame(gameState);
-			*/
+			// TODO: Update this bit.
+			//else
+			//	LoadGame(gameState);
+
 			RunGame();
 			Quit();
 		}
@@ -100,10 +102,6 @@ namespace RLEngine
 
 				Entities.Actors.Actor.UpdateActors(_currentLevel);
 				Entities.Player.Player.UpdatePlayer(_currentLevel);
-
-				var key = UserInputHandler.GetNextKey();
-				if (key == "ESCAPE")
-					_quit = true;
 
 				if (_quit)
 				{
@@ -120,6 +118,25 @@ namespace RLEngine
 			_quit = true;
 			rootConsole.Close();
 		}
+
+		public static void LevelTransition(Levels.LevelId newLevel, int newXLoc, int newYLoc)
+		{
+			if (_currentLevel != null)
+			{
+				// TODO: Add this in here
+			}
+
+			_currentLevel = new Levels.Level(newLevel);
+			_player.UpdatePosition(newXLoc, newYLoc);
+			_currentLevel.AddActor(_player);
+		}
+
+		static void SetupNewGame(UserData.GameData newGameData)
+		{
+			// TODO: Check whether anything else needs to go in here too.
+			_player = new Entities.Player.Player(newGameData);
+		}
+
 		public static int CurrentTime
 		{
 			get { return _currentTime; }
@@ -130,14 +147,9 @@ namespace RLEngine
 			get { return _currentLevel; }
 		}
 
-		public static int PlayerXLoc
+		public static Entities.Player.Player Player
 		{
-			get { return 0; }
-		}
-
-		public static int PlayerYLoc
-		{
-			get { return 0; }
+			get { return _player; }
 		}
 	}
 }

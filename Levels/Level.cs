@@ -209,6 +209,26 @@ namespace RLEngine.Levels
 			}
 		}
 
+		public bool MoveActorAttempt(Actor actor, int deltaX, int deltaY)
+		{
+			int oldX = actor.XLoc;
+			int oldY = actor.YLoc;
+
+			if (!IsValidMapCoord(oldX + deltaX, oldY + deltaY))
+			{
+				// TODO: Output text here.
+				return false;
+			}
+
+			// TODO: Apply movement functions here.
+
+			RemoveActor(actor);
+			actor.Move(deltaX, deltaY);
+			AddActor(actor);
+
+			return true;
+		}
+
 		// Private helper functions
 		int ConvertXYToInt(int x, int y)
 		{
