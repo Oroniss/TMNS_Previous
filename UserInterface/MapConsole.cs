@@ -29,8 +29,20 @@ namespace RLEngine.UserInterface
 					// TODO: Fix this later.
 					if (true) //level.IsRevealed(x, y))
 					{
-						_console.Set(x + xLimits.Offset, y + yLimits.Offset, null,
-									 Palette.GetColor(level.GetFogColor(x, y)), ' ');
+						//_console.Set(x + xLimits.Offset, y + yLimits.Offset, null,
+						//			 Palette.GetColor(level.GetFogColor(x, y)), ' ');
+
+						// TODO: Temporary code here.
+						if (level.HasDrawingEntity(x, y))
+						{
+							var entity = level.GetDrawingEntity(x, y);
+							_console.Set(x + xLimits.Offset, y + yLimits.Offset, Palette.GetColor(entity.FGColorName),
+										 Palette.GetColor(level.GetBGColor(x, y)), entity.Symbol);
+						}
+						else
+						{
+							_console.Set(x + xLimits.Offset, y + yLimits.Offset, null, Palette.GetColor(level.GetBGColor(x, y)), ' ');
+						}
 					}
 				}
 			}

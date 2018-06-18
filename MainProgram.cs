@@ -1,6 +1,4 @@
-﻿// Finished up for version 0.1.
-
-using System;
+﻿using System;
 using System.Threading;
 using RLEngine.UserInterface;
 using RLNET;
@@ -9,7 +7,7 @@ namespace RLEngine
 {
 	public static class MainProgram
 	{
-		const string EngineVersion = "Version 0.1";
+		const string EngineVersion = "Version 0.2";
 
 		// TODO: Put these into a config file somewhere.
 		static readonly string _fontName = "terminal8x8.png";
@@ -22,8 +20,8 @@ namespace RLEngine
 		static RLRootConsole rootConsole;
 
 		// Global attributes
-		static Levels.Level _currentLevel;
 		static int _currentTime;
+		static Levels.Level _currentLevel;
 		static bool _quit = false;
 
 		public static void Main()
@@ -77,6 +75,8 @@ namespace RLEngine
 			}
 
 			_currentLevel = new Levels.Level(Levels.LevelId.TestLevel2);
+			var player = new Entities.Player.Player();
+			_currentLevel.AddActor(player);
 
 			/*
 			var gameState = UserDataManager.GetGameState(gameId);
@@ -98,6 +98,9 @@ namespace RLEngine
 			{
 				MainGraphicDisplay.UpdateGameScreen();
 
+				Entities.Actors.Actor.UpdateActors(_currentLevel);
+				Entities.Player.Player.UpdatePlayer(_currentLevel);
+
 				var key = UserInputHandler.GetNextKey();
 				if (key == "ESCAPE")
 					_quit = true;
@@ -107,6 +110,7 @@ namespace RLEngine
 					//SaveGame();
 					return;
 				}
+
 				_currentTime++;
 			}
 		}

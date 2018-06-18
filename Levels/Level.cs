@@ -1,8 +1,7 @@
-﻿// Finished for version 0.1.
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System;
 using RLEngine.Entities.MapTiles;
+using RLEngine.Entities.Actors;
 
 namespace RLEngine.Levels
 {
@@ -108,6 +107,107 @@ namespace RLEngine.Levels
 			return "Black";
 		}
 
+		public bool HasDrawingEntity(int x, int y)
+		{
+			var index = ConvertXYToInt(x, y);
+			return HasDrawingEntity(index);
+		}
+
+		bool HasDrawingEntity(int index)
+		{
+			// TODO: Add others in here as needed.
+			return _actors.ContainsKey(index) || _furnishings.ContainsKey(index);
+		}
+
+		public Entities.Entity GetDrawingEntity(int x, int y)
+		{
+			var index = ConvertXYToInt(x, y);
+			return GetDrawingEntity(index);
+		}
+
+		Entities.Entity GetDrawingEntity(int index)
+		{
+			// TODO: keep these up to date
+			if (_actors.ContainsKey(index))
+				return Actor.GetActor(_actors[index]);
+			if (_furnishings.ContainsKey(index))
+				// TODO: Add this is later.
+				return null;
+			// TODO: Add error message here.
+			return null;
+		}
+
+		// Actor functions
+		public bool HasActor(int x, int y)
+		{
+			var index = ConvertXYToInt(x, y);
+			return HasActor(index);
+		}
+
+		bool HasActor(int index)
+		{
+			return _actors.ContainsKey(index);
+		}
+
+		public Actor GetActor(int x, int y)
+		{
+			var index = ConvertXYToInt(x, y);
+			return GetActor(index);
+		}
+
+		Actor GetActor(int index)
+		{
+			if (_actors.ContainsKey(index))
+				return Actor.GetActor(_actors[index]);
+			return null;
+		}
+
+		public void AddActor(Actor actor)
+		{
+			AddActor(actor.ActorId, actor.XLoc, actor.YLoc);
+		}
+
+		public void AddActor(int actorId, int xLoc, int yLoc)
+		{
+			var index = ConvertXYToInt(xLoc, yLoc);
+			AddActor(actorId, index);
+		}
+
+		void AddActor(int actorId, int index)
+		{
+			if (_actors.ContainsKey(index))
+			{
+				// TODO: Add error text
+			}
+			_actors[index] = actorId;
+		}
+
+		public void RemoveActor(Actor actor)
+		{
+			RemoveActor(actor.ActorId, actor.XLoc, actor.YLoc);
+		}
+
+		public void RemoveActor(int actorId, int xLoc, int yLoc)
+		{
+			var index = ConvertXYToInt(xLoc, yLoc);
+			RemoveActor(actorId, index);
+		}
+
+		void RemoveActor(int actorId, int index)
+		{
+			if (_actors.ContainsKey(index))
+			{
+				if (_actors[index] == actorId)
+					_actors.Remove(index);
+				else
+					// TODO: Add error text
+					return;
+			}
+			else
+			{
+				// TODO: Add error text
+			}
+		}
 
 		// Private helper functions
 		int ConvertXYToInt(int x, int y)

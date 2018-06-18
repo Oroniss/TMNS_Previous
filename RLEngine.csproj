@@ -70,6 +70,9 @@
     <Compile Include="Tests\UserDataTests\SaveDataTests.cs" />
     <Compile Include="Tests\UserDataTests\ConfigParametersTests.cs" />
     <Compile Include="Tests\UserDataTests\UserDataManagerTests.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Actors\Actor.cs" />
+    <Compile Include="Entities\Player\Player.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -120,6 +123,8 @@
     <Folder Include="Tests\ResourcesTests\" />
     <Folder Include="Tests\MenuTests\" />
     <Folder Include="Tests\UserDataTests\" />
+    <Folder Include="Entities\Actors\" />
+    <Folder Include="Entities\Player\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
