@@ -26,8 +26,8 @@ namespace RLEngine
 		static bool _quit = false;
 
 		static Levels.LevelId _startingLevel = Levels.LevelId.TestLevel2;
-		static int _startingXLoc = 5;
-		static int _startingYLoc = 5;
+		static int _startingXLoc = 3;
+		static int _startingYLoc = 3;
 
 		public static void Main()
 		{

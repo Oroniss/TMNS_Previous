@@ -1,6 +1,4 @@
-﻿// Finished for version 0.1.
-
-using System;
+﻿using System;
 
 namespace RLEngine.Entities
 {
@@ -10,6 +8,9 @@ namespace RLEngine.Entities
 		TestTrait1,
 		TestTrait2,
 
-
+		Player,
+		BlockMove,
+		BlockLOS,
+		Immobilised,
 	}
 }

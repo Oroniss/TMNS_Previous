@@ -61,6 +61,19 @@ namespace RLEngine.Levels
 			return 0 <= x && x < _mapWidth && 0 <= y && y < _mapHeight;
 		}
 
+		public bool HasTrait(Entities.Trait trait, int x, int y)
+		{
+			var index = ConvertXYToInt(x, y);
+			return HasTrait(trait, index);
+		}
+
+		bool HasTrait(Entities.Trait trait, int index)
+		{
+			// TODO: Add in furnishing and other entity types as appropriate.
+			return _tileInformation[_tileGrid[index]].HasTrait(trait) ||
+					(_actors.ContainsKey(index) && Actor.GetActor(_actors[index]).HasTrait(trait));
+		}
+
 
 		// Graphics functions
 		public bool IsRevealed(int x, int y)
@@ -209,6 +222,9 @@ namespace RLEngine.Levels
 			}
 		}
 
+
+		// Movement and pathability functions.
+
 		public bool MoveActorAttempt(Actor actor, int deltaX, int deltaY)
 		{
 			int oldX = actor.XLoc;
@@ -216,8 +232,25 @@ namespace RLEngine.Levels
 
 			if (!IsValidMapCoord(oldX + deltaX, oldY + deltaY))
 			{
-				// TODO: Output text here.
-				return false;
+				if (actor.HasTrait(Entities.Trait.Player))
+				{
+					MainGraphicDisplay.TextConsole.AddOutputText("Stay within the map");
+					return false;
+				}
+				else
+				{
+					ErrorLogger.AddDebugText(string.Format("Actor {0} tried to move outside the map", actor));
+					return true;
+				}
+			}
+
+			if (!IsPassible(actor, oldX + deltaX, oldY + deltaY))
+			{
+				if (actor.HasTrait(Entities.Trait.Player))
+					MainGraphicDisplay.TextConsole.AddOutputText("You can't move there");
+				else
+					ErrorLogger.AddDebugText(string.Format("Actor {0} tried to make an invalid move", actor));
+				return true;
 			}
 
 			// TODO: Apply movement functions here.
@@ -228,6 +261,19 @@ namespace RLEngine.Levels
 
 			return true;
 		}
+
+		public bool IsPassible(Actor actor, int x, int y)
+		{
+			var index = ConvertXYToInt(x, y);
+			return IsPassible(actor, index);
+		}
+
+		bool IsPassible(Actor actor, int index)
+		{
+			// TODO: Add in additional movement functions if required.
+			return !HasTrait(Entities.Trait.BlockMove, index);
+		}
+
 
 		// Private helper functions
 		int ConvertXYToInt(int x, int y)

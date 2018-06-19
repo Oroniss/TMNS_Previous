@@ -15,6 +15,8 @@ namespace RLEngine.Entities.Player
 			player = this;
 
 			Symbol = '@';
+
+			this.AddTrait(Trait.Player);
 		}
 
 		protected override void GetNextMove(Levels.Level currentLevel)
