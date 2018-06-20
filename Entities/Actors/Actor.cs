@@ -53,6 +53,12 @@ namespace RLEngine.Entities.Actors
 			_yLoc += deltaY;
 		}
 
+		// TODO: Decide whether this needs to be public for the AI module.
+		protected virtual bool MakeMoveAttempt(Levels.Level currentLevel, int deltaX, int deltaY)
+		{
+			return currentLevel.MoveActorAttempt(this, deltaX, deltaY);
+		}
+
 		protected abstract void GetNextMove(Levels.Level currentLevel);
 
 		public override void Update(Levels.Level currentLevel)

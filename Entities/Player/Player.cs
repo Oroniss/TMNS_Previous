@@ -31,7 +31,7 @@ namespace RLEngine.Entities.Player
 				{
 					var direction = UserInterface.UserInputHandler.DirectionKeys[key];
 
-					var result = currentLevel.MoveActorAttempt(this, direction.X, direction.Y);
+					var result = MakeMoveAttempt(currentLevel, direction.X, direction.Y);
 
 					if (result)
 						NeedsToMove = false;
@@ -43,6 +43,32 @@ namespace RLEngine.Entities.Player
 					MainProgram.Quit();
 				}
 			}
+		}
+
+		protected override bool MakeMoveAttempt(Levels.Level currentLevel, int deltaX, int deltaY)
+		{
+			if (HasTrait(Trait.Immobilised))
+			{
+				MainGraphicDisplay.TextConsole.AddOutputText("You can't move right now");
+				return false;
+			}
+
+			int newX = deltaX + _xLoc;
+			int newY = deltaY + _yLoc;
+
+			if (!currentLevel.IsValidMapCoord(newX, newY))
+			{
+				MainGraphicDisplay.TextConsole.AddOutputText("Stay within the map");
+				return false;
+			}
+
+			if (!currentLevel.IsPassible(this, newX, newY))
+			{
+				MainGraphicDisplay.TextConsole.AddOutputText("You can't move there");
+				return false;
+			}
+
+			return base.MakeMoveAttempt(currentLevel, deltaX, deltaY);
 		}
 
 		public static Player GetPlayer()

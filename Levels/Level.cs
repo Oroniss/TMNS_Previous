@@ -230,29 +230,6 @@ namespace RLEngine.Levels
 			int oldX = actor.XLoc;
 			int oldY = actor.YLoc;
 
-			if (!IsValidMapCoord(oldX + deltaX, oldY + deltaY))
-			{
-				if (actor.HasTrait(Entities.Trait.Player))
-				{
-					MainGraphicDisplay.TextConsole.AddOutputText("Stay within the map");
-					return false;
-				}
-				else
-				{
-					ErrorLogger.AddDebugText(string.Format("Actor {0} tried to move outside the map", actor));
-					return true;
-				}
-			}
-
-			if (!IsPassible(actor, oldX + deltaX, oldY + deltaY))
-			{
-				if (actor.HasTrait(Entities.Trait.Player))
-					MainGraphicDisplay.TextConsole.AddOutputText("You can't move there");
-				else
-					ErrorLogger.AddDebugText(string.Format("Actor {0} tried to make an invalid move", actor));
-				return true;
-			}
-
 			// TODO: Apply movement functions here.
 
 			RemoveActor(actor);
