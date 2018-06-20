@@ -224,21 +224,6 @@ namespace RLEngine.Levels
 
 
 		// Movement and pathability functions.
-
-		public bool MoveActorAttempt(Actor actor, int deltaX, int deltaY)
-		{
-			int oldX = actor.XLoc;
-			int oldY = actor.YLoc;
-
-			// TODO: Apply movement functions here.
-
-			RemoveActor(actor);
-			actor.Move(deltaX, deltaY);
-			AddActor(actor);
-
-			return true;
-		}
-
 		public bool IsPassible(Actor actor, int x, int y)
 		{
 			var index = ConvertXYToInt(x, y);

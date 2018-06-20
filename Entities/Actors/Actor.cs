@@ -56,7 +56,14 @@ namespace RLEngine.Entities.Actors
 		// TODO: Decide whether this needs to be public for the AI module.
 		protected virtual bool MakeMoveAttempt(Levels.Level currentLevel, int deltaX, int deltaY)
 		{
-			return currentLevel.MoveActorAttempt(this, deltaX, deltaY);
+			// TODO: Apply movement functions here.
+
+			currentLevel.RemoveActor(this);
+			Move(deltaX, deltaY);
+			currentLevel.AddActor(this);
+
+			return true;
+
 		}
 
 		protected abstract void GetNextMove(Levels.Level currentLevel);
