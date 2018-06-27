@@ -58,6 +58,10 @@ namespace RLEngine.Entities.Actors
 		{
 			// TODO: Apply movement functions here.
 
+			// TODO: Add movement mode when appropriate
+			// TODO: Also make sure this can always be done in advance, i.e. nothing that follows can change this.
+			GameEvents.MoveActorEvent.GenerateMoveActorEvent(this, deltaX, deltaY);
+
 			currentLevel.RemoveActor(this);
 			Move(deltaX, deltaY);
 			currentLevel.AddActor(this);
