@@ -32,6 +32,7 @@ namespace RLEngine
 		public static void Main()
 		{
 			UserDataManager.SetupDirectoriesAndFiles();
+			Quests.StatisticsManager.Setup();
 
 			var configParameters = UserDataManager.ReadConfigParameters();
 
@@ -108,7 +109,6 @@ namespace RLEngine
 					//SaveGame();
 					return;
 				}
-
 				_currentTime++;
 			}
 		}

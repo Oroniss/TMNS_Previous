@@ -73,11 +73,12 @@
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Actors\Actor.cs" />
     <Compile Include="Entities\Player\Player.cs" />
-    <Compile Include="GameEvents\GameEvent.cs" />
+    <Compile Include="GameEvents\GameEventArgs.cs" />
     <Compile Include="GameEvents\EventType.cs" />
-    <Compile Include="GameEvents\MoveActorEvent.cs" />
+    <Compile Include="GameEvents\MoveActorEventArgs.cs" />
     <Compile Include="Entities\Actors\MovementModes.cs" />
-    <Compile Include="QuestsAndAchievements\QuestAndAchievementHandler.cs" />
+    <Compile Include="QuestsAndAchievements\StatisticsManager.cs" />
+    <Compile Include="GameEvents\GameEventManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
