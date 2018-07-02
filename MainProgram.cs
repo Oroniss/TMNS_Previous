@@ -32,8 +32,6 @@ namespace RLEngine
 		public static void Main()
 		{
 			UserDataManager.SetupDirectoriesAndFiles();
-			Quests.StatisticsManager.Setup();
-
 			var configParameters = UserDataManager.ReadConfigParameters();
 
 			UserInputHandler.ExtraKeys = configParameters.ExtraKeys;
@@ -90,6 +88,10 @@ namespace RLEngine
 			// TODO: Update this bit.
 			//else
 			//	LoadGame(gameState);
+
+			// TODO: This should eventually go above to either create new ones or deserialise the old ones.
+			Quests.GameEventManager.Setup();
+
 
 			RunGame();
 			Quit();

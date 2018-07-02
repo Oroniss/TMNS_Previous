@@ -1,24 +1,31 @@
+// Tidied up for version 0.2.
+
 using RLEngine.GameEvents;
+using System;
 
 namespace RLEngine.Quests
 {
-	public static class StatisticsManager
+	[Serializable]
+	public class StatisticsManager:IGameEventProcessor
 	{
-		static int numberOfMoves = 0;
+		long stepsTaken = 0;
 
-
-		public static void Setup()
+		public void ProcessEvent(object sender, GameEvent gameEvent)
 		{
-			GameEventManager.OnGameEvent += ProcessEvent;
-		}
-
-		public static void ProcessEvent(object sender, GameEventArgs gameEvent)
-		{
-			if (gameEvent.EventType == EventType.MovementEvent)
+			switch (gameEvent.EventType)
 			{
-				numberOfMoves++;
-				if (numberOfMoves % 20 == 0)
-					MainGraphicDisplay.TextConsole.AddOutputText(string.Format("Made {0} moves", numberOfMoves));
+				case EventType.MovementEvent:
+					{
+						var moveEvent = (MoveActorEvent)gameEvent;
+
+						if (moveEvent.Actor.ActorId == MainProgram.Player.ActorId)
+						{
+							stepsTaken++;
+							if (stepsTaken % 20 == 0)
+								MainGraphicDisplay.TextConsole.AddOutputText(string.Format("Taken {0} steps", stepsTaken));
+						}
+						break;
+					}
 			}
 		}
 	}
