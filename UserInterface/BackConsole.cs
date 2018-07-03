@@ -1,30 +1,32 @@
-﻿using RLNET;
+﻿// Tidied up for version 0.2.
+
+using RLNET;
 
 namespace RLEngine.UserInterface
 {
 	public class BackConsole:RLConsole
 	{
-		bool _isdirty;
+		bool _isDirty;
 
 		public BackConsole(int width, int height)
 			:base(width, height)
 		{
-			_isdirty = true;
+			_isDirty = true;
 		}
 
 		public bool IsDirty
 		{
-			get { return _isdirty; }
+			get { return _isDirty; }
 		}
 
 		public void SetClean()
 		{
-			_isdirty = false;
+			_isDirty = false;
 		}
 
 		public void SetDirty()
 		{
-			_isdirty = true;
+			_isDirty = true;
 		}
 	}
 }

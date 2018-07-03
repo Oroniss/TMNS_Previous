@@ -1,3 +1,5 @@
+// Tidied up for version 0.2.
+
 using RLNET;
 using System.Collections.Generic;
 using RLEngine.Resources.Palette;
@@ -112,7 +114,6 @@ namespace RLEngine.UserInterface
 				_console.Print(_textXOffset, _textYOffset + i, _outputText[textIndex], 
 				               Palette.GetColor(_textColors[textIndex]));
 			}
-
 			CopyToBackConsole();
 		}
 	}

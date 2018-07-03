@@ -1,3 +1,5 @@
+// Tidied up for version 0.2.
+
 using RLNET;
 
 namespace RLEngine.UserInterface

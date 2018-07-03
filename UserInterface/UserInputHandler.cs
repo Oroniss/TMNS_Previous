@@ -1,4 +1,4 @@
-// Finished for version 0.1.
+// Finished for version 0.2.
 
 using System;
 using System.Threading;
@@ -10,6 +10,7 @@ namespace RLEngine.UserInterface
 {
     public static class UserInputHandler
     {
+		// TODO: Put this in a config file somewhere.
 		const int MAXTEXTLENGTH = 40;
 
 		static bool extraKeys;
@@ -232,7 +233,6 @@ namespace RLEngine.UserInterface
 					return;
 				}
 			}
-
 		}
 
 		public static bool ExtraKeys

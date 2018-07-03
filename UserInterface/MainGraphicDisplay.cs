@@ -1,3 +1,5 @@
+// Tidied up for version 0.2.
+
 using RLNET;
 using RLEngine.UserInterface;
 using RLEngine.Resources.Palette;
@@ -92,6 +94,5 @@ namespace RLEngine
 			_mapConsole.DrawMap();
 			_characterConsole.DrawCharacter();
 		}
-
     }
 }
