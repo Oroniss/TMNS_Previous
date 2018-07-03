@@ -1,4 +1,4 @@
-﻿// Fixed up for version 0.1.
+﻿// Fixed up for version 0.1 - no change for 0.2.
 
 using NUnit.Framework;
 using RLEngine.Levels.LevelDatabase;

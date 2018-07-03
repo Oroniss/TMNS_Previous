@@ -1,4 +1,4 @@
-﻿// Finished for version 0.1.
+﻿// Finished for version 0.2.
 
 using NUnit.Framework;
 using RLEngine.Levels;
@@ -44,6 +44,11 @@ namespace RLEngine.Tests
 			Assert.IsFalse(level1.IsValidMapCoord(0, 6));
 			Assert.IsFalse(level1.IsValidMapCoord(8, 0));
 
+			// TODO: Keep these up to date as more entity types get added in.
+			Assert.IsTrue(level1.HasTrait(Entities.Trait.BlockMove, 0, 5));
+			Assert.IsTrue(level1.HasTrait(Entities.Trait.TestTrait2, 7, 5));
+			Assert.IsFalse(level1.HasTrait(Entities.Trait.TestTrait1, 6, 1));
+
 			var level2 = new Level(LevelId.TestLevel2);
 			Assert.IsTrue(level2.IsValidMapCoord(0, 0));
 			Assert.IsTrue(level2.IsValidMapCoord(59, 11));
@@ -79,6 +84,7 @@ namespace RLEngine.Tests
 		[Test]
 		public void TestGetColors()
 		{
+			// TODO: Keep up to date as different entity types go in.
 			var level1 = new Level(LevelId.TestLevel1);
 
 			Assert.AreEqual("GraySeven", level1.GetBGColor(0, 0));
@@ -98,6 +104,20 @@ namespace RLEngine.Tests
 			Assert.AreEqual("Black", level1.GetFogColor(4, 6));
 			Assert.AreEqual("Attempted to get fogcolor on invalid tile: 4, 6", ErrorLogger.GetNextTestMessage());
 			ErrorLogger.ClearTestMessages();
+
+			// TODO: Add in tests for FG colors as well once entities in properly.
+		}
+
+		[Test]
+		public void TestActorFunctions()
+		{
+			// TODO: Add in once actors in.
+		}
+
+		[Test]
+		public void TestPathibilityFunctions()
+		{
+			// TODO: Add in once other entity types are in.
 		}
 	}
 }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Tidied up for version 0.2.
+
+using System.Collections.Generic;
 using System;
 using RLEngine.Entities.MapTiles;
 using RLEngine.Entities.Actors;
