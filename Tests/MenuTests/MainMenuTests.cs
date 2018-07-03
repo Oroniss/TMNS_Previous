@@ -1,4 +1,4 @@
-﻿// Finished for version 0.1.
+﻿// Finished for version 0.1 - no change for version 0.2.
 
 using System.Collections.Generic;
 using RLEngine.Menus;
