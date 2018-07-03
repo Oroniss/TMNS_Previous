@@ -1,4 +1,6 @@
-﻿using RLEngine.Menus;
+﻿// Tidied up for version 0.2.
+
+using RLEngine.Menus;
 
 namespace RLEngine
 {
