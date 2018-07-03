@@ -1,4 +1,4 @@
-﻿// Finished up for version 0.1.
+﻿// Finished up for version 0.1 - no change for 0.2.
 
 using RLEngine.UserData;
 using System.IO;
