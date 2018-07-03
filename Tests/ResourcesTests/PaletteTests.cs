@@ -1,4 +1,4 @@
-﻿// Finished for version 0.1.
+﻿// Finished for version 0.1 - no change for 0.2.
 
 using NUnit.Framework;
 using RLEngine.Resources.Palette;
@@ -24,6 +24,5 @@ namespace RLEngine.Tests
 			Assert.AreEqual(0, blue.g);
 			Assert.AreEqual("Unknown color name: Blueee", ErrorLogger.GetNextTestMessage());
 		}
-
 	}
 }
