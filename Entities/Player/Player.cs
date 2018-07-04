@@ -20,7 +20,7 @@ namespace RLEngine.Entities.Player
 
 			Symbol = '@';
 
-			this.AddTrait(Trait.Player);
+			AddTrait(Trait.Player);
 		}
 
 		protected override void GetNextMove(Levels.Level currentLevel)

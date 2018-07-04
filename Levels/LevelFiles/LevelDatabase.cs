@@ -10,7 +10,7 @@ namespace RLEngine.Levels.LevelDatabase
 	public static class LevelDatabase
 	{
 		static string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Levels", "LevelFiles");
-		static Dictionary<LevelId, string> levelFilePaths = new Dictionary<LevelId, string>()
+		static Dictionary<LevelId, string> levelFilePaths = new Dictionary<LevelId, string>
 		{
 			{LevelId.TestLevel1, Path.Combine("TestLevels", "TestLevel1.txt")},
 			{LevelId.TestLevel2, Path.Combine("TestLevels", "TestLevel2.txt")}
@@ -27,7 +27,7 @@ namespace RLEngine.Levels.LevelDatabase
 			// Get level name first
 			var levelName = fileReader.ReadLine().Trim();
 
-			LevelDetails levelTemplate = new LevelDetails(levelName, levelId);
+			var levelTemplate = new LevelDetails(levelName, levelId);
 
 			if ((LevelId)Enum.Parse(typeof(LevelId), fileReader.ReadLine().Trim()) != levelId)
 			{

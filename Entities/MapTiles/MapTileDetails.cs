@@ -64,7 +64,7 @@ namespace RLEngine.Entities.MapTiles
 
 			var tileFile = new StreamReader(dataFilePath);
 
-			string tileName = tileType.ToString();
+			var tileName = tileType.ToString();
 			string line;
 			MapTileDetails returnVal = null;
 

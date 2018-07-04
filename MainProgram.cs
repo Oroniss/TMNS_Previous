@@ -25,7 +25,7 @@ namespace RLEngine
 		static int _currentTime;
 		static Levels.Level _currentLevel;
 		static Entities.Player.Player _player;
-		static bool _quit = false;
+		static bool _quit;
 
 		static Levels.LevelId _startingLevel = Levels.LevelId.TestLevel2;
 		static int _startingXLoc = 3;

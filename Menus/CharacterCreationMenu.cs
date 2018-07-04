@@ -8,7 +8,7 @@ namespace RLEngine.Menus
 	{
 		public GameData CreateNewCharacter()
 		{
-			GameData parameters = new GameData();
+			var parameters = new GameData();
 
 			parameters = GetCharacterName(parameters);
 

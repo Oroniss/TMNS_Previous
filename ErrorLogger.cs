@@ -6,7 +6,7 @@ namespace RLEngine
 {
 	public static class ErrorLogger
 	{
-		static bool isTesting = false;
+		static bool isTesting;
 		static List<string> testMessages;
 
 		public static void AddDebugText(string text)

@@ -84,19 +84,13 @@ namespace RLEngine.Entities.Actors
 		public static Actor GetActor(int actorId)
 		{
 			if (actorId == 0)
-			{
 				return Player.Player.GetPlayer();
-			}
-			else
-			{
-				if (actors.ContainsKey(actorId))
-					return actors[actorId];
-				else
-				{
-					ErrorLogger.AddDebugText(string.Format("Tried to get unknown actor ID: {0}", actorId));
-					return null;
-				}
-			}
+			
+			if (actors.ContainsKey(actorId))
+				return actors[actorId];
+
+			ErrorLogger.AddDebugText(string.Format("Tried to get unknown actor ID: {0}", actorId));
+			return null;
 		}
 
 		public static void UpdateActors(Levels.Level currentLevel)

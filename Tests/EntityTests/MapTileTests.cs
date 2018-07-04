@@ -20,14 +20,14 @@ namespace RLEngine.Tests
 		[Test]
 		public void TestMapTileDatabase()
 		{
-			MapTileDetails tile1 = MapTileDetails.GetTileDetails(TileType.TestTile1);
+			var tile1 = MapTileDetails.GetTileDetails(TileType.TestTile1);
 			Assert.AreEqual("GraySeven", tile1.BackgroundColor);
 			Assert.AreEqual("GrayFour", tile1.FogColor);
 			Assert.IsTrue(tile1.HasTrait(Entities.Trait.TestTrait2));
 			Assert.IsFalse(tile1.HasTrait(Entities.Trait.TestTrait1));
 			Assert.AreEqual(defaultDebugMessage, ErrorLogger.GetNextTestMessage());
 
-			MapTileDetails tile2 = MapTileDetails.GetTileDetails(TileType.TestTile2);
+			var tile2 = MapTileDetails.GetTileDetails(TileType.TestTile2);
 			Assert.AreEqual("Blue", tile2.FogColor);
 			Assert.AreEqual("LightBlue", tile2.BackgroundColor);
 			Assert.IsTrue(tile2.HasTrait(Entities.Trait.TestTrait1));
@@ -36,7 +36,7 @@ namespace RLEngine.Tests
 
 			// Test error message and default handling.
 			ErrorLogger.ClearTestMessages();
-			MapTileDetails tile3 = MapTileDetails.GetTileDetails(TileType.TestTile3);
+			var tile3 = MapTileDetails.GetTileDetails(TileType.TestTile3);
 			Assert.AreEqual("Couldn't find db entry for TileType TestTile3", ErrorLogger.GetNextTestMessage());
 			Assert.AreEqual(defaultDebugMessage, ErrorLogger.GetNextTestMessage());
 			Assert.AreEqual("GraySeven", tile3.BackgroundColor);
@@ -47,7 +47,7 @@ namespace RLEngine.Tests
 		public void TestMapTileDetails()
 		{
 			ErrorLogger.ClearTestMessages();
-			MapTileDetails tile1 = MapTileDetails.GetTileDetails(TileType.TestTile1);
+			var tile1 = MapTileDetails.GetTileDetails(TileType.TestTile1);
 			tile1.AddTrait(Entities.Trait.TestTrait1);
 			Assert.AreEqual("Tried to add trait TestTrait1 to map tile TestTile1", ErrorLogger.GetNextTestMessage());
 			Assert.AreEqual(defaultDebugMessage, ErrorLogger.GetNextTestMessage());
