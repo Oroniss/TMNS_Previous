@@ -18,7 +18,7 @@ namespace RLEngine.Quests
 					{
 						var moveEvent = (MoveActorEvent)gameEvent;
 
-						if (moveEvent.Actor.ActorId == MainProgram.Player.ActorId)
+						if (moveEvent.Actor.HasTrait(Entities.Trait.Player))
 						{
 							stepsTaken++;
 							if (stepsTaken % 20 == 0)

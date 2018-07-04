@@ -83,6 +83,7 @@
     <Compile Include="Tests\EntityTests\EntityTests.cs" />
     <Compile Include="Tests\EntityTests\ActorTests.cs" />
     <Compile Include="Tests\EntityTests\PlayerTests.cs" />
+    <Compile Include="Tests\GameEventTests\GameEventTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -136,6 +137,8 @@
     <Folder Include="Entities\Actors\" />
     <Folder Include="Entities\Player\" />
     <Folder Include="QuestsAndAchievements\" />
+    <Folder Include="Tests\GameEventTests\" />
+    <Folder Include="Tests\QuestAndAchievementTests\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
