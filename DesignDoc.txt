@@ -1,64 +1,68 @@
-﻿Version 0.1 - Begun 10 June 2018
+﻿For Version 0.2 Begun - 16 June 2018.
 
-10/6/18 - Setup project.
-10/6/18 - Added Palette.
-10/6/18 - Added the user interface classes.
-10/6/18 - Started on a basic Level class.
-10/6/18 - Added a MapTileDetails class.
-10/6/18 - Added some basic entity interfaces.
-12/6/18 - Added some stuff - had to revert which lost a lot in this file.
-13/6/18 - Added the character creation menu/process.
-14/6/18 - Tidied up the MapTile file and added some error handling and a text file to store them.
-14/6/18 - Added tests for MapTileDetails and the file reading.
-14/6/18 - Added tests to the level reading process.
-15/6/18 - Added tests for level attributes and functions.
-15/6/18 - Added some tests of user input - AddKeyboardInput and GetDirection.
-15/6/18 - Added tests of GetText and SelectFromMenu.
-16/6/18 - Added tests for Geometry and Palette.
-16/6/18 - Added tests of character creation menu.
-16/6/18 - Added tests for the user data classes.
+16/6/18 - Started work on the Player class.
+16/6/18 - Added IPosition and IForegroundDrawing interfaces.
+16/6/18 - Added Entity, Actor and Player classes.
+17/6/18 - Added Update functions to Actor and Player classes.
+18/6/18 - Added Actor functions to the level class.
+18/6/18 - Got the player drawing at last - took some hacks but no can sort things through more cleanly.
+19/6/18 - Get basic player movement working.
+19/6/18 - Added passibility checks to movement.
+20/6/18 - Tidied up movement somewhat - moved a lot of the checking on the Actor/Player end.
+20/6/18 - Started the basic shell of the GameEvents system.
+26/6/18 - Started trying to use built in event classes. Didn't seem worth it though.
+27/6/18 - Created a QuestAndAchievementHandler class.
+27/6/18 - Added game events - not sure I like this one either.
+2/7/18 - Got events working correctly - still a few hacks but basic framework is there now.
+2/7/18 - Pushed event publishing back onto the GameEvent class.
+2/7/18 - Added a GameEventManager in the Quest namespace that subscribes to events.
+2/7/18 - Made the StatisticsManager a component of the GameEventManager.
+3/7/18 - Tidied Menus, UserData, Resources and UserInterface for 0.2.
+3/7/18 - Fixed up levels. Added some tests of HasTrait - the rest have to wait a little.
+4/7/18 - Fixed up Entities - still need lots of tests written once they are being properly created.
+4/7/18 - Added the basics for testing game events and quests and achievements - still not really complete enough to do properly.
+4/7/18 - Tidied up the remaining files.
+4/7/18 - Did automated code rievew.
+4/7/18 - Finished version 0.2.
 
-
-For Version 0.2.
-
-Actor and Player.
-Timer.
-Movement/Player input.
-Save and Load game state.
-Events - generate them, process at end of each turn.
 
 For Version 0.3
 
 Hook up an SQLite DB and a script for turning a text/csv into a DB record.
-Add furnishings and movement functions.
+Use AppConfig for settings/config info.
+Add furnishings.
+Add backgroundObjects.
 Add interaction.
 Add LOS and FOV.
+Save and Load game state.
+Add level transition.
+
 
 For Version 0.4
 
 Actors and Actions.
+Add movement functions.
+Add randomisation options.
 Add logging here.
+Build out the list of traits as much as possible.
 
 For Version 0.5
 
 Add Items and Inventory.
+Effects.
+Entity grammar/description.
 
 For Version 0.6
 
-And conversation, trading, quests and achievements.
+Add any extra user interface functions needed.
+And conversation, trading, quests, achievements and statistics.
 
 For Version 0.7
 
 Pathfinding and AI
 Anything else.
+Distance functions and AOE templates.
 
-
-ToDos:
-
-Fix AddDebugText
-Write text array length into a config file somewhere.
-Write console sizes into a config file somewhere.
-Remove as many TODOs as possible.
 
 Later ToDos:
 
@@ -66,6 +70,14 @@ Write tests for the MainMenu.
 Write tests for the UserDataManager.
 Figure out movement functions in movement interface.
 Fix draw map once FOV, lighting, player, revealed, etc in game.
+Add tests for FGColors on level.
+Add tests for Actors on level.
+Add tests for pathibility on level.
+Add entity tests once entities are actually being created.
+Add actor tests once actors go in properly.
+Add player tests.
+Add game event tests.
+Add quest and achievement tests.
 
 SQLite DB
 Have something serialise each entry in the maptile file and store it in the DB under the TileType.
