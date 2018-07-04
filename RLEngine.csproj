@@ -80,6 +80,9 @@
     <Compile Include="QuestsAndAchievements\StatisticsManager.cs" />
     <Compile Include="QuestsAndAchievements\GameEventManager.cs" />
     <Compile Include="QuestsAndAchievements\IGameEventProcessor.cs" />
+    <Compile Include="Tests\EntityTests\EntityTests.cs" />
+    <Compile Include="Tests\EntityTests\ActorTests.cs" />
+    <Compile Include="Tests\EntityTests\PlayerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">

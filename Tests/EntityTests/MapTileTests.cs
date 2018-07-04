@@ -1,4 +1,4 @@
-﻿// Finished for version 0.1.
+﻿// Finished for version 0.1 - no change for 0.2.
 
 using NUnit.Framework;
 using RLEngine.Entities.MapTiles;

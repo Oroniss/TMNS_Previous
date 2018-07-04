@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Tidied up for version 0.2.
+
+using System;
 using System.Collections.Generic;
 using RLEngine.Entities.Actors;
 
@@ -12,6 +14,8 @@ namespace RLEngine.Entities.Player
 		public Player(UserData.GameData newGameData)
 			:base("Player", 0, 0, new Dictionary<string, string>())
 		{
+			// TODO: Flesh this out properly and tie it into regular Actor constructor.
+
 			player = this;
 
 			Symbol = '@';
@@ -21,9 +25,9 @@ namespace RLEngine.Entities.Player
 
 		protected override void GetNextMove(Levels.Level currentLevel)
 		{
-			bool NeedsToMove = true;
+			bool hasNotMoved = true;
 
-			while (NeedsToMove)
+			while (hasNotMoved)
 			{
 				var key = UserInterface.UserInputHandler.GetNextKey();
 
@@ -34,12 +38,12 @@ namespace RLEngine.Entities.Player
 					var result = MakeMoveAttempt(currentLevel, direction.X, direction.Y);
 
 					if (result)
-						NeedsToMove = false;
+						hasNotMoved = false;
 				}
 
 				if (key == "ESCAPE")
 				{
-					NeedsToMove = false;
+					hasNotMoved = false;
 					MainProgram.Quit();
 				}
 			}

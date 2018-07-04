@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Tidied for version 0.2.
+
+using System;
 
 namespace RLEngine.Entities.Actors
 {
