@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Tidied up for version 0.2.
+
+using System;
 using System.Threading;
 using RLEngine.UserInterface;
 using RLNET;

@@ -1,4 +1,4 @@
-﻿// Finished up for version 0.1.
+﻿// Finished up for version 0.1 - no changes for 0.2.
 
 using System.Collections.Generic;
 
