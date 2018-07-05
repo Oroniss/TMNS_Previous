@@ -1,6 +1,4 @@
-﻿// Tidied for version 0.2.
-
-using System;
+﻿using System;
 
 namespace RLEngine.Entities
 {
@@ -14,5 +12,7 @@ namespace RLEngine.Entities
 		BlockMove,
 		BlockLOS,
 		Immobilised,
+
+		ImmuneToPoison,
 	}
 }

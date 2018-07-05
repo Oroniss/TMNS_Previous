@@ -17,10 +17,10 @@ namespace RLEngine.Entities.Actors
 
 		protected int _nextMove;
 
-		protected Actor(string entityName, int xLoc, int yLoc, Dictionary<string, string> otherParameters)
-			: base(entityName, xLoc, yLoc, otherParameters)
+		protected Actor(EntityBasicDetails details, int xLoc, int yLoc, Dictionary<string, string> otherParameters)
+			: base(details, xLoc, yLoc, otherParameters)
 		{
-			if (entityName == "Player")
+			if (EntityName == "Player")
 				_actorId = 0;
 			else
 			{

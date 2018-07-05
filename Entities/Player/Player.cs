@@ -12,15 +12,10 @@ namespace RLEngine.Entities.Player
 		static Player player;
 
 		public Player(UserData.GameData newGameData)
-			:base("Player", 0, 0, new Dictionary<string, string>())
+			:base(new EntityBasicDetails("Player", '@', "Black", new List<Trait> {Trait.Player }), 0, 0, new Dictionary<string, string>())
 		{
 			// TODO: Flesh this out properly and tie it into regular Actor constructor.
-
 			player = this;
-
-			Symbol = '@';
-
-			AddTrait(Trait.Player);
 		}
 
 		protected override void GetNextMove(Levels.Level currentLevel)

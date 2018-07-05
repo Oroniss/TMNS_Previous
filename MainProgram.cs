@@ -1,6 +1,4 @@
-﻿// Tidied up for version 0.2.
-
-using System;
+﻿using System;
 using System.Threading;
 using RLEngine.UserInterface;
 using RLNET;
@@ -9,7 +7,7 @@ namespace RLEngine
 {
 	public static class MainProgram
 	{
-		const string EngineVersion = "Version 0.2";
+		const string EngineVersion = "Version 0.3";
 
 		// TODO: Put these into a config file somewhere.
 		static readonly string _fontName = "terminal8x8.png";

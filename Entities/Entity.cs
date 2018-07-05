@@ -1,6 +1,4 @@
-﻿// Tidied up for version 0.2.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using RLEngine.Entities.EntityInterfaces;
 
@@ -16,7 +14,6 @@ namespace RLEngine.Entities
 
 		string _fgColorName;
 		char _symbol;
-
 		List<Trait> _traits;
 
 		bool _isConcealed;
@@ -27,9 +24,9 @@ namespace RLEngine.Entities
 		List<int> _effects;
 		Dictionary<string, string> _otherAttributes;
 
-		protected Entity(string entityName, int xLoc, int yLoc, Dictionary<string, string> otherParameters)
+		protected Entity(EntityBasicDetails details, int xLoc, int yLoc, Dictionary<string, string> otherParameters)
 		{
-			_entityName = entityName;
+			_entityName = details.EntityName;
 			_xLoc = xLoc;
 			_yLoc = yLoc;
 
@@ -42,7 +39,11 @@ namespace RLEngine.Entities
 			_playerSpotted = true;
 
 			// TODO: Set variables here
-			_fgColorName = "Black";
+			_fgColorName = details.FGColorName;
+			_symbol = details.Symbol;
+
+			foreach (Trait trait in details.Traits)
+				AddTrait(trait);
 		}
 
 		public string EntityName
