@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using RLEngine.Entities.MapTiles;
 using RLEngine.Entities.Actors;
+using RLEngine.Entities.Furnishings;
 
 namespace RLEngine.Levels
 {
@@ -73,7 +74,8 @@ namespace RLEngine.Levels
 		{
 			// TODO: Add in furnishing and other entity types as appropriate.
 			return _tileInformation[_tileGrid[index]].HasTrait(trait) ||
-					(_actors.ContainsKey(index) && Actor.GetActor(_actors[index]).HasTrait(trait));
+					(_actors.ContainsKey(index) && Actor.GetActor(_actors[index]).HasTrait(trait)) ||
+				    (_furnishings.ContainsKey(index) && Furnishing.GetFurnishing(_furnishings[index]).HasTrait(trait));
 		}
 
 
@@ -146,8 +148,7 @@ namespace RLEngine.Levels
 			if (_actors.ContainsKey(index))
 				return Actor.GetActor(_actors[index]);
 			if (_furnishings.ContainsKey(index))
-				// TODO: Add this is later.
-				return null;
+				return Furnishing.GetFurnishing(_furnishings[index]);
 			// TODO: Add error message here.
 			return null;
 		}
@@ -217,6 +218,79 @@ namespace RLEngine.Levels
 				else
 					// TODO: Add error text
 					return;
+			}
+			else
+			{
+				// TODO: Add error text
+			}
+		}
+
+		// Furnishing functions
+		public bool HasFurnishing(int x, int y)
+		{
+			var index = ConvertXYToInt(x, y);
+			return HasFurnishing(index);
+		}
+
+		bool HasFurnishing(int index)
+		{
+			return _furnishings.ContainsKey(index);
+		}
+
+		public Furnishing GetFurnishing(int x, int y)
+		{
+			var index = ConvertXYToInt(x, y);
+			return GetFurnishing(index);
+		}
+
+		Furnishing GetFurnishing(int index)
+		{
+			if (_furnishings.ContainsKey(index))
+				return Furnishing.GetFurnishing(_furnishings[index]);
+			return null;
+		}
+
+		public void AddFurnishing(Furnishing furnishing)
+		{
+			AddFurnishing(furnishing.FurnishingId, furnishing.XLoc, furnishing.YLoc);
+		}
+
+		public void AddFurnishing(int furnishingId, int xLoc, int yLoc)
+		{
+			var index = ConvertXYToInt(xLoc, yLoc);
+			AddFurnishing(furnishingId, index);
+		}
+
+		void AddFurnishing(int furnishingId, int index)
+		{
+			if (_furnishings.ContainsKey(index))
+			{
+				// TODO: Add error text here
+			}
+			_furnishings[index] = furnishingId;
+		}
+
+		public void RemoveFurnishing(Furnishing furnishing)
+		{
+			RemoveFurnishing(furnishing.FurnishingId, furnishing.XLoc, furnishing.YLoc);
+		}
+
+		public void RemoveFurnishing(int furnishingId, int xLoc, int yLoc)
+		{
+			var index = ConvertXYToInt(xLoc, yLoc);
+			RemoveFurnishing(furnishingId, index);
+		}
+
+		void RemoveFurnishing(int furnishingId, int index)
+		{
+			if (_furnishings.ContainsKey(index))
+			{
+				if (_furnishings[index] == furnishingId)
+					_furnishings.Remove(index);
+				else
+				{
+					// TODO: Add error text.
+				}
 			}
 			else
 			{
