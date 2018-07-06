@@ -13,3 +13,8 @@ TestLevel1
 1,1,0,0,0,1,1,0
 1,1,1,1,0,0,0,0
 ###
+TestFurnishing1,2,2
+TestFurnishing1,2,3
+TestFurnishing1,2,4
+TestFurnishing2,6,6
+###

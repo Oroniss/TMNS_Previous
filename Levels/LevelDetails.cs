@@ -1,6 +1,4 @@
-﻿// Fixed up for version 0.1 - no change for 0.2.
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System;
 
 namespace RLEngine.Levels
@@ -15,11 +13,14 @@ namespace RLEngine.Levels
 		public Dictionary<int, Entities.MapTiles.TileType> TileDictionary;
 		public int[] MapGrid;
 
+		public List<string[]> Furnishings;
+
 		public LevelDetails(string levelName, LevelId levelId)
 		{
 			LevelName = levelName;
 			LevelId = levelId;
 			TileDictionary = new Dictionary<int, Entities.MapTiles.TileType>();
+			Furnishings = new List<string[]>();
 		}
 	}
 }

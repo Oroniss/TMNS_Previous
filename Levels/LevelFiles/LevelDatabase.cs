@@ -68,6 +68,13 @@ namespace RLEngine.Levels.LevelDatabase
 				return levelTemplate;
 			}
 
+			// Furnishings
+			while ((line = fileReader.ReadLine().Trim()) != "###")
+			{
+				var splitLine = line.Split(',');
+				levelTemplate.Furnishings.Add(splitLine);
+			}
+
 			fileReader.Close();
 
 			return levelTemplate;

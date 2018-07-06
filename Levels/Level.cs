@@ -11,6 +11,8 @@ namespace RLEngine.Levels
 	[Serializable]
 	public class Level
 	{
+		const int FURNISHINGSTARTINGINDEX = 3;
+
 		readonly string _levelName;
 		readonly int _mapWidth;
 		readonly int _mapHeight;
@@ -38,6 +40,24 @@ namespace RLEngine.Levels
 			_tileInformation = new Dictionary<int, MapTileDetails>();
 			foreach (KeyValuePair<int, TileType> tile in levelTemplate.TileDictionary)
 				_tileInformation[tile.Key] = MapTileDetails.GetTileDetails(tile.Value);
+
+			// Furnishings
+			foreach (string[] furnishing in levelTemplate.Furnishings)
+			{
+				if (furnishing.Length < FURNISHINGSTARTINGINDEX)
+				{
+					ErrorLogger.AddDebugText(string.Format("Misformed line in furnishing read: {0}", furnishing));
+					continue;
+				}
+
+				var furnishingName = furnishing[0];
+				var xLoc = int.Parse(furnishing[1]);
+				var yLoc = int.Parse(furnishing[2]);
+				var otherParameters = ParseOtherEntityParameters(furnishing, FURNISHINGSTARTINGINDEX);
+
+				var newFurnishing = Entities.EntityFactory.CreateFurnishing(furnishingName, xLoc, yLoc, otherParameters);
+				AddFurnishing(newFurnishing);
+			}
 		}
 
 
@@ -317,6 +337,15 @@ namespace RLEngine.Levels
 		int ConvertXYToInt(int x, int y)
 		{
 			return y * _mapWidth + x;
+		}
+
+		Dictionary<string, string> ParseOtherEntityParameters(string[] details, int startingIndex)
+		{
+			var parameterDictionary = new Dictionary<string, string>();
+			for (int i = startingIndex; i < details.Length; i += 2)
+				parameterDictionary[details[i]] = details[i + 1];
+
+			return parameterDictionary;
 		}
 	}
 }
