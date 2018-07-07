@@ -36,6 +36,23 @@ namespace RLEngine.Entities.Player
 						hasNotMoved = false;
 				}
 
+				if (key == "U")
+				{
+					var direction = UserInterface.UserInputHandler.GetDirection("Which direction", true);
+					if (direction == null)
+						continue;
+					if (currentLevel.HasFurnishing(XLoc + direction.X, YLoc + direction.Y))
+					{
+						var furnishing = currentLevel.GetFurnishing(XLoc + direction.X, YLoc + direction.Y);
+						furnishing.InteractWith(this);
+					}
+					else
+					{
+						MainGraphicDisplay.TextConsole.AddOutputText("There is nothing there to make use of");
+					}
+					hasNotMoved = false;
+				}
+
 				if (key == "ESCAPE")
 				{
 					hasNotMoved = false;

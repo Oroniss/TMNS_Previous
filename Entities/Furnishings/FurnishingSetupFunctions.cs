@@ -6,16 +6,23 @@ namespace RLEngine.Entities.Furnishings
 	{
 		static readonly Dictionary<string, SetupFunction> furnishingSetupFunctions = new Dictionary<string, SetupFunction>
 		{
-			
+			{"TestFurnishing1", TestFurnishingSetup1}
 		};
 
-		delegate void SetupFunction(Furnishing entity, Dictionary<string, string> otherParameters);
+		delegate void SetupFunction(Furnishing furnishing, Dictionary<string, string> otherParameters);
 
-		static void DefaultFurnishingSetup(Furnishing entity, Dictionary<string, string> otherParameters)
+		static void DefaultFurnishingSetup(Furnishing furnishing, Dictionary<string, string> otherParameters)
 		{
-			entity._moveOnFunction = "";
-			entity._moveOffFunction = "";
-			entity._interactionFunction = "No Use";
+			furnishing._moveOnFunction = "";
+			furnishing._moveOffFunction = "";
+			furnishing._interactionFunction = "No Use";
+		}
+
+		static void TestFurnishingSetup1(Furnishing furnishing, Dictionary<string, string> otherParameters)
+		{
+			furnishing._moveOnFunction = "";
+			furnishing._moveOffFunction = "";
+			furnishing._interactionFunction = "TestInteractionFunction1";
 		}
 	}
 }

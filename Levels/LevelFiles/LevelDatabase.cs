@@ -1,6 +1,4 @@
-﻿// Fixed up for version 0.1 - no change for 0.2.
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System;
 using RLEngine.Entities.MapTiles;

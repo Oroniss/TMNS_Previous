@@ -72,25 +72,28 @@ namespace RLEngine.Entities.Furnishings
 			return true;
 		}
 
-		public bool InteractWith(Actors.Actor actor)
+		public void InteractWith(Actors.Actor actor)
 		{
+			if (!PlayerSpotted && actor.HasTrait(Trait.Player))
+			{
+				MainGraphicDisplay.TextConsole.AddOutputText("There is nothing there to make use of");
+				return;
+			}
+
 			if (_interactionFunction == "No Use")
 			{
 				if (actor.HasTrait(Trait.Player))
 				{
 					MainGraphicDisplay.TextConsole.AddOutputText("You can't do anything with that");
-					return true;
 				}
 				else
 				{
 					// TODO: Add error text here
 				}
-				
+				return;
 			}
 
-			// TODO: Add function here.
-			return false;
-				
+			interactionFunctions[_interactionFunction](this, actor);
 		}
 
 

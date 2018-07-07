@@ -89,6 +89,7 @@
     <Compile Include="Entities\EntityFactory.cs" />
     <Compile Include="Entities\Furnishings\FurnishingDetails.cs" />
     <Compile Include="Entities\Furnishings\FurnishingSetupFunctions.cs" />
+    <Compile Include="Entities\Furnishings\InteractionFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
