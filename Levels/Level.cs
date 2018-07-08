@@ -3,6 +3,7 @@ using System;
 using RLEngine.Entities.MapTiles;
 using RLEngine.Entities.Actors;
 using RLEngine.Entities.Furnishings;
+using RLEngine.Resources.Geometry;
 
 namespace RLEngine.Levels
 {
@@ -29,7 +30,7 @@ namespace RLEngine.Levels
 		readonly SortedDictionary<int, Furnishing> _furnishings;
 		readonly SortedDictionary<int, Actor> _actors;
 
-		List<Resources.Geometry.XYCoordinateStruct> _visibleTiles;
+		List<XYCoordinateStruct> _visibleTiles;
 
 		public Level(LevelId levelId)
 		{
@@ -45,7 +46,7 @@ namespace RLEngine.Levels
 			_tileGrid = levelTemplate.MapGrid;
 			_revealed = new bool[_mapWidth * _mapHeight];
 
-			_visibleTiles = new List<Resources.Geometry.XYCoordinateStruct>();
+			_visibleTiles = new List<XYCoordinateStruct>();
 
 			_tileInformation = new Dictionary<int, MapTileDetails>();
 			foreach (KeyValuePair<int, TileType> tile in levelTemplate.TileDictionary)
@@ -195,13 +196,13 @@ namespace RLEngine.Levels
 			return HasTrait(Entities.Trait.BlockLOS, index);
 		}
 
-		public List<Resources.Geometry.XYCoordinateStruct> VisibleTiles
+		public List<XYCoordinateStruct> VisibleTiles
 		{
 			get { return _visibleTiles; }
 			set { _visibleTiles = value; }
 		}
 
-		public List<Resources.Geometry.XYCoordinateStruct> GetFOV(int x, int y, int viewDistance)
+		public List<XYCoordinateStruct> GetFOV(int x, int y, int viewDistance)
 		{
 			var viewSet = new HashSet<int> { ConvertXYToInt(x, y) };
 			for (int octant = 0; octant < 8; octant++)
@@ -210,7 +211,7 @@ namespace RLEngine.Levels
 						  _octantTranslate[2, octant], _octantTranslate[3, octant], 0, viewSet);
 			}
 
-			var returnList = new List<Resources.Geometry.XYCoordinateStruct>();
+			var returnList = new List<XYCoordinateStruct>();
 			foreach (int index in viewSet)
 				returnList.Add(ConvertIndexToXY(index));
 
@@ -277,6 +278,27 @@ namespace RLEngine.Levels
 					break;
 				}
 			}
+		}
+
+		public bool InSight(int originX, int originY, int destinationX, int destinationY, int viewDistance)
+		{
+			// Determine which octant we are in
+			int octant = 0;
+			if (Math.Abs(originY - destinationY) < Math.Abs(originX - destinationX))
+				octant += 1;
+			if (destinationX - originX > 0)
+				octant = 3 - octant;
+			if (destinationY - originY > 0)
+				octant = 7 - octant;
+
+			var viewSet = new HashSet<int>();
+
+			CastLight(originX, originY 1, 1.0, 0.0, viewDistance,
+					  _octantTranslate[0, octant], _octantTranslate[1, octant],
+					  _octantTranslate[2, octant], _octantTranslate[3, octant],
+					  0, viewSet);
+			viewSet.Add(ConvertXYToInt(originX, originY));
+			return viewSet.Contains(ConvertXYToInt(destinationX, destinationY);
 		}
 
 
@@ -446,9 +468,9 @@ namespace RLEngine.Levels
 			return y * _mapWidth + x;
 		}
 
-		Resources.Geometry.XYCoordinateStruct ConvertIndexToXY(int index)
+		XYCoordinateStruct ConvertIndexToXY(int index)
 		{
-			return new Resources.Geometry.XYCoordinateStruct(index % _mapWidth, index / _mapWidth);
+			return new XYCoordinateStruct(index % _mapWidth, index / _mapWidth);
 		}
 
 		Dictionary<string, string> ParseOtherEntityParameters(string[] details, int startingIndex)
