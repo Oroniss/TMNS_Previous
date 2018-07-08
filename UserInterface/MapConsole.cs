@@ -1,5 +1,3 @@
-// Tidied up for version 0.2.
-
 using RLNET;
 using RLEngine.Resources.Palette;
 
@@ -28,32 +26,19 @@ namespace RLEngine.UserInterface
 			{
 				for (int x = xLimits.Min; x < xLimits.Max; x++)
 				{
-					// TODO: Fix this later.
-					if (true) //level.IsRevealed(x, y))
+					if (level.IsRevealed(x, y))
 					{
-						//_console.Set(x + xLimits.Offset, y + yLimits.Offset, null,
-						//			 Palette.GetColor(level.GetFogColor(x, y)), ' ');
+						_console.Set(x + xLimits.Offset, y + yLimits.Offset, null,
+									 Palette.GetColor(level.GetFogColor(x, y)), ' ');
 
-						// TODO: Temporary code here.
-						if (level.HasDrawingEntity(x, y))
-						{
-							var entity = level.GetDrawingEntity(x, y);
-							_console.Set(x + xLimits.Offset, y + yLimits.Offset, Palette.GetColor(entity.FGColorName),
-										 Palette.GetColor(level.GetBGColor(x, y)), entity.Symbol);
-						}
-						else
-						{
-							_console.Set(x + xLimits.Offset, y + yLimits.Offset, null, Palette.GetColor(level.GetBGColor(x, y)), ' ');
-						}
 					}
 				}
 			}
 
-			/*
-			foreach (var position in MainProgram.CurrentLevel.VisibleTiles)
+			foreach (var position in level.VisibleTiles)
 			{
 				_console.Set(position.X + xLimits.Offset, position.Y + yLimits.Offset, null,
-							 Palette.GetColor(level.GetBackgroundColor(position.X, position.Y)), ' ');
+							 Palette.GetColor(level.GetBGColor(position.X, position.Y)), ' ');
 
 				if (level.HasDrawingEntity(position.X, position.Y))
 				{
@@ -62,7 +47,6 @@ namespace RLEngine.UserInterface
 								 null, entity.Symbol);
 				}
 			}
-			*/
 
 			CopyToBackConsole();
 		}

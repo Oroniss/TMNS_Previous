@@ -1,6 +1,4 @@
-﻿// Tidied up for version 0.2.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace RLEngine.Entities.Actors
@@ -16,6 +14,7 @@ namespace RLEngine.Entities.Actors
 		int _actorId;
 
 		protected int _nextMove;
+		protected int _viewDistance;
 
 		protected Actor(EntityBasicDetails details, int xLoc, int yLoc, Dictionary<string, string> otherParameters)
 			: base(details, xLoc, yLoc, otherParameters)
@@ -36,11 +35,18 @@ namespace RLEngine.Entities.Actors
 				}
 				actors[_actorId] = this;
 			}
+
+			_viewDistance = 12; // TODO: Put this on a template somewhere.
 		}
 
 		public int ActorId
 		{
 			get { return _actorId; }
+		}
+
+		public int ViewDistance
+		{
+			get { return _viewDistance; }
 		}
 
 		public void UpdatePosition(int newX, int newY)

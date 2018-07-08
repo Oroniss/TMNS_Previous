@@ -1,6 +1,4 @@
-﻿// Tidied up for version 0.2.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using RLEngine.Entities.Actors;
 
@@ -20,6 +18,12 @@ namespace RLEngine.Entities.Player
 
 		protected override void GetNextMove(Levels.Level currentLevel)
 		{
+			var inSight = currentLevel.GetFOV(XLoc, YLoc, ViewDistance);
+			currentLevel.VisibleTiles = inSight;
+			foreach (Resources.Geometry.XYCoordinateStruct tile in inSight)
+				currentLevel.RevealTile(tile.X, tile.Y);
+			MainGraphicDisplay.UpdateGameScreen();
+
 			bool hasNotMoved = true;
 
 			while (hasNotMoved)
