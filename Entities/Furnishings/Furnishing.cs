@@ -14,11 +14,11 @@ namespace RLEngine.Entities.Furnishings
 		static readonly List<Trait> furnishingTraits = new List<Trait> {Trait.ImmuneToPoison };
 
 		int _furnishingId;
-		bool _trapped;
 
 		string _moveOnFunction;
 		string _moveOffFunction;
 		string _interactionFunction;
+		string _interactionTrap;
 
 		public Furnishing(FurnishingDetails details, int xLoc, int yLoc, Dictionary<string, string> otherParameters)
 			: base(details, xLoc, yLoc, otherParameters)
@@ -37,8 +37,9 @@ namespace RLEngine.Entities.Furnishings
 			// Sets up all the functions in here.
 			if (furnishingSetupFunctions.ContainsKey(EntityName))
 				furnishingSetupFunctions[EntityName](this, otherParameters);
-			else
-				DefaultFurnishingSetup(this, otherParameters);
+
+			// Then anything that needs to be added on
+			SetupExtraParameers(this, otherParameters);
 
 			furnishings[_furnishingId] = this;
 		}
@@ -48,28 +49,58 @@ namespace RLEngine.Entities.Furnishings
 			get { return _furnishingId; }
 		}
 
-		public bool IsTrapped
+		public string FgColorName
 		{
-			get { return _trapped; }
-			set { _trapped = value; }
+			get
+			{
+				if (_interactionTrap != null && PlayerSpotted)
+				{
+					return "Red";
+				}
+				return base.FGColorName;
+			}
+		}
+
+		public string MoveOnFunctionName
+		{
+			get { return _moveOnFunction; }
+			set { _moveOnFunction = value; }
 		}
 
 		public bool MoveOn(Actors.Actor actor, int originX, int originY)
 		{
-			if (_moveOnFunction == "")
+			if (_moveOnFunction == null)
 				return true;
 
 			// TODO: Implement move function here.
 			return true;
 		}
 
+		public string MoveOffFunctionName
+		{
+			get { return _moveOffFunction; }
+			set { _moveOffFunction = value; }
+		}
+
 		public bool MoveOff(Actors.Actor actor, int destinationX, int destinationY)
 		{
-			if (_moveOffFunction == "")
+			if (_moveOffFunction == null)
 				return true;
 
 			// TODO: Implement move function here
 			return true;
+		}
+
+		public string InteractionFunctionName
+		{
+			get { return _interactionFunction; }
+			set { _interactionFunction = value; }
+		}
+
+		public string InteractionTrapName
+		{
+			get { return _interactionTrap; }
+			set { _interactionTrap = value; }
 		}
 
 		public void InteractWith(Actors.Actor actor)
@@ -80,7 +111,7 @@ namespace RLEngine.Entities.Furnishings
 				return;
 			}
 
-			if (_interactionFunction == "No Use")
+			if (_interactionFunction == null)
 			{
 				if (actor.HasTrait(Trait.Player))
 				{

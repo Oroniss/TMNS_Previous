@@ -11,17 +11,13 @@ namespace RLEngine.Entities.Furnishings
 
 		delegate void SetupFunction(Furnishing furnishing, Dictionary<string, string> otherParameters);
 
-		static void DefaultFurnishingSetup(Furnishing furnishing, Dictionary<string, string> otherParameters)
+		static void SetupExtraParameers(Furnishing furnishing, Dictionary<string, string> otherParameters)
 		{
-			furnishing._moveOnFunction = "";
-			furnishing._moveOffFunction = "";
-			furnishing._interactionFunction = "No Use";
+			
 		}
 
 		static void TestFurnishingSetup1(Furnishing furnishing, Dictionary<string, string> otherParameters)
 		{
-			furnishing._moveOnFunction = "";
-			furnishing._moveOffFunction = "";
 			furnishing._interactionFunction = "TestInteractionFunction1";
 		}
 	}

@@ -293,12 +293,12 @@ namespace RLEngine.Levels
 
 			var viewSet = new HashSet<int>();
 
-			CastLight(originX, originY 1, 1.0, 0.0, viewDistance,
+			CastLight(originX, originY, 1, 1.0, 0.0, viewDistance,
 					  _octantTranslate[0, octant], _octantTranslate[1, octant],
 					  _octantTranslate[2, octant], _octantTranslate[3, octant],
 					  0, viewSet);
 			viewSet.Add(ConvertXYToInt(originX, originY));
-			return viewSet.Contains(ConvertXYToInt(destinationX, destinationY);
+			return viewSet.Contains(ConvertXYToInt(destinationX, destinationY));
 		}
 
 
