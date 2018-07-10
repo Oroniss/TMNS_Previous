@@ -18,4 +18,5 @@ TestFurnishing1,2,3
 TestFurnishing1,2,4
 TestFurnishing2,6,4
 TestFurnishing2,3,4,LevelTransition,True,DestinationLevel,TestLevel2,DestinationXLoc,1,DestinationYLoc,10
+TestFurnishing1,7,0,InteractionTrap,True,TrapType,InteractionTrap1,TrapLevel,4
 ###

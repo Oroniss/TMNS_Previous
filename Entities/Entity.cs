@@ -125,7 +125,10 @@ namespace RLEngine.Entities
 
 		public void SetOtherAttribute(string attributeName, string attributeValue)
 		{
-			_otherAttributes[attributeName] = attributeValue;
+			if (attributeValue == null)
+				_otherAttributes.Remove(attributeName);
+			else
+				_otherAttributes[attributeName] = attributeValue;
 		}
 
 		public string GetOtherAttributeValue(string attributeName)

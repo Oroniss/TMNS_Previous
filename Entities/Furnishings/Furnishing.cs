@@ -111,7 +111,7 @@ namespace RLEngine.Entities.Furnishings
 				return;
 			}
 
-			if (_interactionFunction == null)
+			if (_interactionFunction == null && _interactionTrap == null)
 			{
 				if (actor.HasTrait(Trait.Player))
 				{
@@ -124,7 +124,10 @@ namespace RLEngine.Entities.Furnishings
 				return;
 			}
 
-			interactionFunctions[_interactionFunction](this, actor);
+			if (_interactionTrap != null)
+				interactionFunctions[_interactionTrap](this, actor);
+			if (_interactionFunction != null)
+				interactionFunctions[_interactionFunction](this, actor);
 		}
 
 		public override void Dispose()

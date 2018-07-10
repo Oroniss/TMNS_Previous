@@ -10,6 +10,10 @@ namespace RLEngine.Entities.Furnishings
 		{
 			{"TestInteractionFunction1", TestInteractionFunction1},
 			{"LevelTransitionInteraction", LevelTransitionInteraction},
+
+			// Interaction Traps
+			{"InteractionTrap1Interaction", InteractionTrap1Interaction},
+			{"InteractionTrap2Interaction", InteractionTrap2Interaction},
 		};
 
 		delegate void InteractionFunction(Furnishing furnishing, Actor actor);
@@ -33,6 +37,23 @@ namespace RLEngine.Entities.Furnishings
 
 				MainProgram.LevelTransition(destinationLevel, destinationXLoc, destinationYLoc);
 			}
+		}
+
+		static void InteractionTrap1Interaction(Furnishing furnishing, Actor actor)
+		{
+			var trapLevel = int.Parse(furnishing.GetOtherAttributeValue("TrapLevel"));
+			if (actor.HasTrait(Trait.Player))
+				MainGraphicDisplay.TextConsole.AddOutputText(string.Format("Trap hits you for {0} damage", trapLevel));
+		}
+
+		static void InteractionTrap2Interaction(Furnishing furnishing, Actor actor)
+		{
+			var trapLevel = int.Parse(furnishing.GetOtherAttributeValue("TrapLevel"));
+			if (actor.HasTrait(Trait.Player))
+				MainGraphicDisplay.TextConsole.AddOutputText(string.Format("Trap hits you for {0} damage", trapLevel));
+			furnishing.InteractionTrapName = null;
+			furnishing.SetOtherAttribute("TrapType", null);
+			furnishing.SetOtherAttribute("TrapLevel", null);
 		}
 	}
 }

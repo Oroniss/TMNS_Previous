@@ -13,9 +13,10 @@ namespace RLEngine.Entities.Furnishings
 
 		static void SetupExtraParameers(Furnishing furnishing, Dictionary<string, string> otherParameters)
 		{
-			System.Console.WriteLine(otherParameters.Count);
 			if (otherParameters.ContainsKey("LevelTransition"))
 				SetupLevelTransitionObject(furnishing, otherParameters);
+			if (otherParameters.ContainsKey("InteractionTrap"))
+				SetupInteractionTrap(furnishing, otherParameters);
 		}
 
 		// General setup functions or "Add-ons"
@@ -31,6 +32,19 @@ namespace RLEngine.Entities.Furnishings
 			}
 			else
 				ErrorLogger.AddDebugText(string.Format("Incorrect Level Transition Object Specification at: {0}, {1}",
+													   furnishing.XLoc, furnishing.YLoc));
+		}
+
+		static void SetupInteractionTrap(Furnishing furnishing, Dictionary<string, string> otherParameters)
+		{
+			if (otherParameters.ContainsKey("TrapType") && otherParameters.ContainsKey("TrapLevel"))
+			{
+				furnishing.SetOtherAttribute("TrapType", otherParameters["TrapType"]);
+				furnishing.SetOtherAttribute("TrapLevel", otherParameters["TrapLevel"]);
+				furnishing.InteractionTrapName = otherParameters["TrapType"] + "Interaction";
+			}
+			else
+				ErrorLogger.AddDebugText(string.Format("Incorrect Interaction Trap Specification at: {0}, {1}",
 													   furnishing.XLoc, furnishing.YLoc));
 		}
 
