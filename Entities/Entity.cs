@@ -137,5 +137,22 @@ namespace RLEngine.Entities
 		{
 			// TODO: Go through effects and check if any expire.
 		}
+
+		public virtual void Dispose()
+		{
+			// TODO: Add effect removal in here.
+			// TODO: Also any other stuff that comes up.
+		}
+
+		protected virtual void Destroy(Entity attacker)
+		{
+			if (!_destroyed)
+			{
+				// TODO: Create a Destroy entity event here.
+			}
+			_destroyed = true;
+		}
+
+		// TODO: Add a Destroy method with an effect as the attacker.
 	}
 }

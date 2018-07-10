@@ -127,6 +127,13 @@ namespace RLEngine.Entities.Furnishings
 			interactionFunctions[_interactionFunction](this, actor);
 		}
 
+		public override void Dispose()
+		{
+			base.Dispose();
+
+			furnishings.Remove(_furnishingId);
+			freeFurnishingIds.Add(_furnishingId);
+		}
 
 		public static Furnishing GetFurnishing(int furnishingId)
 		{

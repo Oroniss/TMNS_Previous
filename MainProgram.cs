@@ -125,6 +125,8 @@ namespace RLEngine
 		{
 			if (_currentLevel != null)
 			{
+				_currentLevel.RemoveActor(_player);
+				_currentLevel.Dispose();
 				// TODO: Add this in here
 			}
 

@@ -71,6 +71,16 @@ namespace RLEngine.Levels
 			}
 		}
 
+		// Pack up a level that's no longer needed.
+		public void Dispose()
+		{
+			foreach (Furnishing furnishing in _furnishings.Values)
+				furnishing.Dispose();
+			foreach (Actor actor in _actors.Values)
+				actor.Dispose();
+			// TODO: Keep this up to date if need be.
+		}
+
 
 		// The basic public stuff
 		public string LevelName

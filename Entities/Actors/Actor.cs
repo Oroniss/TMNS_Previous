@@ -84,7 +84,18 @@ namespace RLEngine.Entities.Actors
 		{
 			base.Update(currentLevel);
 
-			GetNextMove(currentLevel);
+			if (!_destroyed)
+				GetNextMove(currentLevel);
+		}
+
+		public override void Dispose()
+		{
+			base.Dispose();
+
+			// TODO: Make sure this get's removed from the timer if needed.
+
+			actors.Remove(_actorId);
+			freeActorIds.Add(_actorId);
 		}
 
 		public static Actor GetActor(int actorId)
