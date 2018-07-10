@@ -16,5 +16,6 @@ TestLevel1
 TestFurnishing1,2,2
 TestFurnishing1,2,3
 TestFurnishing1,2,4
-TestFurnishing2,6,6
+TestFurnishing2,6,4
+TestFurnishing2,3,4,LevelTransition,True,DestinationLevel,TestLevel2,DestinationXLoc,1,DestinationYLoc,10
 ###
