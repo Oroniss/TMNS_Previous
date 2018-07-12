@@ -127,7 +127,6 @@ namespace RLEngine
 			{
 				_currentLevel.RemoveActor(_player);
 				_currentLevel.Dispose();
-				// TODO: Add this in here
 			}
 
 			_currentLevel = new Levels.Level(newLevel);

@@ -22,6 +22,7 @@ namespace RLEngine.Entities.Player
 			currentLevel.VisibleTiles = inSight;
 			foreach (Resources.Geometry.XYCoordinateStruct tile in inSight)
 				currentLevel.RevealTile(tile.X, tile.Y);
+			SpotHidden(currentLevel, currentLevel.GetConcealedEntity(inSight));
 			MainGraphicDisplay.UpdateGameScreen();
 
 			bool hasNotMoved = true;
@@ -89,6 +90,21 @@ namespace RLEngine.Entities.Player
 			}
 
 			return base.MakeMoveAttempt(currentLevel, deltaX, deltaY);
+		}
+
+		void SpotHidden(Levels.Level currentLevel, List<Entity> concealedEntities)
+		{
+			foreach (Entity entity in concealedEntities)
+			{
+				var concealmentLevel = int.Parse(entity.GetOtherAttributeValue("ConcealmentLevel"));
+				if (currentLevel.InSight(XLoc, YLoc, entity.XLoc, entity.YLoc, ViewDistance) &&
+					Resources.Geometry.DistanceFunctions.Distance(this, entity) <= 5 - concealmentLevel)
+				{
+					entity.PlayerSpotted = true;
+					entity.SetOtherAttribute("ConcealmentLevel", null);
+					// TODO: Add some text here - actually make it an event and a statistic.
+				}
+			}
 		}
 
 		public static Player GetPlayer()

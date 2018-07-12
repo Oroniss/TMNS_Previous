@@ -228,6 +228,23 @@ namespace RLEngine.Levels
 			return returnList;
 		}
 
+		public List<Entities.Entity> GetConcealedEntity(List<XYCoordinateStruct> visibleTiles)
+		{
+			var concealedEntities = new List<Entities.Entity>();
+
+			foreach (XYCoordinateStruct tile in visibleTiles)
+			{
+				// TODO: Add any other types here as required.
+				var index = ConvertXYToInt(tile.X, tile.Y);
+				if (HasFurnishing(index) && !GetFurnishing(index).PlayerSpotted)
+					concealedEntities.Add(GetFurnishing(index));
+				if (HasActor(index) && !GetActor(index).PlayerSpotted)
+					concealedEntities.Add(GetActor(index));
+			}
+
+			return concealedEntities;
+		}
+
 		// TODO: Get the reference where this came from.
 		void CastLight(int xLoc, int yLoc, int row, double start, double end, int viewDistance, int xx, int xy, int yx,
 					   int yy, int recursionNumber, HashSet<int> viewSet)

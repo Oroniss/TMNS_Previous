@@ -90,6 +90,7 @@
     <Compile Include="Entities\Furnishings\FurnishingDetails.cs" />
     <Compile Include="Entities\Furnishings\FurnishingSetupFunctions.cs" />
     <Compile Include="Entities\Furnishings\InteractionFunctions.cs" />
+    <Compile Include="Resources\Geometry\DistanceFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
