@@ -1,5 +1,3 @@
-﻿// Finished up for version 0.1 - no change for 0.2.
-
 using RLEngine.UserData;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -18,7 +16,6 @@ namespace RLEngine
 		static string _saveFileFolder;
 		static string _logFileFolder;
 
-		static readonly ConfigParameters _defaultConfigParameters = new ConfigParameters(false, false, false);
 		static readonly SortedDictionary<int, SaveGameSummary> _defaultSaveSummary = 
 			new SortedDictionary<int, SaveGameSummary>();
 
@@ -34,8 +31,6 @@ namespace RLEngine
 			if (!Directory.Exists(_logFileFolder))
 				Directory.CreateDirectory(_logFileFolder);
 
-			if (!File.Exists(_configFilePath))
-				CreateNewConfigFile();
 			if (!File.Exists(_saveSummaryFilePath))
 				CreateNewSaveSummaryFile();
 		}
@@ -48,33 +43,11 @@ namespace RLEngine
 			_logFileFolder = Path.Combine(_homeDirectory, "UserData", "Logs");
 		}
 
-		static void CreateNewConfigFile()
-		{
-			WriteConfigFile(_defaultConfigParameters);
-		}
-
 		static void CreateNewSaveSummaryFile()
 		{
 			WriteSummaryFile(_defaultSaveSummary);
 		}
 
-		// Update config parameters.
-		public static void WriteConfigFile(ConfigParameters configParameters)
-		{
-			var fileStream = File.OpenWrite(_configFilePath);
-			var serialiser = new BinaryFormatter();
-			serialiser.Serialize(fileStream, configParameters);
-			fileStream.Close();
-		}
-
-		public static ConfigParameters ReadConfigParameters()
-		{
-			var fileStream = File.OpenRead(_configFilePath);
-			var serialiser = new BinaryFormatter();
-			var configParameters = (ConfigParameters)serialiser.Deserialize(fileStream);
-			fileStream.Close();
-			return configParameters;
-		}
 
 		// Save and load game.
 		public static void WriteSaveGameSummary(SaveGameSummary summary)

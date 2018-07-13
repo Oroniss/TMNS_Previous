@@ -7,6 +7,8 @@ namespace RLEngine
 {
 	public static class MainProgram
 	{
+		
+
 		const string EngineVersion = "Version 0.3";
 
 		// TODO: Put these into a config file somewhere.
@@ -32,10 +34,9 @@ namespace RLEngine
 		public static void Main()
 		{
 			UserDataManager.SetupDirectoriesAndFiles();
-			var configParameters = UserDataManager.ReadConfigParameters();
 
-			UserInputHandler.ExtraKeys = configParameters.ExtraKeys;
-			UserDataManager.FullLogging = configParameters.FullLogging;
+			UserInputHandler.ExtraKeys = UserData.ApplicationSettings.ExtraKeys;
+			UserDataManager.FullLogging = UserData.ApplicationSettings.FullLogging;
 			// TODO: Set the gm option here too.
 
 			rootConsole = new RLRootConsole(_fontName, _consoleWidth, _consoleHeight, _fontSize, _fontSize, _scale,

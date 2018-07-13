@@ -53,7 +53,7 @@
     <Compile Include="Menus\MenuProvider.cs" />
     <Compile Include="Menus\MainMenu.cs" />
     <Compile Include="Menus\ViewKeysDisplay.cs" />
-    <Compile Include="UserData\ConfigParameters.cs" />
+    <Compile Include="UserData\ApplicationSettings.cs" />
     <Compile Include="UserData\SaveGame.cs" />
     <Compile Include="UserData\SaveGameSummary.cs" />
     <Compile Include="UserData\GameData.cs" />
@@ -91,6 +91,7 @@
     <Compile Include="Entities\Furnishings\FurnishingSetupFunctions.cs" />
     <Compile Include="Entities\Furnishings\InteractionFunctions.cs" />
     <Compile Include="Resources\Geometry\DistanceFunctions.cs" />
+    <Compile Include="Helpers\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -103,6 +104,12 @@
       <HintPath>packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="Plugin.Settings.Abstractions">
+      <HintPath>packages\Xam.Plugins.Settings.3.1.1\lib\net45\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings">
+      <HintPath>packages\Xam.Plugins.Settings.3.1.1\lib\net45\Plugin.Settings.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

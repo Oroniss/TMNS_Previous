@@ -1,5 +1,3 @@
-// Finished for version 0.2.
-
 using System;
 using System.Threading;
 using System.Collections.Generic;
@@ -192,11 +190,9 @@ namespace RLEngine.UserInterface
 		// TODO: See if this is something that comes up enough to generalise.
 		public static void DisplayConfigMenu()
 		{
-			
-			var configParameters = UserDataManager.ReadConfigParameters();
-			var logging = configParameters.FullLogging;
-			var keys = configParameters.ExtraKeys;
-			var gm = configParameters.GMOptions;
+			var logging = UserData.ApplicationSettings.FullLogging;
+			var keys = UserData.ApplicationSettings.ExtraKeys;
+			var gm = UserData.ApplicationSettings.GMOptions;
 
 			var title = "Select Configuration Options";
 			var options = new List<string> { "", "", "" };
@@ -229,7 +225,13 @@ namespace RLEngine.UserInterface
 					gm = !gm;
 				if (key == "ESCAPE")
 				{
-					UserDataManager.WriteConfigFile(new UserData.ConfigParameters(keys, logging, gm));
+					UserData.ApplicationSettings.ExtraKeys = keys;
+					UserData.ApplicationSettings.FullLogging = logging;
+					UserData.ApplicationSettings.GMOptions = gm;
+
+					extraKeys = keys;
+					UserDataManager.FullLogging = logging;
+					// TODO: Set the gm option in here too.
 					return;
 				}
 			}
