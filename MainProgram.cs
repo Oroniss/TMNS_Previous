@@ -7,8 +7,6 @@ namespace RLEngine
 {
 	public static class MainProgram
 	{
-		
-
 		const string EngineVersion = "Version 0.3";
 
 		// TODO: Put these into a config file somewhere.
@@ -33,6 +31,7 @@ namespace RLEngine
 
 		public static void Main()
 		{
+			StaticDatabase.StaticDatabaseConnection.OpenDBConnection();
 			UserDataManager.SetupDirectoriesAndFiles();
 
 			UserInputHandler.ExtraKeys = UserData.ApplicationSettings.ExtraKeys;
@@ -48,7 +47,7 @@ namespace RLEngine
 			var mainLoopThread = new Thread(RunStartMenu);
 			mainLoopThread.Start();
             rootConsole.Run();
-
+			StaticDatabase.StaticDatabaseConnection.CloseDBConnection();
 		}
 
 		static void RootConsoleRender(object sender, EventArgs e)
