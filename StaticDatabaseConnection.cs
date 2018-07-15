@@ -2,6 +2,8 @@
 using Mono.Data.Sqlite;
 using RLEngine.Entities.Furnishings;
 using RLEngine.Entities.MapTiles;
+using RLEngine.Entities;
+using System;
 
 namespace RLEngine.StaticDatabase
 {
@@ -38,6 +40,25 @@ namespace RLEngine.StaticDatabase
 
 		public static FurnishingDetails GetFurnishingDetails(string furnishingName)
 		{
+			string queryText = string.Format("SELECT * FROM Furnishings WHERE FurnishingName = \"{0}\";", furnishingName);
+
+			using (var queryCommand = connection.CreateCommand())
+			{
+				queryCommand.CommandText = queryText;
+
+				var reader = queryCommand.ExecuteReader();
+
+				if (reader.Read())
+				{
+					char symbol = reader.GetString(1)[0];
+					string fgColorName = reader.GetString(2);
+					Trait[] traits = ParseTraits(reader.GetString(3));
+
+					return new FurnishingDetails(furnishingName, symbol, fgColorName, traits);
+				}
+			}
+
+			ErrorLogger.AddDebugText("Unknown furnishing: " + furnishingName);
 			return null;
 		}
 
@@ -49,6 +70,17 @@ namespace RLEngine.StaticDatabase
 		public static MapTileDetails GetMapTileDetails(TileType tileType)
 		{
 			return GetMapTileDetails(tileType.ToString());
+		}
+
+		static Trait[] ParseTraits(string dbField)
+		{
+			if (dbField == null)
+				return new Trait[0];
+			var splitTraits = dbField.Split('|');
+			var traits = new Trait[splitTraits.Length];
+			for (int i = 0; i < splitTraits.Length; i++)
+				traits[i] = (Trait)Enum.Parse(typeof(Trait), splitTraits[i]);
+			return traits;
 		}
 
 		public static void SetToTest(string testDBPath)

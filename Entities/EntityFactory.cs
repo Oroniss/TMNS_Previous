@@ -5,20 +5,15 @@ namespace RLEngine.Entities
 {
 	public static class EntityFactory
 	{
+		static Dictionary<string, FurnishingDetails> furnishings = new Dictionary<string, FurnishingDetails>();
+
 		public static Furnishing CreateFurnishing(string furnishingName, int xLoc, int yLoc, Dictionary<string, string>
 		                                         otherParameters)
 		{
-			if (furnishingName == "TestFurnishing1")
-			{
-				var details = new FurnishingDetails("TestFurnishing1", '#', "Red", new Trait[] { Trait.BlockMove, Trait.BlockLOS });
-				return new Furnishing(details, xLoc, yLoc, otherParameters);
-			}
-			else if (furnishingName == "TestFurnishing2")
-			{
-				var details = new FurnishingDetails("TestFurnishing2", '*', "Olive", new Trait[] { Trait.TestTrait1, Trait.TestTrait2 });
-				return new Furnishing(details, xLoc, yLoc, otherParameters);
-			}
-			return null;
+			if (!furnishings.ContainsKey(furnishingName))
+				furnishings[furnishingName] = StaticDatabase.StaticDatabaseConnection.GetFurnishingDetails(furnishingName);
+
+			return new Furnishing(furnishings[furnishingName], xLoc, yLoc, otherParameters);
 		}
 	}
 }
