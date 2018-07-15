@@ -50,7 +50,7 @@ namespace RLEngine.Levels
 
 			_tileInformation = new Dictionary<int, MapTileDetails>();
 			foreach (KeyValuePair<int, TileType> tile in levelTemplate.TileDictionary)
-				_tileInformation[tile.Key] = MapTileDetails.GetTileDetails(tile.Value);
+				_tileInformation[tile.Key] = Entities.EntityFactory.CreateMapTile(tile.Value);
 
 			// Furnishings
 			foreach (string[] furnishing in levelTemplate.Furnishings)

@@ -1,6 +1,4 @@
-﻿// Finished for version 0.2.
-
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using RLEngine.Levels;
 
 namespace RLEngine.Tests
@@ -13,7 +11,6 @@ namespace RLEngine.Tests
 		[SetUp]
 		public void Setup()
 		{
-			Entities.MapTiles.MapTileDetails.SetTestFilePath(TestContext.CurrentContext.TestDirectory);
 			Levels.LevelDatabase.LevelDatabase.SetTestFilePath(TestContext.CurrentContext.TestDirectory);
 			ErrorLogger.SetToTest();
 		}

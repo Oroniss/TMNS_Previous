@@ -92,7 +92,6 @@ namespace RLEngine
 			// TODO: This should eventually go above to either create new ones or deserialise the old ones.
 			Quests.GameEventManager.Setup();
 
-
 			RunGame();
 			Quit();
 		}

@@ -64,6 +64,26 @@ namespace RLEngine.StaticDatabase
 
 		public static MapTileDetails GetMapTileDetails(string mapTileName)
 		{
+			string queryText = string.Format("SELECT * FROM MapTiles WHERE TileType = \"{0}\";", mapTileName);
+
+			using (var queryCommand = connection.CreateCommand())
+			{
+				queryCommand.CommandText = queryText;
+
+				var reader = queryCommand.ExecuteReader();
+
+				if (reader.Read())
+				{
+					TileType tileType = (TileType)Enum.Parse(typeof(TileType), reader.GetString(0));
+					string bgColorName = reader.GetString(1);
+					string fogColorName = reader.GetString(2);
+					Trait[] traits = ParseTraits(reader.GetString(3));
+
+					return new MapTileDetails(tileType, bgColorName, fogColorName, traits);
+				}
+			}
+
+			ErrorLogger.AddDebugText("Unknown map tile type: " + mapTileName);
 			return null;
 		}
 

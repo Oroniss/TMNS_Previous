@@ -1,7 +1,6 @@
-﻿// Finished for version 0.1 - no change for 0.2.
-
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using RLEngine.Entities.MapTiles;
+using RLEngine.Entities;
 
 namespace RLEngine.Tests
 {
@@ -13,21 +12,20 @@ namespace RLEngine.Tests
 		[SetUp]
 		public void Setup()
 		{
-			MapTileDetails.SetTestFilePath(TestContext.CurrentContext.TestDirectory);
 			ErrorLogger.SetToTest();
 		}
 
 		[Test]
 		public void TestMapTileDatabase()
 		{
-			var tile1 = MapTileDetails.GetTileDetails(TileType.TestTile1);
+			var tile1 = EntityFactory.CreateMapTile(TileType.TestTile1);
 			Assert.AreEqual("GraySeven", tile1.BackgroundColor);
 			Assert.AreEqual("GrayFour", tile1.FogColor);
 			Assert.IsTrue(tile1.HasTrait(Entities.Trait.TestTrait2));
 			Assert.IsFalse(tile1.HasTrait(Entities.Trait.TestTrait1));
 			Assert.AreEqual(defaultDebugMessage, ErrorLogger.GetNextTestMessage());
 
-			var tile2 = MapTileDetails.GetTileDetails(TileType.TestTile2);
+			var tile2 = EntityFactory.CreateMapTile(TileType.TestTile2);
 			Assert.AreEqual("Blue", tile2.FogColor);
 			Assert.AreEqual("LightBlue", tile2.BackgroundColor);
 			Assert.IsTrue(tile2.HasTrait(Entities.Trait.TestTrait1));
@@ -36,7 +34,7 @@ namespace RLEngine.Tests
 
 			// Test error message and default handling.
 			ErrorLogger.ClearTestMessages();
-			var tile3 = MapTileDetails.GetTileDetails(TileType.TestTile3);
+			var tile3 = EntityFactory.CreateMapTile(TileType.TestTile3);
 			Assert.AreEqual("Couldn't find db entry for TileType TestTile3", ErrorLogger.GetNextTestMessage());
 			Assert.AreEqual(defaultDebugMessage, ErrorLogger.GetNextTestMessage());
 			Assert.AreEqual("GraySeven", tile3.BackgroundColor);
@@ -47,7 +45,7 @@ namespace RLEngine.Tests
 		public void TestMapTileDetails()
 		{
 			ErrorLogger.ClearTestMessages();
-			var tile1 = MapTileDetails.GetTileDetails(TileType.TestTile1);
+			var tile1 = EntityFactory.CreateMapTile(TileType.TestTile1);
 			tile1.AddTrait(Entities.Trait.TestTrait1);
 			Assert.AreEqual("Tried to add trait TestTrait1 to map tile TestTile1", ErrorLogger.GetNextTestMessage());
 			Assert.AreEqual(defaultDebugMessage, ErrorLogger.GetNextTestMessage());
