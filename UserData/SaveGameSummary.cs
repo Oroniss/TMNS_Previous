@@ -1,5 +1,3 @@
-// Finished up for version 0.1 - no change for 0.2.
-
 using System;
 
 namespace RLEngine.UserData
@@ -9,19 +7,17 @@ namespace RLEngine.UserData
 	{
 		public GameData GameData;
 		public string CurrentLevelName;
-		public bool StillAlive;
 
-		public SaveGameSummary(GameData gameData, string currentLevelName, bool stillAlive)
+		public SaveGameSummary(GameData gameData, string currentLevelName)
 		{
 			GameData = gameData;
-			StillAlive = stillAlive;
 			CurrentLevelName = currentLevelName;
 		}
 
 		public override string ToString()
 		{
-			var returnString = "Game Identifier: {0}, Current Level: {1}, Still Alive: {2}";
-			return string.Format(returnString, GameData.GameIdentifier, CurrentLevelName, StillAlive);
+			var returnString = "Game Identifier: {0}, Current Level: {1}";
+			return string.Format(returnString, GameData.GameIdentifier, CurrentLevelName);
 		}
 	}
 }

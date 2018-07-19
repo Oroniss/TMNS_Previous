@@ -24,13 +24,12 @@ namespace RLEngine.Tests
 		public void TestSaveGameSummary()
 		{
 			var data1 = new GameData(99, "Aleasha");
-			var summary1 = new SaveGameSummary(data1, "Large Test Level", true);
+			var summary1 = new SaveGameSummary(data1, "Large Test Level");
 
 			Assert.AreEqual(99, summary1.GameData.GameID);
 			Assert.AreEqual("Aleasha", summary1.GameData.GameIdentifier);
 			Assert.AreEqual("Large Test Level", summary1.CurrentLevelName);
-			Assert.IsTrue(summary1.StillAlive);
-			Assert.AreEqual("Game Identifier: Aleasha, Current Level: Large Test Level, Still Alive: True", 
+			Assert.AreEqual("Game Identifier: Aleasha, Current Level: Large Test Level", 
 			                summary1.ToString());
 		}
 
@@ -38,12 +37,11 @@ namespace RLEngine.Tests
 		public void TestSaveGame()
 		{
 			var data1 = new GameData(99, "Aleasha");
-			var summary1 = new SaveGameSummary(data1, "Large Test Level", false);
+			var summary1 = new SaveGameSummary(data1, "Large Test Level");
 
 			var saveGame = new SaveGame(summary1);
 
 			Assert.AreEqual(99, summary1.GameData.GameID);
-			Assert.IsFalse(summary1.StillAlive);
 		}
 	}
 }

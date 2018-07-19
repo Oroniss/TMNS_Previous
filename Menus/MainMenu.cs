@@ -32,7 +32,7 @@ namespace RLEngine.Menus
 
 								newGameParameters.GameID = UserData.ApplicationSettings.GenerateNextGameId();
 
-								var saveGameSummary = new UserData.SaveGameSummary(newGameParameters, "NEWGAME", true);
+								var saveGameSummary = new UserData.SaveGameSummary(newGameParameters, "NEWGAME");
 								UserDataManager.WriteSaveGameSummary(saveGameSummary);
 
 								return newGameParameters.GameID;

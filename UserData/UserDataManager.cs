@@ -103,7 +103,6 @@ namespace RLEngine
 			if (File.Exists(filePath))
 				File.Delete(filePath);
 			var summaryDict = ReadSummaryFile();
-			summaryDict[gameID].StillAlive = false;
 			WriteSummaryFile(summaryDict);
 		}
 
