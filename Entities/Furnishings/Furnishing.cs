@@ -152,5 +152,23 @@ namespace RLEngine.Entities.Furnishings
 			foreach (KeyValuePair<int, Furnishing> furnishing in furnishings)
 				furnishing.Value.Update(currentLevel);
 		}
+
+		public static FurnishingSaveDetails GetSaveData()
+		{
+			var data = new FurnishingSaveDetails();
+
+			data.CurrentMaxId = currentMaxId;
+			data.FreeFurnishingIds = freeFurnishingIds;
+			data.CurrentFurnishings = furnishings;
+
+			return data;
+		}
+
+		public static void LoadSaveData(FurnishingSaveDetails data)
+		{
+			currentMaxId = data.CurrentMaxId;
+			freeFurnishingIds = data.FreeFurnishingIds;
+			furnishings = data.CurrentFurnishings;
+		}
 	}
 }

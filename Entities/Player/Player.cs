@@ -12,6 +12,8 @@ namespace RLEngine.Entities.Player
 		public Player(UserData.GameData newGameData)
 			:base(new EntityBasicDetails("Player", '@', "Black", new List<Trait> {Trait.Player }), 0, 0, new Dictionary<string, string>())
 		{
+			_actorId = 0;
+
 			// TODO: Flesh this out properly and tie it into regular Actor constructor.
 			player = this;
 		}

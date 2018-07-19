@@ -1,12 +1,11 @@
-﻿// Tidied up for version 0.2.
-
-using RLEngine.Menus;
+﻿using RLEngine.Menus;
 
 namespace RLEngine
 {
 	public static class MenuProvider
 	{
 		static MainMenu mainMenu;
+		static CharacterSelectionMenu characterSelectionMenu;
 		static CharacterCreationMenu characterCreationMenu;
 		static ViewKeysDisplay viewKeys;
 
@@ -17,6 +16,16 @@ namespace RLEngine
 				if (mainMenu == null)
 					mainMenu = new MainMenu();
 				return mainMenu;
+			}
+		}
+
+		public static CharacterSelectionMenu CharacterSelectionMenu
+		{
+			get
+			{
+				if (characterSelectionMenu == null)
+					characterSelectionMenu = new CharacterSelectionMenu();
+				return characterSelectionMenu;
 			}
 		}
 

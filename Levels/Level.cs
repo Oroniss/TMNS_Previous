@@ -19,7 +19,7 @@ namespace RLEngine.Levels
 
 		const int FURNISHINGSTARTINGINDEX = 3;
 
-
+		readonly LevelId _levelId;
 		readonly string _levelName;
 		readonly int _mapWidth;
 		readonly int _mapHeight;
@@ -40,6 +40,7 @@ namespace RLEngine.Levels
 			var levelTemplate = LevelDatabase.LevelDatabase.GetLevelTemplate(levelId);
 
 			// Basic details
+			_levelId = levelId;
 			_levelName = levelTemplate.LevelName;
 			_mapWidth = levelTemplate.MapWidth;
 			_mapHeight = levelTemplate.MapHeight;
@@ -71,6 +72,29 @@ namespace RLEngine.Levels
 			}
 		}
 
+		public Level(LevelSaveSummary summary)
+		{
+			_levelId = summary.levelId;
+			_levelName = summary.levelName;
+
+			_mapWidth = summary.width;
+			_mapHeight = summary.height;
+
+			_tileInformation = new Dictionary<int, MapTileDetails>();
+			_tileGrid = summary.tiles;
+			foreach (KeyValuePair<int, TileType> tile in summary.tileTypes)
+				_tileInformation[tile.Key] = Entities.EntityFactory.CreateMapTile(tile.Value);
+			_revealed = summary.revealed;
+
+			_furnishings = new SortedDictionary<int, Furnishing>();
+			foreach (KeyValuePair<int, int> furnishing in summary.furnishings)
+				_furnishings[furnishing.Key] = Furnishing.GetFurnishing(furnishing.Value);
+
+			_actors = new SortedDictionary<int, Actor>();
+			foreach (KeyValuePair<int, int> actor in summary.actors)
+				_actors[actor.Key] = Actor.GetActor(actor.Value);
+		}
+
 		// Pack up a level that's no longer needed.
 		public void Dispose()
 		{
@@ -83,6 +107,11 @@ namespace RLEngine.Levels
 
 
 		// The basic public stuff
+		public LevelId LevelId
+		{
+			get { return _levelId; }
+		}
+
 		public string LevelName
 		{
 			get { return _levelName; }
@@ -507,6 +536,29 @@ namespace RLEngine.Levels
 				parameterDictionary[details[i]] = details[i + 1];
 
 			return parameterDictionary;
+		}
+
+		// Save game related stuff
+		public LevelSaveSummary GetSaveDetails()
+		{
+			var summary = new LevelSaveSummary();
+
+			summary.levelId = _levelId;
+			summary.levelName = _levelName;
+			summary.height = _mapHeight;
+			summary.width = _mapWidth;
+
+			summary.tiles = _tileGrid;
+			foreach (KeyValuePair<int, MapTileDetails> tile in _tileInformation)
+				summary.tileTypes[tile.Key] = tile.Value.TileType;
+			summary.revealed = _revealed;
+
+			foreach (KeyValuePair<int, Furnishing> furnishing in _furnishings)
+				summary.furnishings[furnishing.Key] = furnishing.Value.FurnishingId;
+			foreach (KeyValuePair<int, Actor> actor in _actors)
+				summary.actors[actor.Key] = actor.Value.ActorId;
+
+			return summary;
 		}
 	}
 }

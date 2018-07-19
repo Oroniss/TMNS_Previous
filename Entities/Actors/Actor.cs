@@ -6,12 +6,7 @@ namespace RLEngine.Entities.Actors
 	[Serializable]
 	public abstract class Actor:Entity
 	{
-		static SortedDictionary<int, Actor> actors = new SortedDictionary<int, Actor>();
-
-		static int currentMaxId = 1;
-		static List<int> freeActorIds = new List<int>();
-
-		int _actorId;
+		protected int _actorId;
 
 		protected int _nextMove;
 		protected int _viewDistance;
@@ -19,23 +14,6 @@ namespace RLEngine.Entities.Actors
 		protected Actor(EntityBasicDetails details, int xLoc, int yLoc, Dictionary<string, string> otherParameters)
 			: base(details, xLoc, yLoc, otherParameters)
 		{
-			if (EntityName == "Player")
-				_actorId = 0;
-			else
-			{
-				if (freeActorIds.Count > 0)
-				{
-					_actorId = freeActorIds[0];
-					freeActorIds.RemoveAt(0);
-				}
-				else
-				{
-					_actorId = currentMaxId;
-					currentMaxId++;
-				}
-				actors[_actorId] = this;
-			}
-
 			_viewDistance = 12; // TODO: Put this on a template somewhere.
 		}
 
@@ -88,32 +66,12 @@ namespace RLEngine.Entities.Actors
 				GetNextMove(currentLevel);
 		}
 
-		public override void Dispose()
-		{
-			base.Dispose();
-
-			// TODO: Make sure this get's removed from the timer if needed.
-
-			actors.Remove(_actorId);
-			freeActorIds.Add(_actorId);
-		}
-
 		public static Actor GetActor(int actorId)
 		{
 			if (actorId == 0)
 				return Player.Player.GetPlayer();
-			
-			if (actors.ContainsKey(actorId))
-				return actors[actorId];
 
-			ErrorLogger.AddDebugText(string.Format("Tried to get unknown actor ID: {0}", actorId));
-			return null;
-		}
-
-		public static void UpdateActors(Levels.Level currentLevel)
-		{
-			foreach (KeyValuePair<int, Actor> actor in actors)
-				actor.Value.Update(currentLevel);
+			return NPCs.Monster.GetMonster(actorId);
 		}
 	}
 }

@@ -95,6 +95,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Compile Include="StaticDatabaseConnection.cs" />
+    <Compile Include="Menus\CharacterSelectionMenu.cs" />
+    <Compile Include="Levels\LevelSaveSummary.cs" />
+    <Compile Include="Entities\NPCs\Monster.cs" />
+    <Compile Include="Entities\NPCs\MonsterSaveDetails.cs" />
+    <Compile Include="Entities\Furnishings\FurnishingSaveDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -168,6 +173,7 @@
     <Folder Include="Tests\GameEventTests\" />
     <Folder Include="Tests\QuestAndAchievementTests\" />
     <Folder Include="Entities\Furnishings\" />
+    <Folder Include="Entities\NPCs\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

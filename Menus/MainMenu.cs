@@ -1,12 +1,10 @@
-﻿// Finished for version 0.1 - no change for 0.2.
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace RLEngine.Menus
 {
 	public class MainMenu
 	{
-		static readonly List<string> mainMenuOptions = new List<string> {"New Game", "Load Game", "Delete Save Game",
+		static readonly List<string> mainMenuOptions = new List<string> {"Play Game", "Delete Save Game",
 			"View Achievements", "Clear Achievements", "View Commands", "Config"};
 
 		public int DisplayMainMenu()
@@ -20,33 +18,39 @@ namespace RLEngine.Menus
 				{
 					case 0:
 						{
-							var newGameParameters = MenuProvider.CharacterCreationMenu.CreateNewCharacter();
-							if (newGameParameters == null)
+							int gameId = MenuProvider.CharacterSelectionMenu.SelectCharacterToPlay();
+
+							if (gameId == -1)
 								break;
 
-							newGameParameters.GameID = UserDataManager.GetNextGameId();
+							if (gameId == -2)
+							{
 
-							var saveGameSummary = new UserData.SaveGameSummary(newGameParameters, "NEWGAME", true);
-							UserDataManager.WriteSaveGameSummary(saveGameSummary);
+								var newGameParameters = MenuProvider.CharacterCreationMenu.CreateNewCharacter();
+								if (newGameParameters == null)
+									break;
 
-							return newGameParameters.GameID;
+								newGameParameters.GameID = UserData.ApplicationSettings.GenerateNextGameId();
+
+								var saveGameSummary = new UserData.SaveGameSummary(newGameParameters, "NEWGAME", true);
+								UserDataManager.WriteSaveGameSummary(saveGameSummary);
+
+								return newGameParameters.GameID;
+							}
+
+							return gameId;
 						}
 					case 1:
 						{
-							// TODO: Go to load character screen.
+							MenuProvider.CharacterSelectionMenu.DeleteSaveGame();
 							break;
 						}
-					case 2:
-						{
-							// TODO: Delete save game.
-							break;
-						}
-					case 5:
+					case 4:
 						{
 							MenuProvider.ViewKeysDisplay.ViewKeys();
 							break;
 						}
-					case 6:
+					case 5:
 						{
 							UserInterface.UserInputHandler.DisplayConfigMenu();
 							break;
