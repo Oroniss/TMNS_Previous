@@ -88,18 +88,15 @@ namespace RLEngine
 			return gameState;
 		}
 
-		public static List<SaveGameSummary> GetCurrentSaves()
+		public static SaveGameSummary GetSummary(int gameId)
 		{
-			var returnList = new List<SaveGameSummary>();
 			var saveSummaries = ReadSummaryFile();
-			foreach (int summaryID in saveSummaries.Keys)
-			{
-				if (saveSummaries[summaryID].StillAlive)
-					returnList.Add(saveSummaries[summaryID]);
-			}
-			return returnList;
+			if (saveSummaries.ContainsKey(gameId))
+				return saveSummaries[gameId];
+			return null;
 		}
 
+		// TODO: This also needs to change
 		public static void DeleteSaveGame(int gameID)
 		{
 			var filePath = Path.Combine(_saveFileFolder, string.Format("GID{0}.gen", gameID));
@@ -108,13 +105,6 @@ namespace RLEngine
 			var summaryDict = ReadSummaryFile();
 			summaryDict[gameID].StillAlive = false;
 			WriteSummaryFile(summaryDict);
-		}
-
-		public static int GetNextGameId()
-		{
-			var saveSummaries = ReadSummaryFile();
-			return saveSummaries.Count;
-			// TODO: Add check to make sure it's not actually in the save summary dict.
 		}
 
 		static SortedDictionary<int, SaveGameSummary> ReadSummaryFile()
