@@ -2,6 +2,7 @@
 using System.Threading;
 using RLEngine.UserInterface;
 using RLNET;
+using System.Collections.Generic;
 
 namespace RLEngine
 {
@@ -18,6 +19,9 @@ namespace RLEngine
 		static readonly string _windowTitle = "Halfbreed";
 
 		static RLRootConsole rootConsole;
+
+		// Level dictionary
+		static Dictionary<Levels.LevelId, Levels.Level> _levels = new Dictionary<Levels.LevelId, Levels.Level>();
 
 		// Global attributes
 		static int _currentTime;
@@ -102,7 +106,7 @@ namespace RLEngine
 			{
 				MainGraphicDisplay.UpdateGameScreen();
 
-				Entities.Actors.Actor.UpdateActors(_currentLevel);
+				Entities.NPCs.Monster.UpdateMonsters(_currentLevel);
 				Entities.Player.Player.UpdatePlayer(_currentLevel);
 
 				if (_quit)
@@ -120,15 +124,19 @@ namespace RLEngine
 			rootConsole.Close();
 		}
 
-		public static void LevelTransition(Levels.LevelId newLevel, int newXLoc, int newYLoc)
+		public static void LevelTransition(Levels.LevelId newLevelId, int newXLoc, int newYLoc)
 		{
 			if (_currentLevel != null)
 			{
 				_currentLevel.RemoveActor(_player);
 				_currentLevel.Dispose();
+				_levels.Remove(_currentLevel.LevelId);
 			}
 
-			_currentLevel = new Levels.Level(newLevel);
+			var newLevel = new Levels.Level(newLevelId);
+			_levels[newLevelId] = newLevel;
+			_currentLevel = newLevel;
+
 			_player.UpdatePosition(newXLoc, newYLoc);
 			_currentLevel.AddActor(_player);
 		}
@@ -137,6 +145,16 @@ namespace RLEngine
 		{
 			// TODO: Check whether anything else needs to go in here too.
 			_player = new Entities.Player.Player(newGameData);
+		}
+
+		public static void SaveGame()
+		{
+			
+		}
+
+		public static void LoadGame(int gameId)
+		{
+			
 		}
 
 		public static int CurrentTime
