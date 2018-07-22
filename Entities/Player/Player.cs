@@ -118,5 +118,10 @@ namespace RLEngine.Entities.Player
 		{
 			player.Update(currentLevel);
 		}
+
+		public static void SetPlayer(Player player)
+		{
+			Player.player = player;
+		}
 	}
 }

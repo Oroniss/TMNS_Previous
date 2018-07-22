@@ -24,6 +24,7 @@ namespace RLEngine
 		static Dictionary<Levels.LevelId, Levels.Level> _levels = new Dictionary<Levels.LevelId, Levels.Level>();
 
 		// Global attributes
+		static UserData.GameData _gameData;
 		static int _currentTime;
 		static Levels.Level _currentLevel;
 		static Entities.Player.Player _player;
@@ -87,14 +88,19 @@ namespace RLEngine
 			if (gameState.Summary.CurrentLevelName == "NEWGAME")
 			{
 				SetupNewGame(gameState.Summary.GameData);
+				Quests.GameEventManager.Setup();
 				LevelTransition(_startingLevel, _startingXLoc, _startingYLoc);
+
 			}
-			// TODO: Update this bit.
-			//else
-			//	LoadGame(gameState);
+			else
+			{
+				LoadGame(gameState);
+				// Have to complete the player's turn and increment timer.
+				Entities.Player.Player.UpdatePlayer(_currentLevel);
+				_currentTime++;
+			}
 
 			// TODO: This should eventually go above to either create new ones or deserialise the old ones.
-			Quests.GameEventManager.Setup();
 
 			RunGame();
 			Quit();
@@ -111,7 +117,7 @@ namespace RLEngine
 
 				if (_quit)
 				{
-					//SaveGame();
+					SaveGame();
 					return;
 				}
 				_currentTime++;
@@ -145,16 +151,45 @@ namespace RLEngine
 		{
 			// TODO: Check whether anything else needs to go in here too.
 			_player = new Entities.Player.Player(newGameData);
+			_gameData = newGameData;
 		}
 
 		public static void SaveGame()
 		{
-			
+			var summary = new UserData.SaveGameSummary(_gameData, _currentLevel.LevelName);
+			var saveGameState = new UserData.SaveGame(summary);
+
+			saveGameState.CurrentTime = _currentTime;
+			saveGameState.Player = _player;
+
+			saveGameState.CurrentLevelId = _currentLevel.LevelId;
+			foreach (KeyValuePair<Levels.LevelId, Levels.Level> level in _levels)
+				saveGameState.Levels[level.Key] = level.Value.GetSaveDetails();
+
+			saveGameState.Furnishings = Entities.Furnishings.Furnishing.GetSaveData();
+			saveGameState.Monsters = Entities.NPCs.Monster.GetSaveData();
+
+			Quests.GameEventManager.SaveData(saveGameState);
+
+			UserDataManager.SaveGame(saveGameState);
 		}
 
-		public static void LoadGame(int gameId)
+		public static void LoadGame(UserData.SaveGame gameState)
 		{
-			
+			_gameData = gameState.Summary.GameData;
+			_currentTime = gameState.CurrentTime;
+			_player = gameState.Player;
+			Entities.Player.Player.SetPlayer(_player);
+
+			Entities.Furnishings.Furnishing.LoadSaveData(gameState.Furnishings);
+			Entities.NPCs.Monster.LoadSaveData(gameState.Monsters);
+
+			foreach (KeyValuePair<Levels.LevelId, Levels.LevelSaveSummary> level in gameState.Levels)
+				_levels[level.Key] = new Levels.Level(level.Value);
+
+			_currentLevel = _levels[gameState.CurrentLevelId];
+
+			Quests.GameEventManager.LoadData(gameState);
 		}
 
 		public static int CurrentTime
