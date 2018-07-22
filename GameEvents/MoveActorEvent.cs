@@ -1,4 +1,4 @@
-﻿// Tidied up for version 0.2.
+﻿// Tidied up for version 0.3.
 
 using RLEngine.Entities.Actors;
 
@@ -33,10 +33,10 @@ namespace RLEngine.GameEvents
 			PublishGameEvent(actor, moveActorEvent);
 		}
 
-		public static void GenerateMoveActorEvent(Actor actor, int originX, int originY, int destinaionX,
+		public static void GenerateMoveActorEvent(Actor actor, int originX, int originY, int destinationX,
 												  int destinationY)
 		{
-			GenerateMoveActorEvent(actor, originX, originY, destinaionX, destinationY, MovementModes.Walk);
+			GenerateMoveActorEvent(actor, originX, originY, destinationX, destinationY, MovementModes.Walk);
 		}
 
 		public static void GenerateMoveActorEvent(Actor actor, int deltaX, int deltaY, MovementModes movementMode)
