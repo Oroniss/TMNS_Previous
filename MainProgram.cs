@@ -88,7 +88,7 @@ namespace RLEngine
 			if (gameState.Summary.CurrentLevelName == "NEWGAME")
 			{
 				SetupNewGame(gameState.Summary.GameData);
-				Quests.GameEventManager.Setup();
+				Quests.GameEventManager.SetupGameEventHandling();
 				LevelTransition(_startingLevel, _startingXLoc, _startingYLoc);
 
 			}
