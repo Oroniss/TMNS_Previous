@@ -1,4 +1,4 @@
-// Tidied up for version 0.2.
+// Tidied up for version 0.2 - no changes for version 0.3.
 
 using RLEngine.GameEvents;
 using System;

@@ -1,4 +1,6 @@
-﻿using RLEngine.GameEvents;
+﻿// Tidied up for version 0.3.
+
+using RLEngine.GameEvents;
 
 namespace RLEngine.Quests
 {
@@ -6,9 +8,16 @@ namespace RLEngine.Quests
 	{
 		static StatisticsManager statisticsManager = new StatisticsManager();
 
-		public static void Setup()
+		public static void SetupGameEventHandling()
 		{
 			GameEvent.OnGameEvent +=  statisticsManager.ProcessEvent;
+		}
+
+		public static void SaveData(UserData.SaveGame saveGame)
+		{
+			saveGame.CurrentStatistics = statisticsManager;
+
+			// TODO: Add achievement and quest manageres here.
 		}
 
 		public static void LoadData(UserData.SaveGame saveGame)
@@ -17,14 +26,7 @@ namespace RLEngine.Quests
 
 			// TODO: Add achievement and quest managers here.
 
-			Setup();
-		}
-
-		public static void SaveData(UserData.SaveGame saveGame)
-		{
-			saveGame.CurrentStatistics = statisticsManager;
-
-			// TODO: Add achievement and quest manageres here.
+			SetupGameEventHandling();
 		}
 	}
 }

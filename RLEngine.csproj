@@ -90,7 +90,6 @@
     <Compile Include="Entities\Furnishings\FurnishingSetupFunctions.cs" />
     <Compile Include="Entities\Furnishings\InteractionFunctions.cs" />
     <Compile Include="Resources\Geometry\DistanceFunctions.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <None Include="StaticDatabase.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
