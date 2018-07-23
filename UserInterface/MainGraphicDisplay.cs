@@ -1,4 +1,4 @@
-// Tidied up for version 0.2.
+// Tidied up for version 0.2 - no changes for 0.3.
 
 using RLNET;
 using RLEngine.UserInterface;

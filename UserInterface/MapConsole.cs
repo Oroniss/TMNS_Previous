@@ -1,3 +1,5 @@
+// Tidied up for version 0.3.
+
 using RLNET;
 using RLEngine.Resources.Palette;
 
@@ -15,7 +17,7 @@ namespace RLEngine.UserInterface
 			DrawMap(MainProgram.CurrentLevel, MainProgram.Player.XLoc, MainProgram.Player.YLoc);
 		}
 
-		public void DrawMap(Levels.Level level, int xCentre, int yCentre) // TODO: Add hashset of visible tiles.
+		public void DrawMap(Levels.Level level, int xCentre, int yCentre)
 		{
 			Clear();
 
@@ -30,11 +32,11 @@ namespace RLEngine.UserInterface
 					{
 						_console.Set(x + xLimits.Offset, y + yLimits.Offset, null,
 									 Palette.GetColor(level.GetFogColor(x, y)), ' ');
-
 					}
 				}
 			}
 
+			// Now set the tiles that can be seen
 			foreach (var position in level.VisibleTiles)
 			{
 				_console.Set(position.X + xLimits.Offset, position.Y + yLimits.Offset, null,
@@ -47,7 +49,6 @@ namespace RLEngine.UserInterface
 								 null, entity.Symbol);
 				}
 			}
-
 			CopyToBackConsole();
 		}
 

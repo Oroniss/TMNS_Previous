@@ -1,3 +1,5 @@
+// Revised for version 0.3.
+
 using System;
 using System.Threading;
 using System.Collections.Generic;

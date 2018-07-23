@@ -1,4 +1,4 @@
-﻿// Finished for version 0.1 - version 0.2.
+﻿// Finished for version 0.1 - no changes for version 0.3.
 
 using NUnit.Framework;
 using RLNET;
