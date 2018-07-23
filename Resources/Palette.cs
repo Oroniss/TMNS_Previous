@@ -1,4 +1,4 @@
-﻿// Finished for version 0.1 - no change for 0.2.
+﻿// Finished for version 0.1 - no change for 0.3.
 
 using System.Collections.Generic;
 using RLNET;
