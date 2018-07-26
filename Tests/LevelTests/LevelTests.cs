@@ -7,12 +7,22 @@ namespace RLEngine.Tests
 	public class LevelTests
 	{
 		static string defaultDebugMessage = "No Debug Messages";
+		static string databasePath = System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "UnitTestFiles");
 
 		[SetUp]
 		public void Setup()
 		{
 			Levels.LevelDatabase.LevelDatabase.SetTestFilePath(TestContext.CurrentContext.TestDirectory);
 			ErrorLogger.SetToTest();
+			StaticDatabase.StaticDatabaseConnection.SetToTest(databasePath);
+			StaticDatabase.StaticDatabaseConnection.OpenDBConnection();
+
+		}
+
+		[TearDown]
+		public void TearDown()
+		{
+			StaticDatabase.StaticDatabaseConnection.CloseDBConnection();
 		}
 
 		[Test]

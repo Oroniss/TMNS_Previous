@@ -1,3 +1,5 @@
+// Tidied up for version 0.3.
+
 using System.Collections.Generic;
 using System;
 using RLEngine.Entities.EntityInterfaces;

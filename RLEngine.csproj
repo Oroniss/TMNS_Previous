@@ -99,6 +99,7 @@
     <Compile Include="Entities\NPCs\MonsterSaveDetails.cs" />
     <Compile Include="Entities\Furnishings\FurnishingSaveDetails.cs" />
     <Compile Include="Tests\MenuTests\CharacterSelectionTests.cs" />
+    <Compile Include="Tests\EntityTests\TestEntityFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">

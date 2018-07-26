@@ -105,7 +105,7 @@ namespace RLEngine.StaticDatabase
 
 		public static void SetToTest(string testDBPath)
 		{
-			databasePath = testDBPath;
+			databasePath = Path.Combine(testDBPath, "StaticDatabase.db");
 			inTestMode = true;
 		}
 	}
