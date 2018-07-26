@@ -1,15 +1,35 @@
-﻿// Finished for version 0.1 - no change for 0.2.
+﻿// Tidied up for version 0.3.
 
 using NUnit.Framework;
 using RLEngine.Menus;
 using System.Collections.Generic;
 using RLEngine.UserInterface;
+using RLEngine.UserData;
 
 namespace RLEngine.Tests
 {
 	[TestFixture]
 	public class CharacterCreationTests
 	{
+		static string _testFilePath = System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "UnitTestFiles");
+
+		[SetUp]
+		public void ClearSettings()
+		{
+			UserDataManager.SetTestHomeDirectory(_testFilePath);
+			ApplicationSettings.ClearAllParameters();
+			UserDataManager.DeleteSaveSummaryFile();
+			UserDataManager.SetupDirectoriesAndFiles();
+		}
+
+		[TearDown]
+		public void RemoveFiles()
+		{
+			UserDataManager.SetTestHomeDirectory(_testFilePath);
+			ApplicationSettings.ClearAllParameters();
+			UserDataManager.DeleteSaveSummaryFile();
+		}
+
 		[Test]
 		public void TestCharacterCreationMenu()
 		{
@@ -20,7 +40,7 @@ namespace RLEngine.Tests
 
 			var result = menu.CreateNewCharacter();
 			Assert.AreEqual("Fred", result.GameIdentifier);
-			Assert.AreEqual(0, result.GameID);
+			Assert.AreEqual(1, result.GameID);
 
 			input = new List<string> {"ESCAPE" };
 			UserInputHandler.AddKeyboardInput(input);

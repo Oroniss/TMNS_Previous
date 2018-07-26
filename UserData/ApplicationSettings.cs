@@ -130,5 +130,11 @@ namespace RLEngine.UserData
 				CurrentParameters.AddOrUpdateValue(string.Format("SaveSlot{0}", i), saveIds[i]);
 			}
 		}
+
+		// Note, mostly present for testing purposes.
+		public static void ClearAllParameters()
+		{
+			CurrentParameters.Clear();
+		}
 	}
 }

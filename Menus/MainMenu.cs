@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Tidied up for version 0.3.
+
+using System.Collections.Generic;
 
 namespace RLEngine.Menus
 {
@@ -29,11 +31,6 @@ namespace RLEngine.Menus
 								var newGameParameters = MenuProvider.CharacterCreationMenu.CreateNewCharacter();
 								if (newGameParameters == null)
 									break;
-
-								newGameParameters.GameID = UserData.ApplicationSettings.GenerateNextGameId();
-
-								var saveGameSummary = new UserData.SaveGameSummary(newGameParameters, "NEWGAME");
-								UserDataManager.WriteSaveGameSummary(saveGameSummary);
 
 								return newGameParameters.GameID;
 							}

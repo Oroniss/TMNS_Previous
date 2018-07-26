@@ -65,7 +65,6 @@
     <Compile Include="Tests\ResourcesTests\GeometryTests.cs" />
     <Compile Include="Tests\ResourcesTests\PaletteTests.cs" />
     <Compile Include="Tests\MenuTests\CharacterCreationTests.cs" />
-    <Compile Include="Tests\MenuTests\MainMenuTests.cs" />
     <Compile Include="Tests\UserDataTests\SaveDataTests.cs" />
     <Compile Include="Tests\UserDataTests\ConfigParametersTests.cs" />
     <Compile Include="Tests\UserDataTests\UserDataManagerTests.cs" />
@@ -99,6 +98,7 @@
     <Compile Include="Entities\NPCs\Monster.cs" />
     <Compile Include="Entities\NPCs\MonsterSaveDetails.cs" />
     <Compile Include="Entities\Furnishings\FurnishingSaveDetails.cs" />
+    <Compile Include="Tests\MenuTests\CharacterSelectionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">

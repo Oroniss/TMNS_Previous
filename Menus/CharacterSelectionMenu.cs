@@ -27,7 +27,6 @@ namespace RLEngine.Menus
 				currentSummaries.RemoveAt(selection);
 				menuOptions.RemoveAt(selection);
 			}
-			
 		}
 
 		public int SelectCharacterToPlay()
@@ -69,6 +68,5 @@ namespace RLEngine.Menus
 				menuOptions.Add(summary.ToString());
 			return menuOptions;
 		}
-
 	}
 }

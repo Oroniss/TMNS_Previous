@@ -36,6 +36,11 @@ namespace RLEngine
 
 		public static void Main()
 		{
+			// Uncomment to clear settings if testing or something has broken things.
+
+			//UserDataManager.DeleteSaveSummaryFile();
+			//UserData.ApplicationSettings.ClearAllParameters();
+
 			StaticDatabase.StaticDatabaseConnection.OpenDBConnection();
 			UserDataManager.SetupDirectoriesAndFiles();
 

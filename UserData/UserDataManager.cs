@@ -96,14 +96,11 @@ namespace RLEngine
 			return null;
 		}
 
-		// TODO: This also needs to change
 		public static void DeleteSaveGame(int gameID)
 		{
 			var filePath = Path.Combine(_saveFileFolder, string.Format("GID{0}.gen", gameID));
 			if (File.Exists(filePath))
 				File.Delete(filePath);
-			var summaryDict = ReadSummaryFile();
-			WriteSummaryFile(summaryDict);
 		}
 
 		static SortedDictionary<int, SaveGameSummary> ReadSummaryFile()
@@ -134,6 +131,13 @@ namespace RLEngine
 		public static void SetTestHomeDirectory(string testLocation)
 		{
 			_homeDirectory = testLocation;
+		}
+
+		public static void DeleteSaveSummaryFile()
+		{
+			// Only to be used for testing - will erase all user save games
+			if (File.Exists(_saveSummaryFilePath))
+				File.Delete(_saveSummaryFilePath);
 		}
 	}
 }

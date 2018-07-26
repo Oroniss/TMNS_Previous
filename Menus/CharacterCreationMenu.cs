@@ -1,4 +1,4 @@
-﻿// Finished for version 0.1 - no change for 0.2.
+﻿// Tidied up for version 0.3.
 
 using RLEngine.UserData;
 
@@ -11,6 +11,14 @@ namespace RLEngine.Menus
 			var parameters = new GameData();
 
 			parameters = GetCharacterName(parameters);
+
+			if (parameters == null)
+				return parameters;
+
+			parameters.GameID = ApplicationSettings.GenerateNextGameId();
+
+			var saveGameSummary = new SaveGameSummary(parameters, "NEWGAME");
+			UserDataManager.WriteSaveGameSummary(saveGameSummary);
 
 			return parameters;
 		}
