@@ -12,7 +12,6 @@ namespace RLEngine.StaticDatabase
 		static string databasePath = Path.Combine(Directory.GetCurrentDirectory(), "StaticDatabase.db");
 		static SqliteConnection connection;
 		static bool connectionIsOpen;
-		static bool inTestMode;
 
 
 		public static void OpenDBConnection()
@@ -106,7 +105,6 @@ namespace RLEngine.StaticDatabase
 		public static void SetToTest(string testDBPath)
 		{
 			databasePath = Path.Combine(testDBPath, "StaticDatabase.db");
-			inTestMode = true;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace RLEngine.Entities.Furnishings
@@ -39,7 +39,7 @@ namespace RLEngine.Entities.Furnishings
 				furnishingSetupFunctions[EntityName](this, otherParameters);
 
 			// Then anything that needs to be added on
-			SetupExtraParameers(this, otherParameters);
+			SetupExtraParameters(this, otherParameters);
 
 			furnishings[_furnishingId] = this;
 		}
@@ -49,7 +49,7 @@ namespace RLEngine.Entities.Furnishings
 			get { return _furnishingId; }
 		}
 
-		public string FgColorName
+		public override string FGColorName
 		{
 			get
 			{

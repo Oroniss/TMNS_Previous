@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Tidied for version 0.3.
+
+using System;
 
 namespace RLEngine.Entities
 {

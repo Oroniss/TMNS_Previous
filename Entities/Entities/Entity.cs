@@ -1,11 +1,13 @@
-﻿using System;
+﻿// Tidied up for version 0.3.
+
+using System;
 using System.Collections.Generic;
 using RLEngine.Entities.EntityInterfaces;
 
 namespace RLEngine.Entities
 {
 	[Serializable]
-	public abstract class Entity:ITrait
+	public abstract partial class Entity:ITrait
 	{
 		string _entityName;
 
@@ -44,6 +46,8 @@ namespace RLEngine.Entities
 
 			foreach (Trait trait in details.Traits)
 				AddTrait(trait);
+
+			SetupExtraParameters(this, otherParameters);
 		}
 
 		public string EntityName
@@ -109,7 +113,7 @@ namespace RLEngine.Entities
 			if (_traits.Contains(trait))
 				_traits.Remove(trait);
 			else
-				ErrorLogger.AddDebugText(string.Format("Tried to remove non-existant trait from entity" +
+				ErrorLogger.AddDebugText(string.Format("Tried to remove non-existant trait from entity. " +
 													   "Entity: {0}, Trait: {1}", this, trait));
 		}
 
@@ -126,14 +130,21 @@ namespace RLEngine.Entities
 		public void SetOtherAttribute(string attributeName, string attributeValue)
 		{
 			if (attributeValue == null)
-				_otherAttributes.Remove(attributeName);
+			{
+				if (_otherAttributes.ContainsKey(attributeName))
+					_otherAttributes.Remove(attributeName);
+			}
 			else
 				_otherAttributes[attributeName] = attributeValue;
 		}
 
 		public string GetOtherAttributeValue(string attributeName)
 		{
-			return _otherAttributes[attributeName];
+			if (_otherAttributes.ContainsKey(attributeName))
+				return _otherAttributes[attributeName];
+			ErrorLogger.AddDebugText(string.Format("Tried to get unknown attribute value {0} on entity {1}",
+												   attributeName, this));
+			return "";
 		}
 
 		public virtual void Update(Levels.Level currentLevel)

@@ -11,14 +11,12 @@ namespace RLEngine.Entities.Furnishings
 
 		delegate void SetupFunction(Furnishing furnishing, Dictionary<string, string> otherParameters);
 
-		static void SetupExtraParameers(Furnishing furnishing, Dictionary<string, string> otherParameters)
+		static void SetupExtraParameters(Furnishing furnishing, Dictionary<string, string> otherParameters)
 		{
 			if (otherParameters.ContainsKey("LevelTransition"))
 				SetupLevelTransitionObject(furnishing, otherParameters);
 			if (otherParameters.ContainsKey("InteractionTrap"))
 				SetupInteractionTrap(furnishing, otherParameters);
-			if (otherParameters.ContainsKey("Concealed"))
-				SetupConcealedFurnishing(furnishing, otherParameters);
 		}
 
 		// General setup functions or "Add-ons"
@@ -47,18 +45,6 @@ namespace RLEngine.Entities.Furnishings
 			}
 			else
 				ErrorLogger.AddDebugText(string.Format("Incorrect Interaction Trap Specification at: {0}, {1}",
-													   furnishing.XLoc, furnishing.YLoc));
-		}
-
-		static void SetupConcealedFurnishing(Furnishing furnishing, Dictionary<string, string> otherParameters)
-		{
-			if (otherParameters.ContainsKey("Concealed") && otherParameters.ContainsKey("ConcealmentLevel"))
-			{
-				furnishing.PlayerSpotted = false;
-				furnishing.SetOtherAttribute("ConcealmentLevel", otherParameters["ConcealmentLevel"]);
-			}
-			else
-				ErrorLogger.AddDebugText(string.Format("Incorrect Concealment Specification at: {0}, {1}",
 													   furnishing.XLoc, furnishing.YLoc));
 		}
 
