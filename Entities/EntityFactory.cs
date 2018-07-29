@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Tidied for version 0.3.
+
+using System.Collections.Generic;
 using RLEngine.Entities.Furnishings;
 using RLEngine.Entities.MapTiles;
 using System;

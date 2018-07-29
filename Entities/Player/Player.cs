@@ -103,7 +103,6 @@ namespace RLEngine.Entities.Player
 					Resources.Geometry.DistanceFunctions.Distance(this, entity) <= 5 - concealmentLevel)
 				{
 					entity.PlayerSpotted = true;
-					entity.SetOtherAttribute("ConcealmentLevel", null);
 					// TODO: Add some text here - actually make it an event and a statistic.
 				}
 			}

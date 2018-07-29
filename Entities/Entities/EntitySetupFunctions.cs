@@ -17,6 +17,7 @@ namespace RLEngine.Entities
 			if (otherParameters.ContainsKey("Concealed") && otherParameters.ContainsKey("ConcealmentLevel"))
 			{
 				entity.PlayerSpotted = false;
+				entity.Concealed = true;
 				entity.SetOtherAttribute("ConcealmentLevel", otherParameters["ConcealmentLevel"]);
 			}
 			else
