@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Tidied for version 0.3.
+
+using System;
 using System.Collections.Generic;
 using RLEngine.Entities.Actors;
 
@@ -20,16 +22,18 @@ namespace RLEngine.Entities.Player
 
 		protected override void GetNextMove(Levels.Level currentLevel)
 		{
+			// Check FOV and concealed objects
 			var inSight = currentLevel.GetFOV(XLoc, YLoc, ViewDistance);
 			currentLevel.VisibleTiles = inSight;
 			foreach (Resources.Geometry.XYCoordinateStruct tile in inSight)
 				currentLevel.RevealTile(tile.X, tile.Y);
 			SpotHidden(currentLevel, currentLevel.GetConcealedEntity(inSight));
+
 			MainGraphicDisplay.UpdateGameScreen();
 
-			bool hasNotMoved = true;
+			bool hasMoved = false;
 
-			while (hasNotMoved)
+			while (!hasMoved)
 			{
 				var key = UserInterface.UserInputHandler.GetNextKey();
 
@@ -37,10 +41,7 @@ namespace RLEngine.Entities.Player
 				{
 					var direction = UserInterface.UserInputHandler.DirectionKeys[key];
 
-					var result = MakeMoveAttempt(currentLevel, direction.X, direction.Y);
-
-					if (result)
-						hasNotMoved = false;
+					hasMoved = MakeMoveAttempt(currentLevel, direction.X, direction.Y);
 				}
 
 				if (key == "U")
@@ -57,12 +58,12 @@ namespace RLEngine.Entities.Player
 					{
 						MainGraphicDisplay.TextConsole.AddOutputText("There is nothing there to make use of");
 					}
-					hasNotMoved = false;
+					hasMoved = true;
 				}
 
 				if (key == "ESCAPE")
 				{
-					hasNotMoved = false;
+					hasMoved = true;
 					MainProgram.Quit();
 				}
 			}

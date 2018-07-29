@@ -1,9 +1,11 @@
-﻿using System;
+﻿// Tidied for  version 0.3.
+
+using System;
 using RLEngine.Levels;
 using System.Collections.Generic;
 using RLEngine.Entities.Actors;
 
-namespace RLEngine.Entities.NPCs
+namespace RLEngine.Entities.Monsters
 {
 	[Serializable]
 	public class Monster:Actor

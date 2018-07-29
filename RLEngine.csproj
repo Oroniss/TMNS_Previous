@@ -101,6 +101,8 @@
     <Compile Include="Entities\Entities\EntityBasicDetails.cs" />
     <Compile Include="Entities\Entities\Trait.cs" />
     <Compile Include="Entities\Entities\EntitySetupFunctions.cs" />
+    <Compile Include="Tests\TestStaticDBConnection.cs" />
+    <Compile Include="Tests\EntityTests\FurnishingTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">

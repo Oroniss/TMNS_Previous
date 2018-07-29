@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Tidied for version 0.3.
+
+using System;
 using System.Collections.Generic;
 
 namespace RLEngine.Entities.Actors
@@ -53,7 +55,6 @@ namespace RLEngine.Entities.Actors
 			currentLevel.AddActor(this);
 
 			return true;
-
 		}
 
 		protected abstract void GetNextMove(Levels.Level currentLevel);
@@ -71,7 +72,7 @@ namespace RLEngine.Entities.Actors
 			if (actorId == 0)
 				return Player.Player.GetPlayer();
 
-			return NPCs.Monster.GetMonster(actorId);
+			return Monsters.Monster.GetMonster(actorId);
 		}
 	}
 }

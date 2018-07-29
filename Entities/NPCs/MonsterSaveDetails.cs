@@ -1,7 +1,9 @@
-﻿using System;
+﻿// Tidied for version 0.3.
+
+using System;
 using System.Collections.Generic;
 
-namespace RLEngine.Entities.NPCs
+namespace RLEngine.Entities.Monsters
 {
 	[Serializable]
 	public class MonsterSaveDetails

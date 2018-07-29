@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using RLEngine.Levels;
-using RLEngine.Entities.NPCs;
+using RLEngine.Entities.Monsters;
 using RLEngine.Entities.Furnishings;
 using RLEngine.Entities.Player;
 using RLEngine.Quests;
