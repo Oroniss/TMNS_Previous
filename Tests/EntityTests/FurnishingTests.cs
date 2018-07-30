@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Tidied up for version 0.3.
+
+using System.Collections.Generic;
 using NUnit.Framework;
 using RLEngine.Entities;
 using RLEngine.Entities.Furnishings;
@@ -15,6 +17,7 @@ namespace RLEngine
 		public void Setup()
 		{
 			ErrorLogger.SetToTest();
+			Furnishing.ClearFurnishingIds();
 			StaticDatabase.StaticDatabaseConnection.SetToTest(databasePath);
 			StaticDatabase.StaticDatabaseConnection.OpenDBConnection();
 		}
@@ -121,7 +124,7 @@ namespace RLEngine
 		[Test]
 		public void TestInteractionFunctions()
 		{
-			// TODO: Add this in
+			// TODO: Add in once actors/damage is in place.
 		}
 
 		[Test]
@@ -133,13 +136,78 @@ namespace RLEngine
 		[Test]
 		public void SaveAndLoadFurnishings()
 		{
-			// TODO: Add this in
+			var furnishing1 = EntityFactory.CreateFurnishing("TestFurnishing1", 3, 4, new Dictionary<string, string>());
+			var furnishing2 = EntityFactory.CreateFurnishing("TestFurnishing2", 5, 6, new Dictionary<string, string>());
+
+			var paramDict3 = new Dictionary<string, string>
+			{
+				{"InteractionTrap", "True"},
+				{"TrapType", "PoisonDart"},
+				{"TrapLevel", "3"}
+			};
+
+			var furnishing3 = EntityFactory.CreateFurnishing("TestFurnishing1", 3, 4, paramDict3);
+
+			Assert.AreEqual(1, furnishing1.FurnishingId);
+			Assert.AreEqual(2, furnishing2.FurnishingId);
+			Assert.AreEqual(3, furnishing3.FurnishingId);
+
+			var saveData = Furnishing.GetSaveData();
+			Furnishing.LoadSaveData(saveData);
+
+			var loadedFurnishing1 = Furnishing.GetFurnishing(1);
+			var loadedFurnishing2 = Furnishing.GetFurnishing(2);
+			var loadedFurnishing3 = Furnishing.GetFurnishing(3);
+
+			Assert.AreEqual(furnishing1, loadedFurnishing1);
+			Assert.AreEqual(furnishing2, loadedFurnishing2);
+			Assert.AreEqual(furnishing3, loadedFurnishing3);
 		}
 
 		[Test]
 		public void TestFurnishingIds()
 		{
-			// TODO: Add this in.
+			var furnishing1 = EntityFactory.CreateFurnishing("TestFurnishing1", 3, 4, new Dictionary<string, string>());
+			var furnishing2 = EntityFactory.CreateFurnishing("TestFurnishing2", 5, 6, new Dictionary<string, string>());
+
+			var paramDict3 = new Dictionary<string, string>
+			{
+				{"InteractionTrap", "True"},
+				{"TrapType", "PoisonDart"},
+				{"TrapLevel", "3"}
+			};
+
+			var furnishing3 = EntityFactory.CreateFurnishing("TestFurnishing1", 3, 4, paramDict3);
+
+			Assert.AreEqual(1, furnishing1.FurnishingId);
+			Assert.AreEqual(2, furnishing2.FurnishingId);
+			Assert.AreEqual(3, furnishing3.FurnishingId);
+
+			Assert.AreEqual(furnishing1, Furnishing.GetFurnishing(1));
+			Assert.AreEqual(furnishing2, Furnishing.GetFurnishing(2));
+			Assert.AreEqual(furnishing3, Furnishing.GetFurnishing(3));
+
+			furnishing2.Dispose();
+
+			ErrorLogger.ClearTestMessages();
+
+			Assert.IsNull(Furnishing.GetFurnishing(2));
+			Assert.AreEqual("Tried to get unknown furnishing id: 2", ErrorLogger.GetNextTestMessage());
+
+			furnishing1.Dispose();
+
+			ErrorLogger.ClearTestMessages();
+
+			Assert.IsNull(Furnishing.GetFurnishing(1));
+			Assert.AreEqual("Tried to get unknown furnishing id: 1", ErrorLogger.GetNextTestMessage());
+
+			var furnishing4 = EntityFactory.CreateFurnishing("TestFurnishing1", 3, 5, new Dictionary<string, string>());
+
+			Assert.AreEqual(2, furnishing4.FurnishingId);
+
+			var furnishing5 = EntityFactory.CreateFurnishing("TestFurnishing2", 1, 2, new Dictionary<string, string>());
+
+			Assert.AreEqual(1, furnishing5.FurnishingId);
 		}
 	}
 }

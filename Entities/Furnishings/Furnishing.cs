@@ -1,3 +1,5 @@
+// Tidied up for version 0.3.
+
 using System;
 using System.Collections.Generic;
 
@@ -169,6 +171,13 @@ namespace RLEngine.Entities.Furnishings
 			currentMaxId = data.CurrentMaxId;
 			freeFurnishingIds = data.FreeFurnishingIds;
 			furnishings = data.CurrentFurnishings;
+		}
+
+		public static void ClearFurnishingIds()
+		{
+			currentMaxId = 1;
+			freeFurnishingIds = new List<int>();
+			furnishings = new SortedDictionary<int, Furnishing>();
 		}
 	}
 }
