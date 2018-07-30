@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Tidied for version 0.3.
+
+using System.Collections.Generic;
 using System;
 
 namespace RLEngine.Levels

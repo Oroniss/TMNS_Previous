@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Tidied for version 0.3.
+
+using System;
 using System.Collections.Generic;
 
 namespace RLEngine.Levels
@@ -6,16 +8,16 @@ namespace RLEngine.Levels
 	[Serializable]
 	public class LevelSaveSummary
 	{
-		public LevelId levelId;
-		public string levelName;
-		public int height;
-		public int width;
+		public LevelId LevelId;
+		public string LevelName;
+		public int Height;
+		public int Width;
 
-		public int[] tiles;
-		public bool[] revealed;
-		public Dictionary<int, Entities.MapTiles.TileType> tileTypes = new Dictionary<int, Entities.MapTiles.TileType>();
+		public int[] Tiles;
+		public bool[] Revealed;
+		public Dictionary<int, Entities.MapTiles.TileType> TileTypes = new Dictionary<int, Entities.MapTiles.TileType>();
 
-		public Dictionary<int, int> furnishings = new Dictionary<int, int>();
-		public Dictionary<int, int> actors = new Dictionary<int, int>();
+		public Dictionary<int, int> Furnishings = new Dictionary<int, int>();
+		public Dictionary<int, int> Actors = new Dictionary<int, int>();
 	}
 }

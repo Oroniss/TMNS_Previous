@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿// Tidied for version 0.3.
+
+using System.IO;
 using Mono.Data.Sqlite;
 using RLEngine.Entities.Furnishings;
 using RLEngine.Entities.MapTiles;
