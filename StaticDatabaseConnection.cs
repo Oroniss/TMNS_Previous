@@ -58,7 +58,7 @@ namespace RLEngine.StaticDatabase
 			}
 
 			ErrorLogger.AddDebugText("Unknown furnishing: " + furnishingName);
-			return null;
+			return GetFurnishingDetails("TestFurnishing1");
 		}
 
 		public static MapTileDetails GetMapTileDetails(string mapTileName)
@@ -83,7 +83,7 @@ namespace RLEngine.StaticDatabase
 			}
 
 			ErrorLogger.AddDebugText("Unknown map tile type: " + mapTileName);
-			return null;
+			return GetMapTileDetails("TestTile1");
 		}
 
 		public static MapTileDetails GetMapTileDetails(TileType tileType)

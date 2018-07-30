@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Tidied up for Version 0.3.
+
+using System.Collections.Generic;
 
 namespace RLEngine.Entities.Furnishings
 {

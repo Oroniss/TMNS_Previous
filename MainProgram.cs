@@ -117,7 +117,7 @@ namespace RLEngine
 			{
 				MainGraphicDisplay.UpdateGameScreen();
 
-				Entities.NPCs.Monster.UpdateMonsters(_currentLevel);
+				Entities.Monsters.Monster.UpdateMonsters(_currentLevel);
 				Entities.Player.Player.UpdatePlayer(_currentLevel);
 
 				if (_quit)
@@ -172,7 +172,7 @@ namespace RLEngine
 				saveGameState.Levels[level.Key] = level.Value.GetSaveDetails();
 
 			saveGameState.Furnishings = Entities.Furnishings.Furnishing.GetSaveData();
-			saveGameState.Monsters = Entities.NPCs.Monster.GetSaveData();
+			saveGameState.Monsters = Entities.Monsters.Monster.GetSaveData();
 
 			Quests.GameEventManager.SaveData(saveGameState);
 
@@ -187,7 +187,7 @@ namespace RLEngine
 			Entities.Player.Player.SetPlayer(_player);
 
 			Entities.Furnishings.Furnishing.LoadSaveData(gameState.Furnishings);
-			Entities.NPCs.Monster.LoadSaveData(gameState.Monsters);
+			Entities.Monsters.Monster.LoadSaveData(gameState.Monsters);
 
 			foreach (KeyValuePair<Levels.LevelId, Levels.LevelSaveSummary> level in gameState.Levels)
 				_levels[level.Key] = new Levels.Level(level.Value);
