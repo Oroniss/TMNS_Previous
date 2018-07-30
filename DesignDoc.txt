@@ -1,41 +1,67 @@
-﻿For Version 0.2 Begun - 16 June 2018.
+﻿For Version 0.3 Begun - 4 July 2018.
 
-16/6/18 - Started work on the Player class.
-16/6/18 - Added IPosition and IForegroundDrawing interfaces.
-16/6/18 - Added Entity, Actor and Player classes.
-17/6/18 - Added Update functions to Actor and Player classes.
-18/6/18 - Added Actor functions to the level class.
-18/6/18 - Got the player drawing at last - took some hacks but no can sort things through more cleanly.
-19/6/18 - Get basic player movement working.
-19/6/18 - Added passibility checks to movement.
-20/6/18 - Tidied up movement somewhat - moved a lot of the checking on the Actor/Player end.
-20/6/18 - Started the basic shell of the GameEvents system.
-26/6/18 - Started trying to use built in event classes. Didn't seem worth it though.
-27/6/18 - Created a QuestAndAchievementHandler class.
-27/6/18 - Added game events - not sure I like this one either.
-2/7/18 - Got events working correctly - still a few hacks but basic framework is there now.
-2/7/18 - Pushed event publishing back onto the GameEvent class.
-2/7/18 - Added a GameEventManager in the Quest namespace that subscribes to events.
-2/7/18 - Made the StatisticsManager a component of the GameEventManager.
-3/7/18 - Tidied Menus, UserData, Resources and UserInterface for 0.2.
-3/7/18 - Fixed up levels. Added some tests of HasTrait - the rest have to wait a little.
-4/7/18 - Fixed up Entities - still need lots of tests written once they are being properly created.
-4/7/18 - Added the basics for testing game events and quests and achievements - still not really complete enough to do properly.
-4/7/18 - Tidied up the remaining files.
-4/7/18 - Did automated code rievew.
-4/7/18 - Finished version 0.2.
+5/7/18 - Created an EntityFactory class
+5/7/18 - Created an EntityBasicDetails class
+5/7/18 - Created a Furnishing class.
+5/7/18 - Created a FurshingBasicDetails class.
+5/7/18 - Added the Furnishing functions to the level class.
+6/7/18 - Added test furnishings into the level description and started creating them on the map.
+7/7/18 - Added the interaction functions to furnishings.
+7/7/18 - Got basic interactions working for the player.
+8/7/18 - Switched entities back to storing a reference to the entity on the Level class.
+8/7/18 - Rationale is that save/load only has to be done once per session, the other mucking around is every time.
+8/7/18 - Added the FOV / LOS functions back in - still need to hook them up and test them.
+8/7/18 - Got the rest of FOV working - largely a copy and paste job.
+8/7/18 - Added LOS as well.
+9/7/18 - Added function for extra stuff and started preparing for Level Transition.
+10/7/18 - Got Level transition working.
+10/7/18 - Packed up the existing level - currently set to destroy everything but could easily be changed.
+10/7/18 - Got interaction traps working - still need to be concealed though.
+11/7/18 - Added the basics of concealed furnishings in.
+11/7/18 - Really simple check for concealed entities has gone in now too.
+13/7/18 - Started working on converting some of the stuff to Application Settings - just config parameters for now.
+13/7/18 - Got application settings working - was pretty simple in the end.
+14/7/18 - Get a database hooked up - nothing much in it yet though.
+15/7/18 - Set it up so that furnishings are now pulled from the DB.
+15/7/18 - Added maptiles to the db and removed the static class methods.
+16/7/18 - Started work on setting up game ids to be saved to Settings.
+16/7/18 - Added all the save game id functions to the application settings class.
+17/7/18 - Started working out the save game stuff - still a bit of a mess.
+17/7/18 - Got the stuff setup - still a bug somewhere though.
+18/7/18 - Fixed up the bug in Save game summaries and application settings.
+18/7/18 - Created a level save summary and a method on the level class to pack/unpack it.
+19/7/18 - Moved a lot of the Actor stuff to a Monster class - getting ready for saving now.
+19/7/18 - Created classes and static methods to pack and unpack the furnishing and monster data.
+19/7/18 - Added the remaining pieces to the save game data.
+19/7/18 - Appear to have the game saving correctly.
+22/7/18 - Got save and load game working - appears to be running correctly.
+22/7/18 - Tidy of GameEvents and Quests and Achievements.
+23/7/18 - Added distance functions.
+23/7/18 - Tidy of Resources and User Interface.
+26/7/18 - Added tests of character selection menu - seems to be breaking someting in regular run though.
+26/7/18 - Fixed tests so they don't break full version settings.
+26/7/18 - Reworked the character creation/main menu interaction to pull a lot of stuff out of main menu.
+26/7/18 - Setup basic db connection for testing purposes - started rebuilding map tile tests.
+26/7/18 - Tidied up map tiles and related tests.
+27/7/18 - Added tests of EntityBasicDetails.
+27/7/18 - Added tests of entity basic attributes, other attributes and traits.
+29/7/18 - Added tests of entity setup and concealment.
+29/7/18 - Added tests of Entity Factory.
+30/7/18 - Added furnishing basic tests, setup tests, save/load tests and Id tests.
+30/7/18 - Added a test to load every level.
+30/7/18 - Added tests of the Static DB Connection.
+30/7/18 - Tidied up the last few things - pushed a couple off to next version as well.
+
 
 
 For Version 0.3
 
-Hook up an SQLite DB and a script for turning a text/csv into a DB record.
-Use AppConfig for settings/config info.
-Add furnishings.
-Add backgroundObjects.
-Add interaction.
-Add LOS and FOV.
-Save and Load game state.
-Add level transition.
+Tidy / test for:
+
+Levels - furnishing functions
+Levels - Dispose
+Levels - Save/Load
+
 
 
 For Version 0.4
@@ -48,36 +74,48 @@ Build out the list of traits as much as possible.
 
 For Version 0.5
 
+Any extra player stuff.
+Player death and lose game.
 Add Items and Inventory.
-Effects.
 Entity grammar/description.
+Add passives.
+Effects.
+Add recalculate stats.
 
 For Version 0.6
+
+Go through every class/file and check - naming - inc private and static, order - methods and atts, functionality.
+Add spells and abilities.
+Add hotkeys.
+
+For Version 0.7
 
 Add any extra user interface functions needed.
 And conversation, trading, quests, achievements and statistics.
 
-For Version 0.7
+For Version 0.8
 
 Pathfinding and AI
 Anything else.
-Distance functions and AOE templates.
+AOE templates.
 
 
 Later ToDos:
 
-Write tests for the MainMenu.
-Write tests for the UserDataManager.
 Figure out movement functions in movement interface.
-Fix draw map once FOV, lighting, player, revealed, etc in game.
 Add tests for FGColors on level.
 Add tests for Actors on level.
 Add tests for pathibility on level.
-Add entity tests once entities are actually being created.
+Add tests for FOV and LOS.
 Add actor tests once actors go in properly.
+Add tests of all UserData classes/functionality - including Save/Load games.
+Add tests for AppSettings
+
 Add player tests.
+Add interaction function tests.
+Add entity update tests.
+Add entity destruction tests.
+Add furnishing details tests once functions go on there.
+
 Add game event tests.
 Add quest and achievement tests.
-
-SQLite DB
-Have something serialise each entry in the maptile file and store it in the DB under the TileType.
