@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Tidied for version 0.3.
+
+using System.Collections.Generic;
 using System;
 using RLEngine.Entities.MapTiles;
 using RLEngine.Entities.Actors;
@@ -74,24 +76,24 @@ namespace RLEngine.Levels
 
 		public Level(LevelSaveSummary summary)
 		{
-			_levelId = summary.levelId;
-			_levelName = summary.levelName;
+			_levelId = summary.LevelId;
+			_levelName = summary.LevelName;
 
-			_mapWidth = summary.width;
-			_mapHeight = summary.height;
+			_mapWidth = summary.Width;
+			_mapHeight = summary.Height;
 
 			_tileInformation = new Dictionary<int, MapTileDetails>();
-			_tileGrid = summary.tiles;
-			foreach (KeyValuePair<int, TileType> tile in summary.tileTypes)
+			_tileGrid = summary.Tiles;
+			foreach (KeyValuePair<int, TileType> tile in summary.TileTypes)
 				_tileInformation[tile.Key] = Entities.EntityFactory.CreateMapTile(tile.Value);
-			_revealed = summary.revealed;
+			_revealed = summary.Revealed;
 
 			_furnishings = new SortedDictionary<int, Furnishing>();
-			foreach (KeyValuePair<int, int> furnishing in summary.furnishings)
+			foreach (KeyValuePair<int, int> furnishing in summary.Furnishings)
 				_furnishings[furnishing.Key] = Furnishing.GetFurnishing(furnishing.Value);
 
 			_actors = new SortedDictionary<int, Actor>();
-			foreach (KeyValuePair<int, int> actor in summary.actors)
+			foreach (KeyValuePair<int, int> actor in summary.Actors)
 				_actors[actor.Key] = Actor.GetActor(actor.Value);
 		}
 
@@ -543,20 +545,20 @@ namespace RLEngine.Levels
 		{
 			var summary = new LevelSaveSummary();
 
-			summary.levelId = _levelId;
-			summary.levelName = _levelName;
-			summary.height = _mapHeight;
-			summary.width = _mapWidth;
+			summary.LevelId = _levelId;
+			summary.LevelName = _levelName;
+			summary.Height = _mapHeight;
+			summary.Width = _mapWidth;
 
-			summary.tiles = _tileGrid;
+			summary.Tiles = _tileGrid;
 			foreach (KeyValuePair<int, MapTileDetails> tile in _tileInformation)
-				summary.tileTypes[tile.Key] = tile.Value.TileType;
-			summary.revealed = _revealed;
+				summary.TileTypes[tile.Key] = tile.Value.TileType;
+			summary.Revealed = _revealed;
 
 			foreach (KeyValuePair<int, Furnishing> furnishing in _furnishings)
-				summary.furnishings[furnishing.Key] = furnishing.Value.FurnishingId;
+				summary.Furnishings[furnishing.Key] = furnishing.Value.FurnishingId;
 			foreach (KeyValuePair<int, Actor> actor in _actors)
-				summary.actors[actor.Key] = actor.Value.ActorId;
+				summary.Actors[actor.Key] = actor.Value.ActorId;
 
 			return summary;
 		}

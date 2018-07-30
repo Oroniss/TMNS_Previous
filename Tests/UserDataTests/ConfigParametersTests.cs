@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿// Tidied for version 0.3.
+
+using NUnit.Framework;
 using RLEngine.UserData;
 
 namespace RLEngine.Tests

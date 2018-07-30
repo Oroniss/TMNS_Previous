@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Tidied up for version 0.3.
+
+using System;
 using System.Threading;
 using RLEngine.UserInterface;
 using RLNET;
@@ -104,8 +106,6 @@ namespace RLEngine
 				Entities.Player.Player.UpdatePlayer(_currentLevel);
 				_currentTime++;
 			}
-
-			// TODO: This should eventually go above to either create new ones or deserialise the old ones.
 
 			RunGame();
 			Quit();

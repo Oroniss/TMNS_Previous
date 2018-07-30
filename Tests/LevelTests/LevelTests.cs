@@ -1,5 +1,9 @@
-﻿using NUnit.Framework;
+﻿// Tidied for version 0.3.
+
+using NUnit.Framework;
 using RLEngine.Levels;
+using RLEngine.Entities;
+using System.Collections.Generic;
 
 namespace RLEngine.Tests
 {
@@ -52,9 +56,9 @@ namespace RLEngine.Tests
 			Assert.IsFalse(level1.IsValidMapCoord(8, 0));
 
 			// TODO: Keep these up to date as more entity types get added in.
-			Assert.IsTrue(level1.HasTrait(Entities.Trait.BlockMove, 0, 5));
-			Assert.IsTrue(level1.HasTrait(Entities.Trait.TestTrait2, 7, 5));
-			Assert.IsFalse(level1.HasTrait(Entities.Trait.TestTrait1, 6, 1));
+			Assert.IsTrue(level1.HasTrait(Trait.BlockMove, 0, 5));
+			Assert.IsTrue(level1.HasTrait(Trait.TestTrait2, 7, 5));
+			Assert.IsFalse(level1.HasTrait(Trait.TestTrait1, 6, 1));
 
 			var level2 = new Level(LevelId.TestLevel2);
 			Assert.IsTrue(level2.IsValidMapCoord(0, 0));
@@ -116,6 +120,33 @@ namespace RLEngine.Tests
 		}
 
 		[Test]
+		public void TestFurnishingFunctions()
+		{
+			var testLevel1 = new Level(LevelId.TestLevel1);
+
+			Assert.IsTrue(testLevel1.HasFurnishing(2, 2));
+			Assert.IsTrue(testLevel1.HasFurnishing(2, 3));
+			Assert.IsFalse(testLevel1.HasFurnishing(3, 2));
+			Assert.IsFalse(testLevel1.HasFurnishing(4, 3));
+
+			Assert.AreEqual("TestFurnishing1", testLevel1.GetFurnishing(2, 2).EntityName);
+			Assert.AreEqual("TestFurnishing2", testLevel1.GetFurnishing(6, 4).EntityName);
+
+			var furnishing1 = EntityFactory.CreateFurnishing("TestFurnishing1", 3, 2, new Dictionary<string, string>());
+
+			testLevel1.AddFurnishing(furnishing1);
+
+			Assert.IsTrue(testLevel1.HasFurnishing(3, 2));
+			Assert.AreEqual(furnishing1, testLevel1.GetFurnishing(3, 2));
+
+			var furnishing2 = testLevel1.GetFurnishing(2, 2);
+
+			testLevel1.RemoveFurnishing(furnishing2, 2, 2);
+
+			Assert.IsFalse(testLevel1.HasFurnishing(2, 2));
+		}
+
+		[Test]
 		public void TestActorFunctions()
 		{
 			// TODO: Add in once actors in.
@@ -125,6 +156,18 @@ namespace RLEngine.Tests
 		public void TestPathibilityFunctions()
 		{
 			// TODO: Add in once other entity types are in.
+		}
+
+		[Test]
+		public void TestDisposeLevel()
+		{
+			// TODO: Add this in
+		}
+
+		[Test]
+		public void TestSaveAndLoadLevel()
+		{
+			// TODO: Add this in.
 		}
 	}
 }

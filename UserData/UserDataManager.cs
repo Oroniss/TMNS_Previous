@@ -1,3 +1,5 @@
+// Tidied for version 0.3.
+
 using RLEngine.UserData;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;

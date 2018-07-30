@@ -1,4 +1,6 @@
-﻿using Plugin.Settings;
+﻿// Tidied for version 0.3.
+
+using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 using System.Collections.Generic;
 
