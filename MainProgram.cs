@@ -1,16 +1,15 @@
-﻿// Tidied up for version 0.3.
-
-using System;
+﻿using System;
 using System.Threading;
 using RLEngine.UserInterface;
 using RLNET;
 using System.Collections.Generic;
+using RLEngine.Resources.RNG;
 
 namespace RLEngine
 {
 	public static class MainProgram
 	{
-		const string EngineVersion = "Version 0.3";
+		const string EngineVersion = "Version 0.4";
 
 		// TODO: Put these into a config file somewhere.
 		static readonly string _fontName = "terminal8x8.png";
@@ -31,6 +30,12 @@ namespace RLEngine
 		static Levels.Level _currentLevel;
 		static Entities.Player.Player _player;
 		static bool _quit;
+
+		// RNG related attributes
+		static RandomNumberGenerator _topLevelRNG;
+		static RandomNumberGenerator _combatRNG;
+		static RandomNumberGenerator _lootRNG;
+		static RandomNumberGenerator _miscRNG;
 
 		static Levels.LevelId _startingLevel = Levels.LevelId.TestLevel2;
 		static int _startingXLoc = 2;
@@ -155,6 +160,11 @@ namespace RLEngine
 		static void SetupNewGame(UserData.GameData newGameData)
 		{
 			// TODO: Check whether anything else needs to go in here too.
+			_topLevelRNG = new RandomNumberGenerator(newGameData.GameID);
+			_combatRNG = new RandomNumberGenerator(_topLevelRNG.GetRandomInteger());
+			_lootRNG = new RandomNumberGenerator(_topLevelRNG.GetRandomInteger());
+			_miscRNG = new RandomNumberGenerator(_topLevelRNG.GetRandomInteger());
+
 			_player = new Entities.Player.Player(newGameData);
 			_gameData = newGameData;
 		}
@@ -176,11 +186,21 @@ namespace RLEngine
 
 			Quests.GameEventManager.SaveData(saveGameState);
 
+			saveGameState.TopLevelRNG = _topLevelRNG.GetSaveData();
+			saveGameState.CombatRNG = _combatRNG.GetSaveData();
+			saveGameState.LootRNG = _lootRNG.GetSaveData();
+			saveGameState.MiscRNG = _miscRNG.GetSaveData();
+
 			UserDataManager.SaveGame(saveGameState);
 		}
 
 		public static void LoadGame(UserData.SaveGame gameState)
 		{
+			_topLevelRNG = new RandomNumberGenerator(gameState.TopLevelRNG);
+			_combatRNG = new RandomNumberGenerator(gameState.CombatRNG);
+			_lootRNG = new RandomNumberGenerator(gameState.LootRNG);
+			_miscRNG = new RandomNumberGenerator(gameState.MiscRNG);
+
 			_gameData = gameState.Summary.GameData;
 			_currentTime = gameState.CurrentTime;
 			_player = gameState.Player;
@@ -210,6 +230,23 @@ namespace RLEngine
 		public static Entities.Player.Player Player
 		{
 			get { return _player; }
+		}
+
+		// Random number generation
+		// TODO: Decide wether the top level one should be public as well?
+		public static RandomNumberGenerator CombatRNG
+		{
+			get { return _combatRNG; }
+		}
+
+		public static RandomNumberGenerator LootRNG
+		{
+			get { return _lootRNG; }
+		}
+
+		public static RandomNumberGenerator MiscRNG
+		{
+			get { return _miscRNG; }
 		}
 	}
 }

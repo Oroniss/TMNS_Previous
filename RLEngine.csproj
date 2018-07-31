@@ -103,6 +103,7 @@
     <Compile Include="Entities\Entities\EntitySetupFunctions.cs" />
     <Compile Include="Tests\TestStaticDBConnection.cs" />
     <Compile Include="Tests\EntityTests\FurnishingTests.cs" />
+    <Compile Include="Resources\RNG\RandomNumberGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -178,6 +179,7 @@
     <Folder Include="Entities\Furnishings\" />
     <Folder Include="Entities\NPCs\" />
     <Folder Include="Entities\Entities\" />
+    <Folder Include="Resources\RNG\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

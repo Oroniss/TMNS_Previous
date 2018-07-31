@@ -1,5 +1,3 @@
-// Tidied for version 0.3.
-
 using System;
 using System.Collections.Generic;
 using RLEngine.Levels;
@@ -7,6 +5,7 @@ using RLEngine.Entities.Monsters;
 using RLEngine.Entities.Furnishings;
 using RLEngine.Entities.Player;
 using RLEngine.Quests;
+using RLEngine.Resources.RNG;
 
 namespace RLEngine.UserData
 {
@@ -17,6 +16,11 @@ namespace RLEngine.UserData
 		public Dictionary<LevelId, LevelSaveSummary> Levels;
 		public MonsterSaveDetails Monsters;
 		public FurnishingSaveDetails Furnishings;
+
+		public RandomNumberSaveData TopLevelRNG;
+		public RandomNumberSaveData CombatRNG;
+		public RandomNumberSaveData LootRNG;
+		public RandomNumberSaveData MiscRNG;
 
 		// TODO: Add the current state of any random number generation when ready.
 
