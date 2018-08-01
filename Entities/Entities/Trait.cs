@@ -19,7 +19,11 @@ namespace RLEngine.Entities
 		Item,
 		MapTile,
 
-		// Basic functions - LOS/FOV
+		// Basic stuff
+		CanWalk,
+		CanFly,
+		CanSwim,
+		Immobile,
 		BlockMove,
 		BlockLOS,
 		Immobilised,

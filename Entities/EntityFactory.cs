@@ -1,8 +1,7 @@
-﻿// Tidied for version 0.3.
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using RLEngine.Entities.Furnishings;
 using RLEngine.Entities.MapTiles;
+using RLEngine.Entities.Monsters;
 using System;
 
 namespace RLEngine.Entities
@@ -11,6 +10,7 @@ namespace RLEngine.Entities
 	{
 		static Dictionary<string, FurnishingDetails> furnishings = new Dictionary<string, FurnishingDetails>();
 		static Dictionary<TileType, MapTileDetails> mapTiles = new Dictionary<TileType, MapTileDetails>();
+		static Dictionary<string, MonsterDetails> monsters = new Dictionary<string, MonsterDetails>();
 
 		public static Furnishing CreateFurnishing(string furnishingName, int xLoc, int yLoc, Dictionary<string, string>
 		                                         otherParameters)
@@ -32,6 +32,15 @@ namespace RLEngine.Entities
 				mapTiles[tileType] = StaticDatabase.StaticDatabaseConnection.GetMapTileDetails(tileType);
 
 			return mapTiles[tileType];
+		}
+
+		public static Monster CreateMonster(string monsterName, int xLoc, int yLoc, Dictionary<string, string>
+												   otherParameters)
+		{
+			if (!monsters.ContainsKey(monsterName))
+				monsters[monsterName] = StaticDatabase.StaticDatabaseConnection.GetMonsterDetails(monsterName);
+
+			return new Monster(monsters[monsterName], xLoc, yLoc, otherParameters);
 		}
 	}
 }

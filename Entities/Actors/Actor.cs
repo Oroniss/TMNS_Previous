@@ -6,6 +6,8 @@ namespace RLEngine.Entities.Actors
 	[Serializable]
 	public abstract class Actor:Entity
 	{
+		static Trait[] actorTraits = {Trait.Actor, Trait.BlockMove };
+
 		protected int _actorId;
 
 		protected int _nextMove;
@@ -15,6 +17,9 @@ namespace RLEngine.Entities.Actors
 			: base(details, xLoc, yLoc, otherParameters)
 		{
 			_viewDistance = 12; // TODO: Put this on a template somewhere.
+
+			foreach (Trait trait in actorTraits)
+				AddTrait(trait);
 		}
 
 		public int ActorId

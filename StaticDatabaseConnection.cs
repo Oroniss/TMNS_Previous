@@ -1,8 +1,7 @@
-﻿// Tidied for version 0.3.
-
-using System.IO;
+﻿using System.IO;
 using Mono.Data.Sqlite;
 using RLEngine.Entities.Furnishings;
+using RLEngine.Entities.Monsters;
 using RLEngine.Entities.MapTiles;
 using RLEngine.Entities;
 using System;
@@ -61,6 +60,31 @@ namespace RLEngine.StaticDatabase
 
 			ErrorLogger.AddDebugText("Unknown furnishing: " + furnishingName);
 			return GetFurnishingDetails("TestFurnishing1");
+		}
+
+		public static MonsterDetails GetMonsterDetails(string monsterName)
+		{
+			string queryText = string.Format("SELECT * FROM Monsters WHERE MonsterName = \"{0}\";", monsterName);
+
+			using (var queryCommand = connection.CreateCommand())
+			{
+				queryCommand.CommandText = queryText;
+
+				var reader = queryCommand.ExecuteReader();
+
+				if (reader.Read())
+				{
+					char symbol = reader.GetString(1)[0];
+					string fgColorName = reader.GetString(2);
+					Trait[] traits = ParseTraits(reader.GetString(3));
+
+					return new MonsterDetails(monsterName, symbol, fgColorName, traits);
+				}
+			}
+
+			ErrorLogger.AddDebugText("Unknown monster: " + monsterName);
+			return GetMonsterDetails("TestMonster1");
+			
 		}
 
 		public static MapTileDetails GetMapTileDetails(string mapTileName)
