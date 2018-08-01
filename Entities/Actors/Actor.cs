@@ -1,6 +1,4 @@
-﻿// Tidied for version 0.3.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace RLEngine.Entities.Actors
@@ -13,7 +11,7 @@ namespace RLEngine.Entities.Actors
 		protected int _nextMove;
 		protected int _viewDistance;
 
-		protected Actor(EntityBasicDetails details, int xLoc, int yLoc, Dictionary<string, string> otherParameters)
+		protected Actor(ActorDetails details, int xLoc, int yLoc, Dictionary<string, string> otherParameters)
 			: base(details, xLoc, yLoc, otherParameters)
 		{
 			_viewDistance = 12; // TODO: Put this on a template somewhere.

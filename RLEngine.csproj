@@ -72,7 +72,6 @@
     <Compile Include="GameEvents\GameEvent.cs" />
     <Compile Include="GameEvents\EventType.cs" />
     <Compile Include="GameEvents\MoveActorEvent.cs" />
-    <Compile Include="Entities\Actors\MovementModes.cs" />
     <Compile Include="QuestsAndAchievements\StatisticsManager.cs" />
     <Compile Include="QuestsAndAchievements\GameEventManager.cs" />
     <Compile Include="QuestsAndAchievements\IGameEventProcessor.cs" />
@@ -104,6 +103,8 @@
     <Compile Include="Tests\TestStaticDBConnection.cs" />
     <Compile Include="Tests\EntityTests\FurnishingTests.cs" />
     <Compile Include="Resources\RNG\RandomNumberGenerator.cs" />
+    <Compile Include="Entities\NPCs\MonsterDetails.cs" />
+    <Compile Include="Entities\Actors\ActorDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">

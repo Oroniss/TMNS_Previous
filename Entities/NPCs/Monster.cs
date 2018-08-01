@@ -15,7 +15,7 @@ namespace RLEngine.Entities.Monsters
 		protected static int currentMaxId = 1;
 		protected static List<int> freeMonsterIds = new List<int>();
 
-		public Monster(EntityBasicDetails details, int xLoc, int yLoc, Dictionary<string, string> otherParameters)
+		public Monster(MonsterDetails details, int xLoc, int yLoc, Dictionary<string, string> otherParameters)
 			: base(details, xLoc, yLoc, otherParameters)
 		{
 				if (freeMonsterIds.Count > 0)
@@ -43,7 +43,7 @@ namespace RLEngine.Entities.Monsters
 
 		protected override void GetNextMove(Level currentLevel)
 		{
-			throw new NotImplementedException();
+			// TODO: Implement this bit.
 		}
 
 		public static Monster GetMonster(int actorId)

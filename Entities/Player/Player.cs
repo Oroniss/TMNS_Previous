@@ -1,6 +1,4 @@
-﻿// Tidied for version 0.3.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using RLEngine.Entities.Actors;
 
@@ -12,7 +10,7 @@ namespace RLEngine.Entities.Player
 		static Player player;
 
 		public Player(UserData.GameData newGameData)
-			:base(new EntityBasicDetails("Player", '@', "Black", new List<Trait> {Trait.Player }), 0, 0, new Dictionary<string, string>())
+			:base(new ActorDetails("Player", '@', "Black", new List<Trait> {Trait.Player }), 0, 0, new Dictionary<string, string>())
 		{
 			_actorId = 0;
 

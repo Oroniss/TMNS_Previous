@@ -25,7 +25,7 @@ namespace RLEngine.Resources.RNG
 
 		public int GetRandomInteger()
 		{
-			return GetRandomInteger(0, int.MaxValue);
+			return GetRandomInteger(0, int.MaxValue - 1);
 		}
 
 		int GetRandomInteger(int minValue, int maxValue)
@@ -63,6 +63,7 @@ namespace RLEngine.Resources.RNG
 		}
 	}
 
+	[Serializable]
 	public struct RandomNumberSaveData
 	{
 		public int CurrentSeed;
