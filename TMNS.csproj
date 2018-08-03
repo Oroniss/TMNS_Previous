@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{EF134163-45C9-467B-9D3C-B91F77A306E7}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>RLEngine</RootNamespace>
+    <RootNamespace>TMNS</RootNamespace>
     <AssemblyName>RLEngine</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <ReleaseVersion>0.1.1</ReleaseVersion>
