@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using RLEngine.Entities.Furnishings;
-using RLEngine.Entities.MapTiles;
-using RLEngine.Entities.Monsters;
+using System.Collections.Generic;
+using TMNS.Entities.Furnishings;
+using TMNS.Entities.MapTiles;
+using TMNS.Entities.Monsters;
 using System;
 
-namespace RLEngine.Entities
+namespace TMNS.Entities
 {
 	public static class EntityFactory
 	{
