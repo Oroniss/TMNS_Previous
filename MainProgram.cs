@@ -1,23 +1,24 @@
-﻿using System;
-using System.Threading;
-using RLEngine.UserInterface;
-using RLNET;
-using System.Collections.Generic;
-using RLEngine.Resources.RNG;
+﻿using RLNET;
 
-namespace RLEngine
+using System;
+using System.Threading;
+using System.Collections.Generic;
+
+using TMNS.UserInterface;
+using TMNS.Resources.RNG;
+
+namespace TMNS
 {
 	public static class MainProgram
 	{
-		const string EngineVersion = "Version 0.4";
+		const string EngineVersion = "Version 0.1.1";
 
-		// TODO: Put these into a config file somewhere.
 		static readonly string _fontName = "terminal8x8.png";
 		static readonly int _consoleWidth = 160;
 		static readonly int _consoleHeight = 80;
 		static readonly int _fontSize = 8;
 		static readonly float _scale = 1.0f;
-		static readonly string _windowTitle = "Halfbreed";
+		static readonly string _windowTitle = "The Mausoleum of Nightscale";
 
 		static RLRootConsole rootConsole;
 
@@ -37,6 +38,7 @@ namespace RLEngine
 		static RandomNumberGenerator _lootRNG;
 		static RandomNumberGenerator _miscRNG;
 
+		// TODO: Set this to the actual first level.
 		static Levels.LevelId _startingLevel = Levels.LevelId.TestLevel2;
 		static int _startingXLoc = 2;
 		static int _startingYLoc = 2;
@@ -52,7 +54,6 @@ namespace RLEngine
 			UserDataManager.SetupDirectoriesAndFiles();
 
 			UserInputHandler.ExtraKeys = UserData.ApplicationSettings.ExtraKeys;
-			UserDataManager.FullLogging = UserData.ApplicationSettings.FullLogging;
 			// TODO: Set the gm option here too.
 
 			rootConsole = new RLRootConsole(_fontName, _consoleWidth, _consoleHeight, _fontSize, _fontSize, _scale,
@@ -100,7 +101,6 @@ namespace RLEngine
 			if (gameState.Summary.CurrentLevelName == "NEWGAME")
 			{
 				SetupNewGame(gameState.Summary.GameData);
-				Quests.GameEventManager.SetupGameEventHandling();
 				LevelTransition(_startingLevel, _startingXLoc, _startingYLoc);
 
 			}
@@ -108,6 +108,7 @@ namespace RLEngine
 			{
 				LoadGame(gameState);
 				// Have to complete the player's turn and increment timer.
+				// TODO: Fix this up properly.
 				Entities.Player.Player.UpdatePlayer(_currentLevel);
 				_currentTime++;
 			}
@@ -121,6 +122,8 @@ namespace RLEngine
 			while (true)
 			{
 				MainGraphicDisplay.UpdateGameScreen();
+
+				// TODO: Swap the timer around.
 
 				Entities.Monsters.Monster.UpdateMonsters(_currentLevel);
 				Entities.Player.Player.UpdatePlayer(_currentLevel);
@@ -167,6 +170,9 @@ namespace RLEngine
 
 			_player = new Entities.Player.Player(newGameData);
 			_gameData = newGameData;
+
+			// TODO: Create achievement Dictionary etc here.
+			Quests.GameEventManager.SetupGameEventHandling();
 		}
 
 		public static void SaveGame()
