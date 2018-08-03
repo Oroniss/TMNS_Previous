@@ -1,8 +1,6 @@
-﻿// Tidied up for version 0.3.
+using TMNS.Menus;
 
-using RLEngine.Menus;
-
-namespace RLEngine
+namespace TMNS
 {
 	public static class MenuProvider
 	{
