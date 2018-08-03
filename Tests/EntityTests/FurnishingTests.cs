@@ -1,11 +1,9 @@
-﻿// Tidied up for version 0.3.
-
 using System.Collections.Generic;
 using NUnit.Framework;
-using RLEngine.Entities;
-using RLEngine.Entities.Furnishings;
+using TMNS.Entities;
+using TMNS.Entities.Furnishings;
 
-namespace RLEngine
+namespace TMNS
 {
 	[TestFixture]
 	public class FurnishingTests
@@ -31,14 +29,14 @@ namespace RLEngine
 		[Test]
 		public void TestFurnishingBasics()
 		{
-			var furnishing1 = EntityFactory.CreateFurnishing("TestFurnishing1", 2, 1, new Dictionary<string, string>());
+			var furnishing1 = EntityFactory.CreateFurnishing("Barricade", 2, 1, new Dictionary<string, string>());
 
-			Assert.AreEqual('#', furnishing1.Symbol);
-			Assert.AreEqual("TestInteractionFunction1", furnishing1.InteractionFunctionName);
+			Assert.AreEqual('|', furnishing1.Symbol);
+			Assert.IsNull(furnishing1.InteractionFunctionName);
 
-			var furnishing2 = EntityFactory.CreateFurnishing("TestFurnishing2", 3, 5, new Dictionary<string, string>());
+			var furnishing2 = EntityFactory.CreateFurnishing("Closet", 3, 5, new Dictionary<string, string>());
 
-			Assert.AreEqual('*', furnishing2.Symbol);
+			Assert.AreEqual('#', furnishing2.Symbol);
 			Assert.IsNull(furnishing2.InteractionFunctionName);
 		}
 
@@ -59,7 +57,7 @@ namespace RLEngine
 				{"DestinationYLoc", "12"}
 			};
 
-			var furnishing1 = EntityFactory.CreateFurnishing("TestFurnishing2", 2, 3, paramDict1);
+			var furnishing1 = EntityFactory.CreateFurnishing("Stair", 2, 3, paramDict1);
 
 			Assert.IsTrue(furnishing1.HasOtherAttribute("DestinationLevel"));
 			Assert.IsTrue(furnishing1.HasOtherAttribute("DestinationXLoc"));
@@ -77,7 +75,7 @@ namespace RLEngine
 
 			ErrorLogger.ClearTestMessages();
 
-			var furnishing2 = EntityFactory.CreateFurnishing("TestFurnishing2", 1, 2, paramDict2);
+			var furnishing2 = EntityFactory.CreateFurnishing("Stair", 1, 2, paramDict2);
 
 			Assert.IsFalse(furnishing2.HasOtherAttribute("DestinationXLoc"));
 			Assert.IsFalse(furnishing2.HasOtherAttribute("DestinationYLoc"));
@@ -92,15 +90,13 @@ namespace RLEngine
 				{"TrapLevel", "3"}
 			};
 
-			var furnishing3 = EntityFactory.CreateFurnishing("TestFurnishing1", 3, 4, paramDict3);
+			var furnishing3 = EntityFactory.CreateFurnishing("Chest", 3, 4, paramDict3);
 
 			Assert.AreEqual("PoisonDartInteraction", furnishing3.InteractionTrapName);
 			Assert.IsTrue(furnishing3.HasOtherAttribute("TrapType"));
 			Assert.IsTrue(furnishing3.HasOtherAttribute("TrapLevel"));
 			Assert.AreEqual("PoisonDart", furnishing3.GetOtherAttributeValue("TrapType"));
 			Assert.AreEqual("3", furnishing3.GetOtherAttributeValue("TrapLevel"));
-
-			Assert.AreEqual("TestInteractionFunction1", furnishing3.InteractionFunctionName);
 
 			var paramDict4 = new Dictionary<string, string>
 			{
@@ -110,15 +106,13 @@ namespace RLEngine
 
 			ErrorLogger.ClearTestMessages();
 
-			var furishing4 = EntityFactory.CreateFurnishing("TestFurnishing1", 1, 2, paramDict4);
+			var furishing4 = EntityFactory.CreateFurnishing("Chest", 1, 2, paramDict4);
 
 			Assert.IsNull(furishing4.InteractionTrapName);
 			Assert.IsFalse(furishing4.HasOtherAttribute("TrapType"));
 			Assert.IsFalse(furishing4.HasOtherAttribute("TrapLevel"));
 			Assert.AreEqual("Incorrect Interaction Trap Specification at: 1, 2", ErrorLogger.GetNextTestMessage());
 			Assert.AreEqual(defaultDebugMessage, ErrorLogger.GetNextTestMessage());
-
-			Assert.AreEqual("TestInteractionFunction1", furishing4.InteractionFunctionName);
 		}
 
 		[Test]
