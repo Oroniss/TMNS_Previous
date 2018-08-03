@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using System;
-using TMNS.Entities.EntityInterfaces;
 
 namespace TMNS.Entities.MapTiles
 {
 	[Serializable]
-	public class MapTileDetails:IBackgroundDrawing,ITrait
+	public class MapTileDetails
 	{
 		readonly TileType _tileType;
 		readonly string _backgroundColor;
@@ -54,16 +53,6 @@ namespace TMNS.Entities.MapTiles
 		public bool HasTrait(Trait trait)
 		{
 			return _traits.Contains(trait);
-		}
-
-		public void AddTrait(Trait trait)
-		{
-			ErrorLogger.AddDebugText(string.Format("Tried to add trait {0} to map tile {1}", trait, _tileType));
-		}
-
-		public void RemoveTrait(Trait trait)
-		{
-			ErrorLogger.AddDebugText(string.Format("Tried to remove trait {0} from map tile {1}", trait, _tileType));
 		}
 	}
 }
