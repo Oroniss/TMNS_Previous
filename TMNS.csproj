@@ -106,6 +106,7 @@
     <Compile Include="Resources\RNG\RandomNumberGenerator.cs" />
     <Compile Include="Entities\NPCs\MonsterDetails.cs" />
     <Compile Include="Entities\Actors\ActorDetails.cs" />
+    <Compile Include="Entities\Entities\Material.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
