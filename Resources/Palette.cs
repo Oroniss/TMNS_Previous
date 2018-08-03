@@ -136,7 +136,7 @@ namespace TMNS.Resources.Palette
 			{"SteelBlueOne",                new RLColor( 99, 184, 255)},
 			{"SteelBlueTwo",                new RLColor( 92, 172, 238)},
 			{"SteelBlueThree",              new RLColor( 79, 148, 205)},
-			{"SteelBlueFour",               new RLColor( 54, 100, 139)},
+			{"SteelBlueFour",               new RLColor( 54, 100, 139)}, // Steel Gray
 			{"LightSkyBlue",                new RLColor(135, 206, 250)},
 			{"LightSkyBlueOne",             new RLColor(176, 226, 255)},
 			{"LightSkyBlueTwo",             new RLColor(164, 211, 238)},
