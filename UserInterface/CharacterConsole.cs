@@ -1,8 +1,6 @@
-// Tidied up for version 0.2 - no changes for 0.3.
-
 using RLNET;
 
-namespace RLEngine.UserInterface
+namespace TMNS.UserInterface
 {
 	public class CharacterConsole:BaseConsole
 	{
@@ -13,7 +11,7 @@ namespace RLEngine.UserInterface
 
 		public void DrawCharacter()
 		{
-			
+			// TODO: Fix this up.
 		}
 
 		public void DrawCharacter(int playerId)
