@@ -1,9 +1,9 @@
-﻿// Tidied for version 0.3.
+// Tidied for version 0.3.
 
 using NUnit.Framework;
-using RLEngine.UserData;
+using TMNS.UserData;
 
-namespace RLEngine.Tests
+namespace TMNS.Tests
 {
 	[TestFixture]
 	public class ConfigParametersTests

@@ -1,6 +1,6 @@
-﻿// Tidied up for version 0.2 - no changes for 0.3.
+// Tidied up for version 0.2 - no changes for 0.3.
 
-namespace RLEngine.Quests
+namespace TMNS.Quests
 {
 	public interface IGameEventProcessor
 	{

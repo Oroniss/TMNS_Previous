@@ -1,13 +1,13 @@
-﻿// Tidied for version 0.3.
+// Tidied for version 0.3.
 
 using System.Collections.Generic;
 using System;
-using RLEngine.Entities.MapTiles;
-using RLEngine.Entities.Actors;
-using RLEngine.Entities.Furnishings;
-using RLEngine.Resources.Geometry;
+using TMNS.Entities.MapTiles;
+using TMNS.Entities.Actors;
+using TMNS.Entities.Furnishings;
+using TMNS.Resources.Geometry;
 
-namespace RLEngine.Levels
+namespace TMNS.Levels
 {
 	[Serializable]
 	public class Level

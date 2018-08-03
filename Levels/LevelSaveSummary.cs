@@ -1,9 +1,9 @@
-﻿// Tidied for version 0.3.
+// Tidied for version 0.3.
 
 using System;
 using System.Collections.Generic;
 
-namespace RLEngine.Levels
+namespace TMNS.Levels
 {
 	[Serializable]
 	public class LevelSaveSummary

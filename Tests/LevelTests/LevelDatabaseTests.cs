@@ -1,20 +1,31 @@
-﻿// Fixed up for version 0.3.
+// Fixed up for version 0.3.
 
 using System;
 using NUnit.Framework;
-using RLEngine.Levels.LevelDatabase;
-using RLEngine.Levels;
+using TMNS.Levels.LevelDatabase;
+using TMNS.Levels;
 
-namespace RLEngine.Tests
+namespace TMNS.Tests
 {
 	[TestFixture]
 	public class LevelDatabaseTests
 	{
+
+		static string databasePath = System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "UnitTestFiles");
+
 		[SetUp]
 		public void Setup()
 		{
 			LevelDatabase.SetTestFilePath(TestContext.CurrentContext.TestDirectory);
 			ErrorLogger.SetToTest();
+			StaticDatabase.StaticDatabaseConnection.SetToTest(databasePath);
+			StaticDatabase.StaticDatabaseConnection.OpenDBConnection();
+		}
+
+		[TearDown]
+		public void TearDown()
+		{
+			StaticDatabase.StaticDatabaseConnection.CloseDBConnection();
 		}
 
 		[Test]
@@ -25,8 +36,8 @@ namespace RLEngine.Tests
 			Assert.AreEqual(LevelId.TestLevel1, level1.LevelId);
 			Assert.AreEqual(8, level1.MapWidth);
 			Assert.AreEqual(6, level1.MapHeight);
-			Assert.AreEqual(Entities.MapTiles.TileType.TestTile1, level1.TileDictionary[0]);
-			Assert.AreEqual(Entities.MapTiles.TileType.TestTile2, level1.TileDictionary[1]);
+			Assert.AreEqual(Entities.MapTiles.TileType.StoneFloor, level1.TileDictionary[0]);
+			Assert.AreEqual(Entities.MapTiles.TileType.Water, level1.TileDictionary[1]);
 			Assert.AreEqual(0, level1.MapGrid[0]);
 			Assert.AreEqual(0, level1.MapGrid[7]);
 			Assert.AreEqual(1, level1.MapGrid[8]);
@@ -41,8 +52,8 @@ namespace RLEngine.Tests
 			Assert.AreEqual(LevelId.TestLevel2, level2.LevelId);
 			Assert.AreEqual(60, level2.MapWidth);
 			Assert.AreEqual(12, level2.MapHeight);
-			Assert.AreEqual(Entities.MapTiles.TileType.TestTile1, level2.TileDictionary[0]);
-			Assert.AreEqual(Entities.MapTiles.TileType.TestTile2, level2.TileDictionary[1]);
+			Assert.AreEqual(Entities.MapTiles.TileType.StoneFloor, level2.TileDictionary[0]);
+			Assert.AreEqual(Entities.MapTiles.TileType.Water, level2.TileDictionary[1]);
 			Assert.AreEqual(0, level2.MapGrid[61]);
 			Assert.AreEqual(1, level2.MapGrid[0]);
 			Assert.AreEqual(0, level2.MapGrid[481]);

@@ -1,9 +1,9 @@
 // Tidied up for version 0.2 - no changes for version 0.3.
 
-using RLEngine.GameEvents;
+using TMNS.GameEvents;
 using System;
 
-namespace RLEngine.Quests
+namespace TMNS.Quests
 {
 	[Serializable]
 	public class StatisticsManager:IGameEventProcessor

@@ -1,9 +1,9 @@
-﻿// Finished up for version 0.1 - no change for 0.3.
+// Finished up for version 0.1 - no change for 0.3.
 
 using NUnit.Framework;
-using RLEngine.UserData;
+using TMNS.UserData;
 
-namespace RLEngine.Tests
+namespace TMNS.Tests
 {
 	[TestFixture]
 	public class UserDataManagerTests

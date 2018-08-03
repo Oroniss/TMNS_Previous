@@ -1,11 +1,11 @@
-﻿// Tidied for version 0.3.
+// Tidied for version 0.3.
 
 using System.Collections.Generic;
 using System.IO;
 using System;
-using RLEngine.Entities.MapTiles;
+using TMNS.Entities.MapTiles;
 
-namespace RLEngine.Levels.LevelDatabase
+namespace TMNS.Levels.LevelDatabase
 {
 	public static class LevelDatabase
 	{

@@ -1,17 +1,13 @@
-// Tidied for version 0.3.
-
-using RLEngine.UserData;
+using TMNS.UserData;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 
-namespace RLEngine
+namespace TMNS
 {
 	// TODO: Put this in application settings.
 	public static class UserDataManager
 	{
-		static bool _fullLogging;
-
 		static string _homeDirectory = Directory.GetCurrentDirectory();
 		static string _configFilePath;
 		static string _saveSummaryFilePath;
@@ -120,13 +116,6 @@ namespace RLEngine
 			var serialiser = new BinaryFormatter();
 			serialiser.Serialize(fileStream, saveSummaries);
 			fileStream.Close();
-		}
-
-		// Logging - if it ends up being used at all.
-		public static bool FullLogging
-		{
-			get { return _fullLogging; }
-			set { _fullLogging = value;}
 		}
 
 		// Testing functionality

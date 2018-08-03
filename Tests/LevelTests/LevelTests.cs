@@ -1,11 +1,9 @@
-﻿// Tidied for version 0.3.
-
 using NUnit.Framework;
-using RLEngine.Levels;
-using RLEngine.Entities;
+using TMNS.Levels;
+using TMNS.Entities;
 using System.Collections.Generic;
 
-namespace RLEngine.Tests
+namespace TMNS.Tests
 {
 	[TestFixture]
 	public class LevelTests
@@ -56,9 +54,9 @@ namespace RLEngine.Tests
 			Assert.IsFalse(level1.IsValidMapCoord(8, 0));
 
 			// TODO: Keep these up to date as more entity types get added in.
-			Assert.IsTrue(level1.HasTrait(Trait.BlockMove, 0, 5));
-			Assert.IsTrue(level1.HasTrait(Trait.TestTrait2, 7, 5));
-			Assert.IsFalse(level1.HasTrait(Trait.TestTrait1, 6, 1));
+			Assert.IsFalse(level1.HasTrait(Trait.BlockMove, 0, 5));
+			Assert.IsFalse(level1.HasTrait(Trait.Troll, 7, 5));
+			Assert.IsFalse(level1.HasTrait(Trait.TrueSeeing, 6, 1));
 
 			var level2 = new Level(LevelId.TestLevel2);
 			Assert.IsTrue(level2.IsValidMapCoord(0, 0));
@@ -98,19 +96,19 @@ namespace RLEngine.Tests
 			// TODO: Keep up to date as different entity types go in.
 			var level1 = new Level(LevelId.TestLevel1);
 
-			Assert.AreEqual("GraySeven", level1.GetBGColor(0, 0));
-			Assert.AreEqual("GraySeven", level1.GetBGColor(3, 3));
-			Assert.AreEqual("LightBlue", level1.GetBGColor(3, 5));
-			Assert.AreEqual("LightBlue", level1.GetBGColor(7, 3));
+			Assert.AreEqual("Silver", level1.GetBGColor(0, 0));
+			Assert.AreEqual("Silver", level1.GetBGColor(3, 3));
+			Assert.AreEqual("BlueTwo", level1.GetBGColor(3, 5));
+			Assert.AreEqual("BlueTwo", level1.GetBGColor(7, 3));
 
 			Assert.AreEqual("Black", level1.GetBGColor(9, 4));
 			Assert.AreEqual("Attempted to get bgcolor on invalid tile: 9, 4", ErrorLogger.GetNextTestMessage());
 			ErrorLogger.ClearTestMessages();
 
-			Assert.AreEqual("GrayFour", level1.GetFogColor(0, 0));
-			Assert.AreEqual("GrayFour", level1.GetFogColor(3, 3));
-			Assert.AreEqual("Blue", level1.GetFogColor(3, 5));
-			Assert.AreEqual("Blue", level1.GetFogColor(7, 3));
+			Assert.AreEqual("GraySix", level1.GetFogColor(0, 0));
+			Assert.AreEqual("GraySix", level1.GetFogColor(3, 3));
+			Assert.AreEqual("Navy", level1.GetFogColor(3, 5));
+			Assert.AreEqual("Navy", level1.GetFogColor(7, 3));
 
 			Assert.AreEqual("Black", level1.GetFogColor(4, 6));
 			Assert.AreEqual("Attempted to get fogcolor on invalid tile: 4, 6", ErrorLogger.GetNextTestMessage());
@@ -129,10 +127,10 @@ namespace RLEngine.Tests
 			Assert.IsFalse(testLevel1.HasFurnishing(3, 2));
 			Assert.IsFalse(testLevel1.HasFurnishing(4, 3));
 
-			Assert.AreEqual("TestFurnishing1", testLevel1.GetFurnishing(2, 2).EntityName);
-			Assert.AreEqual("TestFurnishing2", testLevel1.GetFurnishing(6, 4).EntityName);
+			Assert.AreEqual("Barricade", testLevel1.GetFurnishing(2, 2).EntityName);
+			Assert.AreEqual("Stair", testLevel1.GetFurnishing(6, 4).EntityName);
 
-			var furnishing1 = EntityFactory.CreateFurnishing("TestFurnishing1", 3, 2, new Dictionary<string, string>());
+			var furnishing1 = EntityFactory.CreateFurnishing("Well", 3, 2, new Dictionary<string, string>());
 
 			testLevel1.AddFurnishing(furnishing1);
 

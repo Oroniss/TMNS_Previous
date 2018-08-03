@@ -1,11 +1,11 @@
-﻿// Finished for version 0.1 - no changes for version 0.3.
+// Finished for version 0.1 - no changes for version 0.3.
 
 using NUnit.Framework;
 using RLNET;
 using System.Collections.Generic;
-using RLEngine.UserInterface;
+using TMNS.UserInterface;
 
-namespace RLEngine.Tests
+namespace TMNS.Tests
 {
 	[TestFixture]
 	public class UserInputTests

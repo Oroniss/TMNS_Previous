@@ -1,8 +1,8 @@
-﻿// Tidied up for version 0.3.
+// Tidied up for version 0.3.
 
-using RLEngine.GameEvents;
+using TMNS.GameEvents;
 
-namespace RLEngine.Quests
+namespace TMNS.Quests
 {
 	public static class GameEventManager
 	{
