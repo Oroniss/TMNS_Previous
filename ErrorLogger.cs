@@ -1,8 +1,6 @@
-﻿// Finished up for version 0.1 - no changes for 0.2.
-
 using System.Collections.Generic;
 
-namespace RLEngine
+namespace TMNS
 {
 	public static class ErrorLogger
 	{
@@ -21,6 +19,8 @@ namespace RLEngine
 				testMessages.Add(text);
 				System.Console.WriteLine(text);
 			}
+
+			// TODO: Put this in a log file somewhere.
 		}
 
 		public static void SetToTest()
