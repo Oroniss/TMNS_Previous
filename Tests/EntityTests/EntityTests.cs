@@ -1,10 +1,8 @@
-﻿// Tidied up for version 0.3.
-
 using NUnit.Framework;
-using RLEngine.Entities;
+using TMNS.Entities;
 using System.Collections.Generic;
 
-namespace RLEngine.Tests
+namespace TMNS.Tests
 {
 	[TestFixture]
 	public class EntityTests
@@ -50,25 +48,25 @@ namespace RLEngine.Tests
 		[Test]
 		public void TestEntityBasicAttributes()
 		{
-			var entity1 = EntityFactory.CreateFurnishing("TestFurnishing1", 8, 12, new Dictionary<string, string>());
+			var entity1 = EntityFactory.CreateFurnishing("Barricade", 8, 12, new Dictionary<string, string>());
 
-			Assert.AreEqual('#', entity1.Symbol);
-			Assert.AreEqual("Red", entity1.FGColorName);
-			Assert.AreEqual("TestFurnishing1", entity1.EntityName);
-			Assert.AreEqual("TestFurnishing1", entity1.GetDescription());
-			Assert.AreEqual("TestFurnishing1", entity1.ToString());
+			Assert.AreEqual('|', entity1.Symbol);
+			Assert.AreEqual("BurntSienna", entity1.FGColorName);
+			Assert.AreEqual("Barricade", entity1.EntityName);
+			Assert.AreEqual("a barricade", entity1.GetDescription());
+			Assert.AreEqual("Barricade", entity1.ToString());
 			Assert.AreEqual(8, entity1.XLoc);
 			Assert.AreEqual(12, entity1.YLoc);
 			Assert.IsFalse(entity1.Concealed);
 			Assert.IsTrue(entity1.PlayerSpotted);
 
-			var entity2 = EntityFactory.CreateFurnishing("TestFurnishing2", 15, 5, new Dictionary<string, string>());
+			var entity2 = EntityFactory.CreateFurnishing("Well", 15, 5, new Dictionary<string, string>());
 
-			Assert.AreEqual('*', entity2.Symbol);
-			Assert.AreEqual("Olive", entity2.FGColorName);
-			Assert.AreEqual("TestFurnishing2", entity2.EntityName);
-			Assert.AreEqual("TestFurnishing2", entity2.GetDescription());
-			Assert.AreEqual("TestFurnishing2", entity2.ToString());
+			Assert.AreEqual('&', entity2.Symbol);
+			Assert.AreEqual("BlueTwo", entity2.FGColorName);
+			Assert.AreEqual("Well", entity2.EntityName);
+			Assert.AreEqual("a well", entity2.GetDescription());
+			Assert.AreEqual("Well", entity2.ToString());
 			Assert.AreEqual(15, entity2.XLoc);
 			Assert.AreEqual(5, entity2.YLoc);
 			Assert.IsFalse(entity2.Concealed);
@@ -78,10 +76,10 @@ namespace RLEngine.Tests
 		[Test]
 		public void TestEntityTraits()
 		{
-			var entity1 = EntityFactory.CreateFurnishing("TestFurnishing1", 8, 12, new Dictionary<string, string>());
+			var entity1 = EntityFactory.CreateFurnishing("Barricade", 8, 12, new Dictionary<string, string>());
 
 			Assert.IsTrue(entity1.HasTrait(Trait.BlockMove));
-			Assert.IsTrue(entity1.HasTrait(Trait.BlockLOS));
+			Assert.IsFalse(entity1.HasTrait(Trait.BlockLOS));
 			Assert.IsFalse(entity1.HasTrait(Trait.TestTrait2));
 			Assert.IsFalse(entity1.HasTrait(Trait.TestTrait1));
 			Assert.IsFalse(entity1.HasTrait(Trait.Immobilised));
@@ -95,17 +93,12 @@ namespace RLEngine.Tests
 			Assert.IsFalse(entity1.HasTrait(Trait.BlockMove));
 
 
-			var entity2 = EntityFactory.CreateFurnishing("TestFurnishing2", 15, 5, new Dictionary<string, string>());
+			var entity2 = EntityFactory.CreateFurnishing("Chest", 15, 5, new Dictionary<string, string>());
 
-			Assert.IsTrue(entity2.HasTrait(Trait.TestTrait1));
-			Assert.IsTrue(entity2.HasTrait(Trait.TestTrait2));
-			Assert.IsFalse(entity2.HasTrait(Trait.BlockMove));
+			Assert.IsFalse(entity2.HasTrait(Trait.TestTrait1));
+			Assert.IsTrue(entity2.HasTrait(Trait.BlockMove));
 
 			entity2.AddTrait(Trait.TestTrait1);
-
-			Assert.IsTrue(entity2.HasTrait(Trait.TestTrait1));
-
-			entity2.RemoveTrait(Trait.TestTrait1);
 
 			Assert.IsTrue(entity2.HasTrait(Trait.TestTrait1));
 
@@ -117,14 +110,14 @@ namespace RLEngine.Tests
 
 			entity2.RemoveTrait(Trait.TestTrait1);
 
-			Assert.AreEqual("Tried to remove non-existant trait from entity. Entity: TestFurnishing2, Trait: TestTrait1",
+			Assert.AreEqual("Tried to remove non-existant trait from entity. Entity: Chest, Trait: TestTrait1",
 			                ErrorLogger.GetNextTestMessage());
 		}
 
 		[Test]
 		public void TestEntityOtherAttributes()
 		{
-			var entity1 = EntityFactory.CreateFurnishing("TestFurnishing1", 8, 12, new Dictionary<string, string>());
+			var entity1 = EntityFactory.CreateFurnishing("Barricade", 8, 12, new Dictionary<string, string>());
 
 			Assert.IsFalse(entity1.HasOtherAttribute("TrapType"));
 
@@ -141,7 +134,7 @@ namespace RLEngine.Tests
 
 			Assert.AreEqual("", entity1.GetOtherAttributeValue("TrapType"));
 
-			Assert.AreEqual("Tried to get unknown attribute value TrapType on entity TestFurnishing1",
+			Assert.AreEqual("Tried to get unknown attribute value TrapType on entity Barricade",
 							ErrorLogger.GetNextTestMessage());
 		}
 
@@ -172,13 +165,12 @@ namespace RLEngine.Tests
 		public void TestConcealedEntity()
 		{
 			var entity1 = EntityFactory.CreateFurnishing("TestFurnishing1", 8, 12, new Dictionary<string, string>
-			{{"Concealed", "True"}, {"ConcealmentLevel", "3"} });
+			{{"Concealed", "True"}, {"SpotDC", "3"} });
 
 			Assert.IsFalse(entity1.PlayerSpotted);
 			Assert.IsTrue(entity1.Concealed);
 			Assert.AreEqual(' ', entity1.Symbol);
-			Assert.IsTrue(entity1.HasOtherAttribute("ConcealmentLevel"));
-			Assert.AreEqual("3", entity1.GetOtherAttributeValue("ConcealmentLevel"));
+			Assert.AreEqual(3, entity1.SpotDC);
 		}
 	}
 }

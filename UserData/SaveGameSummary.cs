@@ -2,7 +2,7 @@
 
 using System;
 
-namespace RLEngine.UserData
+namespace TMNS.UserData
 {
 	[Serializable]
 	public class SaveGameSummary

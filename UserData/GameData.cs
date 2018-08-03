@@ -1,8 +1,8 @@
-﻿// Finished up for version 0.1 - no change for 0.3.
+// Finished up for version 0.1 - no change for 0.3.
 
 using System;
 
-namespace RLEngine.UserData
+namespace TMNS.UserData
 {
 	[Serializable]
 	public class GameData

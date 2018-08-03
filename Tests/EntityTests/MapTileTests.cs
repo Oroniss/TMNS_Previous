@@ -43,20 +43,5 @@ namespace TMNS.Tests
 
 			// TODO: Add movement function tests too.
 		}
-
-		[Test]
-		public void TestMapTileDetails()
-		{
-			ErrorLogger.ClearTestMessages();
-			var tile1 = EntityFactory.CreateMapTile(TileType.StoneFloor);
-			tile1.AddTrait(Trait.TestTrait1);
-			Assert.AreEqual("Tried to add trait TestTrait1 to map tile StoneFloor", ErrorLogger.GetNextTestMessage());
-			Assert.AreEqual(defaultDebugMessage, ErrorLogger.GetNextTestMessage());
-
-			ErrorLogger.ClearTestMessages();
-			tile1.RemoveTrait(Trait.TestTrait2);
-			Assert.AreEqual("Tried to remove trait TestTrait2 from map tile StoneFloor", ErrorLogger.GetNextTestMessage());
-			Assert.AreEqual(defaultDebugMessage, ErrorLogger.GetNextTestMessage());
-		}
 	}
 }

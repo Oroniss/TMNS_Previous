@@ -1,9 +1,9 @@
-﻿// Tidied up for version 0.2 - no change for 0.3.
+// Tidied up for version 0.2 - no change for 0.3.
 
 using NUnit.Framework;
-using RLEngine.Entities.Player;
+using TMNS.Entities.Player;
 
-namespace RLEngine.Tests
+namespace TMNS.Tests
 {
 	[TestFixture]
 	public class PlayerTests

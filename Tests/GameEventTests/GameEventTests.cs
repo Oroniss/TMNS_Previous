@@ -1,8 +1,8 @@
-﻿// Tidied up for version 0.2 - no changes for version 0.3.
+// Tidied up for version 0.2 - no changes for version 0.3.
 
 using NUnit.Framework;
 
-namespace RLEngine.Tests
+namespace TMNS.Tests
 {
 	[TestFixture]
 	public class GameEventTests
