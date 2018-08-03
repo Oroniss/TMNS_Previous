@@ -1,14 +1,11 @@
-﻿// Tidied up for Version 0.3.
-
 using System.Collections.Generic;
 
-namespace RLEngine.Entities.Furnishings
+namespace TMNS.Entities.Furnishings
 {
 	public partial class Furnishing
 	{
 		static readonly Dictionary<string, SetupFunction> furnishingSetupFunctions = new Dictionary<string, SetupFunction>
 		{
-			{"TestFurnishing1", TestFurnishingSetup1}
 		};
 
 		delegate void SetupFunction(Furnishing furnishing, Dictionary<string, string> otherParameters);
@@ -50,10 +47,6 @@ namespace RLEngine.Entities.Furnishings
 													   furnishing.XLoc, furnishing.YLoc));
 		}
 
-		// Specific Furnishing Setup Functions
-		static void TestFurnishingSetup1(Furnishing furnishing, Dictionary<string, string> otherParameters)
-		{
-			furnishing._interactionFunction = "TestInteractionFunction1";
-		}
+		// Specific Furnishing Setup Functions - maybe think about putting the auto ones into a db?
 	}
 }
