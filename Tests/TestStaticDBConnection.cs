@@ -1,9 +1,7 @@
-﻿// Tidied for version 0.3.
-
 using NUnit.Framework;
-using RLEngine.StaticDatabase;
+using TMNS.StaticDatabase;
 
-namespace RLEngine.Tests
+namespace TMNS.Tests
 {
 	[TestFixture]
 	public class TestStaticDBConnection
@@ -28,19 +26,19 @@ namespace RLEngine.Tests
 		[Test]
 		public void TestGetMapTileDetails()
 		{
-			var mapTileDetails = StaticDatabaseConnection.GetMapTileDetails("TestTile2");
+			var mapTileDetails = StaticDatabaseConnection.GetMapTileDetails("IcyLedge");
 
-			Assert.AreEqual("LightBlue", mapTileDetails.BackgroundColor);
-			Assert.AreEqual("Blue", mapTileDetails.FogColor);
+			Assert.AreEqual("SteelBlueThree", mapTileDetails.BackgroundColor);
+			Assert.AreEqual("SteelBlueThree", mapTileDetails.FogColor);
 		}
 
 		[Test]
 		public void TestGetFurnishing()
 		{
-			var furnishing = StaticDatabaseConnection.GetFurnishingDetails("TestFurnishing2");
+			var furnishing = StaticDatabaseConnection.GetFurnishingDetails("IcyPillar");
 
 			Assert.AreEqual('*', furnishing.Symbol);
-			Assert.IsTrue(furnishing.Traits.Contains(Entities.Trait.TestTrait1));
+			Assert.IsTrue(furnishing.Traits.Contains(Entities.Trait.BlockMove));
 		}
 
 		[Test]
@@ -48,13 +46,13 @@ namespace RLEngine.Tests
 		{
 			// MapTiles
 			ErrorLogger.ClearTestMessages();
-			var tile1 = StaticDatabaseConnection.GetMapTileDetails(Entities.MapTiles.TileType.TestTile3);
-			Assert.AreEqual("Unknown map tile type: TestTile3", ErrorLogger.GetNextTestMessage());
+			var tile1 = StaticDatabaseConnection.GetMapTileDetails(Entities.MapTiles.TileType.Grease);
+			Assert.AreEqual("Unknown map tile type: Grease", ErrorLogger.GetNextTestMessage());
 
 			Assert.AreEqual(defaultDebugMessage, ErrorLogger.GetNextTestMessage());
 
-			Assert.AreEqual("GraySeven", tile1.BackgroundColor);
-			Assert.AreEqual("GrayFour", tile1.FogColor);
+			Assert.AreEqual("Silver", tile1.BackgroundColor);
+			Assert.AreEqual("GraySix", tile1.FogColor);
 
 			// Furnishings
 			ErrorLogger.ClearTestMessages();
@@ -63,8 +61,8 @@ namespace RLEngine.Tests
 
 			Assert.AreEqual(defaultDebugMessage, ErrorLogger.GetNextTestMessage());
 
-			Assert.AreEqual('#', furnishingDetails.Symbol);
-			Assert.AreEqual("Red", furnishingDetails.FGColorName);
+			Assert.AreEqual('.', furnishingDetails.Symbol);
+			Assert.AreEqual("DarkViolet", furnishingDetails.FGColorName);
 		}
 	}
 }
