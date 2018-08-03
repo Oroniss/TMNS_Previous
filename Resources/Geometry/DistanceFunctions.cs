@@ -1,9 +1,7 @@
-﻿// Tidied up for version 0.3.
-
 using System;
-using RLEngine.Entities;
+using TMNS.Entities;
 
-namespace RLEngine.Resources.Geometry
+namespace TMNS.Resources.Geometry
 {
 	public static class DistanceFunctions
 	{
