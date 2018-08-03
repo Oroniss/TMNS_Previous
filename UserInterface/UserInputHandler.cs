@@ -1,12 +1,10 @@
-// Revised for version 0.3.
-
 using System;
 using System.Threading;
 using System.Collections.Generic;
-using RLEngine.Resources.Geometry;
+using TMNS.Resources.Geometry;
 using RLNET;
 
-namespace RLEngine.UserInterface
+namespace TMNS.UserInterface
 {
     public static class UserInputHandler
     {
@@ -189,10 +187,11 @@ namespace RLEngine.UserInterface
 					return currentText;
 			}
 		}
-		// TODO: See if this is something that comes up enough to generalise.
+
+		// TODO: Add in GetConfirmation, GetAcknowledgement, SelectLocation + any others that come up.
+
 		public static void DisplayConfigMenu()
 		{
-			var logging = UserData.ApplicationSettings.FullLogging;
 			var keys = UserData.ApplicationSettings.ExtraKeys;
 			var gm = UserData.ApplicationSettings.GMOptions;
 
@@ -202,10 +201,6 @@ namespace RLEngine.UserInterface
 
 			while (true)
 			{
-				var loggingText = "Off";
-				if (logging)
-					loggingText = "On";
-				options[0] = string.Format("L: Toggle full game log - currently {0}", loggingText);
 				var keysText = "Off";
 				if (keys)
 					keysText = "On";
@@ -219,8 +214,6 @@ namespace RLEngine.UserInterface
 
 				var key = GetNextKey();
 
-				if (key == "L")
-					logging = !logging;
 				if (key == "K")
 					keys = !keys;
 				if (key == "G")
@@ -228,11 +221,9 @@ namespace RLEngine.UserInterface
 				if (key == "ESCAPE")
 				{
 					UserData.ApplicationSettings.ExtraKeys = keys;
-					UserData.ApplicationSettings.FullLogging = logging;
 					UserData.ApplicationSettings.GMOptions = gm;
 
 					extraKeys = keys;
-					UserDataManager.FullLogging = logging;
 					// TODO: Set the gm option in here too.
 					return;
 				}
