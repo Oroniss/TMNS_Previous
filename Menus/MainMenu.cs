@@ -1,20 +1,18 @@
-﻿// Tidied up for version 0.3.
-
 using System.Collections.Generic;
 
-namespace RLEngine.Menus
+namespace TMNS.Menus
 {
 	public class MainMenu
 	{
 		static readonly List<string> mainMenuOptions = new List<string> {"Play Game", "Delete Save Game",
-			"View Achievements", "Clear Achievements", "View Commands", "Config"};
+			"View Achievements", "Clear Achievements", "View Commands", "View Backstory", "Config"};
 
 		public int DisplayMainMenu()
 		{
 			while (true)
 			{
-				var selection = UserInterface.UserInputHandler.SelectFromMenu("Welcome to Engine Test", mainMenuOptions, 
-				                                                              "Escape to Quit");
+				var selection = UserInterface.UserInputHandler.SelectFromMenu("Welcome to the Mausoleum of Nightscale", 
+				                                                              mainMenuOptions, "Escape to Quit");
 
 				switch (selection)
 				{
@@ -47,7 +45,7 @@ namespace RLEngine.Menus
 							MenuProvider.ViewKeysDisplay.ViewKeys();
 							break;
 						}
-					case 5:
+					case 6:
 						{
 							UserInterface.UserInputHandler.DisplayConfigMenu();
 							break;
