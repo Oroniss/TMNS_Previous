@@ -3,8 +3,8 @@ TestLevel1
 8
 6
 ###
-0,TestTile1
-1,TestTile2
+0,StoneFloor
+1,Water
 ###
 0,0,0,0,0,0,0,0
 1,1,0,0,0,0,0,0
