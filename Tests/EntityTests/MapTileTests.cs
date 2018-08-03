@@ -31,8 +31,8 @@ namespace TMNS.Tests
 			Assert.AreEqual("Silver", tile1.BackgroundColor);
 			Assert.AreEqual("GraySix", tile1.FogColor);
 			Assert.AreEqual("", tile1.Description);
-			Assert.IsFalse(tile1.HasTrait(Trait.TestTrait2));
-			Assert.IsFalse(tile1.HasTrait(Trait.TestTrait1));
+			Assert.IsFalse(tile1.HasTrait(Trait.Fire));
+			Assert.IsFalse(tile1.HasTrait(Trait.Water));
 
 			var tile2 = EntityFactory.CreateMapTile(TileType.Wall);
 			Assert.AreEqual("GrayTwo", tile2.FogColor);

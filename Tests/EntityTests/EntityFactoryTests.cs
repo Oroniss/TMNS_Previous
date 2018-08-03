@@ -1,5 +1,3 @@
-// Tidied up for version 0.3.
-
 using TMNS.Entities;
 using TMNS.Entities.MapTiles;
 using NUnit.Framework;
@@ -59,8 +57,8 @@ namespace TMNS.Tests
 
 			Assert.AreEqual("GrayTwo", furnishing2.FGColorName);
 			Assert.AreEqual('#', furnishing2.Symbol);
-			Assert.IsFalse(furnishing2.HasTrait(Trait.TestTrait1));
 			Assert.IsTrue(furnishing2.HasTrait(Trait.BlockMove));
+			Assert.IsFalse(furnishing2.HasTrait(Trait.Beetle));
 			Assert.AreEqual(6, furnishing2.XLoc);
 			Assert.AreEqual(9, furnishing2.YLoc);
 		}

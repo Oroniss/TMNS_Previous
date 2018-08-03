@@ -28,21 +28,21 @@ namespace TMNS.Tests
 		[Test]
 		public void TestEntityDetails()
 		{
-			var details1 = new EntityBasicDetails("Entity1", '^', "Blue", new List<Trait> {Trait.TestTrait2, Trait.Immobilised });
+			var details1 = new EntityBasicDetails("Entity1", '^', "Blue", new List<Trait> {Trait.Ape, Trait.Immobilised });
 
 			Assert.AreEqual('^', details1.Symbol);
 			Assert.AreEqual("Blue", details1.FGColorName);
-			Assert.IsTrue(details1.Traits.Contains(Trait.TestTrait2));
+			Assert.IsTrue(details1.Traits.Contains(Trait.Ape));
 			Assert.IsTrue(details1.Traits.Contains(Trait.Immobilised));
-			Assert.IsFalse(details1.Traits.Contains(Trait.TestTrait1));
+			Assert.IsFalse(details1.Traits.Contains(Trait.Angel));
 
-			var details2 = new EntityBasicDetails("Entity2", ' ', "Green", new List<Trait> { Trait.TestTrait1, Trait.BlockMove });
+			var details2 = new EntityBasicDetails("Entity2", ' ', "Green", new List<Trait> { Trait.Incorporeal, Trait.BlockMove });
 
 			Assert.AreEqual(' ', details2.Symbol);
 			Assert.AreEqual("Green", details2.FGColorName);
-			Assert.IsTrue(details2.Traits.Contains(Trait.TestTrait1));
+			Assert.IsTrue(details2.Traits.Contains(Trait.Incorporeal));
 			Assert.IsTrue(details2.Traits.Contains(Trait.BlockMove));
-			Assert.IsFalse(details2.Traits.Contains(Trait.TestTrait2));
+			Assert.IsFalse(details2.Traits.Contains(Trait.Immobilised));
 		}
 
 		[Test]
@@ -80,8 +80,6 @@ namespace TMNS.Tests
 
 			Assert.IsTrue(entity1.HasTrait(Trait.BlockMove));
 			Assert.IsFalse(entity1.HasTrait(Trait.BlockLOS));
-			Assert.IsFalse(entity1.HasTrait(Trait.TestTrait2));
-			Assert.IsFalse(entity1.HasTrait(Trait.TestTrait1));
 			Assert.IsFalse(entity1.HasTrait(Trait.Immobilised));
 
 			entity1.AddTrait(Trait.Immobilised);
@@ -95,20 +93,20 @@ namespace TMNS.Tests
 
 			var entity2 = EntityFactory.CreateFurnishing("Chest", 15, 5, new Dictionary<string, string>());
 
-			Assert.IsFalse(entity2.HasTrait(Trait.TestTrait1));
+			Assert.IsFalse(entity2.HasTrait(Trait.Blindsight));
 			Assert.IsTrue(entity2.HasTrait(Trait.BlockMove));
 
-			entity2.AddTrait(Trait.TestTrait1);
+			entity2.AddTrait(Trait.Blindsight);
 
-			Assert.IsTrue(entity2.HasTrait(Trait.TestTrait1));
+			Assert.IsTrue(entity2.HasTrait(Trait.Blindsight));
 
-			entity2.RemoveTrait(Trait.TestTrait1);
+			entity2.RemoveTrait(Trait.Blindsight);
 
-			Assert.IsFalse(entity2.HasTrait(Trait.TestTrait1));
+			Assert.IsFalse(entity2.HasTrait(Trait.Blindsight));
 
 			Assert.AreEqual(defaultDebugMessage, ErrorLogger.GetNextTestMessage());
 
-			entity2.RemoveTrait(Trait.TestTrait1);
+			entity2.RemoveTrait(Trait.Blindsight);
 
 			Assert.AreEqual("Tried to remove non-existant trait from entity. Entity: Chest, Trait: TestTrait1",
 			                ErrorLogger.GetNextTestMessage());
