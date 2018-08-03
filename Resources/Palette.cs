@@ -108,6 +108,7 @@ namespace TMNS.Resources.Palette
 			{"BlueFour",                    new RLColor(  0,   0, 139)},
 			{"Navy",                        new RLColor(  0,   0, 128)},
 			{"MidnightBlue",                new RLColor( 25,  25, 112)},
+			{"DarkMidnightBlue",            new RLColor( 12,  12,  50)},
 			{"Cobalt",                      new RLColor( 61,  89, 171)},
 			{"RoyalBlue",                   new RLColor( 65, 105, 225)},
 			{"RoyalBlueOne",                new RLColor( 72, 118, 255)},
@@ -437,7 +438,7 @@ namespace TMNS.Resources.Palette
 			{"whiteSmoke",             		new RLColor(245, 245, 245)},
 			{"Gainsboro",             		new RLColor(220, 220, 220)},
 			{"LightGrey",             		new RLColor(211, 211, 211)},
-			{"Silver",             			new RLColor(192, 192, 192)},
+			{"Silver",             			new RLColor(192, 192, 192)}, // Stone floor
 			{"Darkgray",                	new RLColor(169, 169, 169)},
 			{"Gray",             			new RLColor(128, 128, 128)},
 			{"Dimgray",             		new RLColor(105, 105, 105)},
@@ -450,7 +451,7 @@ namespace TMNS.Resources.Palette
 			{"GrayFive",              		new RLColor(113, 113, 113)},
 			{"GrayFour",              		new RLColor( 87,  87,  87)},
 			{"GrayThree",              		new RLColor( 62,  62,  62)},
-			{"GrayTwo",              		new RLColor( 37,  37,  37)},
+			{"GrayTwo",              		new RLColor( 37,  37,  37)}, // Stone wall
 			{"GrayOne",              		new RLColor( 12,  12,  12)}
 		};
 

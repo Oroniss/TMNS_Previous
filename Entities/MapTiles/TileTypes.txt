@@ -1,3 +1,0 @@
-﻿TileType,BGColor,FogColor,Traits(|)
-TestTile1,GraySeven,GrayFour,TestTrait2
-TestTile2,LightBlue,Blue,TestTrait1|BlockMove
