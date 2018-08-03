@@ -1,10 +1,8 @@
-﻿// Tidied for version 0.3.
-
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 using System.Collections.Generic;
 
-namespace RLEngine.UserData
+namespace TMNS.UserData
 {
 	public static class ApplicationSettings
 	{
@@ -21,12 +19,6 @@ namespace RLEngine.UserData
 			get { return CurrentParameters.GetValueOrDefault("ExtraKeys", false); }
 			set { CurrentParameters.AddOrUpdateValue("ExtraKeys", value); 
 			}
-		}
-
-		public static bool FullLogging
-		{
-			get { return CurrentParameters.GetValueOrDefault("FullLogging", false); }
-			set { CurrentParameters.AddOrUpdateValue("FullLogging", value); }
 		}
 
 		public static bool GMOptions
