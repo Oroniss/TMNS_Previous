@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using TMNS.Entities.EntityInterfaces;
 
 namespace TMNS.Entities
 {
 	[Serializable]
-	public abstract partial class Entity:ITrait
+	public abstract partial class Entity
 	{
 		string _entityName;
 
