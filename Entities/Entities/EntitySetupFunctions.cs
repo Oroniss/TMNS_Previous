@@ -1,8 +1,6 @@
-﻿// Tidied up for version 0.3.
-
 using System.Collections.Generic;
 
-namespace RLEngine.Entities
+namespace TMNS.Entities
 {
 	public partial class Entity
 	{
@@ -14,11 +12,11 @@ namespace RLEngine.Entities
 
 		static void SetupConcealedEntity(Entity entity, Dictionary<string, string> otherParameters)
 		{
-			if (otherParameters.ContainsKey("Concealed") && otherParameters.ContainsKey("ConcealmentLevel"))
+			if (otherParameters.ContainsKey("Concealed") && otherParameters.ContainsKey("SpotDC"))
 			{
 				entity.PlayerSpotted = false;
 				entity.Concealed = true;
-				entity.SetOtherAttribute("ConcealmentLevel", otherParameters["ConcealmentLevel"]);
+				entity._spotDC = int.Parse(otherParameters["SpotDC"]);
 			}
 			else
 				ErrorLogger.AddDebugText(string.Format("Incorrect Concealment Specification at: {0}, {1}",

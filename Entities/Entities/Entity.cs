@@ -1,10 +1,8 @@
-﻿// Tidied up for version 0.3.
-
 using System;
 using System.Collections.Generic;
-using RLEngine.Entities.EntityInterfaces;
+using TMNS.Entities.EntityInterfaces;
 
-namespace RLEngine.Entities
+namespace TMNS.Entities
 {
 	[Serializable]
 	public abstract partial class Entity:ITrait
@@ -20,6 +18,7 @@ namespace RLEngine.Entities
 
 		bool _isConcealed;
 		bool _playerSpotted;
+		int _spotDC;
 
 		protected bool _destroyed;
 
@@ -39,6 +38,7 @@ namespace RLEngine.Entities
 
 			_destroyed = false;
 			_playerSpotted = true;
+			_spotDC = 0;
 
 			// TODO: Set variables here
 			_fgColorName = details.FGColorName;
@@ -81,6 +81,12 @@ namespace RLEngine.Entities
 		{
 			get { return _playerSpotted; }
 			set { _playerSpotted = value; }
+		}
+
+		public int SpotDC
+		{
+			get { return _spotDC; }
+			set { _spotDC = value; }
 		}
 
 		public override string ToString()

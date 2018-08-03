@@ -1,9 +1,7 @@
-﻿// Tidied up for version 0.3.
-
 using System;
 using System.Collections.Generic;
 
-namespace RLEngine.Entities
+namespace TMNS.Entities
 {
 	[Serializable]
 	public class EntityBasicDetails
