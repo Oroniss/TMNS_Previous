@@ -1,12 +1,10 @@
-﻿// Tidied up for version 0.3.
-
 using System.Collections.Generic;
 using NUnit.Framework;
-using RLEngine.Menus;
-using RLEngine.UserData;
-using RLEngine.UserInterface;
+using TMNS.Menus;
+using TMNS.UserData;
+using TMNS.UserInterface;
 
-namespace RLEngine
+namespace TMNS
 {
 	[TestFixture]
 	public class CharacterSelectionTests
