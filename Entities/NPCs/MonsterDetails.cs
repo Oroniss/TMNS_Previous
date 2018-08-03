@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using RLEngine.Entities.Actors;
+using TMNS.Entities.Actors;
 
-namespace RLEngine.Entities.Monsters
+namespace TMNS.Entities.Monsters
 {
 	[Serializable]
 	public class MonsterDetails:ActorDetails

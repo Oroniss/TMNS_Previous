@@ -1,11 +1,11 @@
-﻿// Tidied for  version 0.3.
+// Tidied for  version 0.3.
 
 using System;
-using RLEngine.Levels;
+using TMNS.Levels;
 using System.Collections.Generic;
-using RLEngine.Entities.Actors;
+using TMNS.Entities.Actors;
 
-namespace RLEngine.Entities.Monsters
+namespace TMNS.Entities.Monsters
 {
 	[Serializable]
 	public class Monster:Actor

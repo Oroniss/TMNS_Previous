@@ -1,8 +1,8 @@
-﻿// Tidied up for version 0.2 - no changes for 0.3.
+// Tidied up for version 0.2 - no changes for 0.3.
 
 using System;
 
-namespace RLEngine.GameEvents
+namespace TMNS.GameEvents
 {
 	public abstract class GameEvent:EventArgs
 	{

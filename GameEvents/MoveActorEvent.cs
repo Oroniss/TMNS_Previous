@@ -1,6 +1,6 @@
-﻿using RLEngine.Entities.Actors;
+using TMNS.Entities.Actors;
 
-namespace RLEngine.GameEvents
+namespace TMNS.GameEvents
 {
 	public class MoveActorEvent:GameEvent
 	{

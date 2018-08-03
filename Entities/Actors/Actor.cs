@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace RLEngine.Entities.Actors
+namespace TMNS.Entities.Actors
 {
 	[Serializable]
 	public abstract class Actor:Entity

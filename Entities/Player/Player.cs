@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using RLEngine.Entities.Actors;
+using TMNS.Entities.Actors;
 
-namespace RLEngine.Entities.Player
+namespace TMNS.Entities.Player
 {
 	[Serializable]
 	public class Player:Actor
@@ -97,9 +97,8 @@ namespace RLEngine.Entities.Player
 		{
 			foreach (Entity entity in concealedEntities)
 			{
-				var concealmentLevel = int.Parse(entity.GetOtherAttributeValue("ConcealmentLevel"));
 				if (currentLevel.InSight(XLoc, YLoc, entity.XLoc, entity.YLoc, ViewDistance) &&
-					Resources.Geometry.DistanceFunctions.Distance(this, entity) <= 5 - concealmentLevel)
+					Resources.Geometry.DistanceFunctions.Distance(this, entity) <= 5 - entity.SpotDC)
 				{
 					entity.PlayerSpotted = true;
 					// TODO: Add some text here - actually make it an event and a statistic.
