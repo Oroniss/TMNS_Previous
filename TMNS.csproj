@@ -39,8 +39,6 @@
     <Compile Include="UserInterface\MenuConsole.cs" />
     <Compile Include="UserInterface\TextConsole.cs" />
     <Compile Include="Levels\Level.cs" />
-    <Compile Include="Entities\EntityInterfaces\IBackgroundDrawing.cs" />
-    <Compile Include="Entities\EntityInterfaces\ITrait.cs" />
     <Compile Include="Entities\MapTiles\TileType.cs" />
     <Compile Include="Entities\MapTiles\MapTileDetails.cs" />
     <Compile Include="Levels\LevelFiles\LevelDatabase.cs" />
@@ -157,7 +155,6 @@
     <Folder Include="Levels\" />
     <Folder Include="UserInterface\" />
     <Folder Include="GameEvents\" />
-    <Folder Include="Entities\EntityInterfaces\" />
     <Folder Include="Entities\MapTiles\" />
     <Folder Include="Levels\LevelFiles\" />
     <Folder Include="Levels\LevelFiles\TestLevels\" />
