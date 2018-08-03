@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using RLEngine.UserData;
+using System.Collections.Generic;
+using TMNS.UserData;
 
-namespace RLEngine.Menus
+namespace TMNS.Menus
 {
 	public class CharacterSelectionMenu
 	{
