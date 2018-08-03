@@ -1,76 +1,37 @@
-﻿For Version 0.3 Begun - 4 July 2018.
+﻿Version 0.4 Begun - 30 July 2018.
 
-5/7/18 - Created an EntityFactory class
-5/7/18 - Created an EntityBasicDetails class
-5/7/18 - Created a Furnishing class.
-5/7/18 - Created a FurshingBasicDetails class.
-5/7/18 - Added the Furnishing functions to the level class.
-6/7/18 - Added test furnishings into the level description and started creating them on the map.
-7/7/18 - Added the interaction functions to furnishings.
-7/7/18 - Got basic interactions working for the player.
-8/7/18 - Switched entities back to storing a reference to the entity on the Level class.
-8/7/18 - Rationale is that save/load only has to be done once per session, the other mucking around is every time.
-8/7/18 - Added the FOV / LOS functions back in - still need to hook them up and test them.
-8/7/18 - Got the rest of FOV working - largely a copy and paste job.
-8/7/18 - Added LOS as well.
-9/7/18 - Added function for extra stuff and started preparing for Level Transition.
-10/7/18 - Got Level transition working.
-10/7/18 - Packed up the existing level - currently set to destroy everything but could easily be changed.
-10/7/18 - Got interaction traps working - still need to be concealed though.
-11/7/18 - Added the basics of concealed furnishings in.
-11/7/18 - Really simple check for concealed entities has gone in now too.
-13/7/18 - Started working on converting some of the stuff to Application Settings - just config parameters for now.
-13/7/18 - Got application settings working - was pretty simple in the end.
-14/7/18 - Get a database hooked up - nothing much in it yet though.
-15/7/18 - Set it up so that furnishings are now pulled from the DB.
-15/7/18 - Added maptiles to the db and removed the static class methods.
-16/7/18 - Started work on setting up game ids to be saved to Settings.
-16/7/18 - Added all the save game id functions to the application settings class.
-17/7/18 - Started working out the save game stuff - still a bit of a mess.
-17/7/18 - Got the stuff setup - still a bug somewhere though.
-18/7/18 - Fixed up the bug in Save game summaries and application settings.
-18/7/18 - Created a level save summary and a method on the level class to pack/unpack it.
-19/7/18 - Moved a lot of the Actor stuff to a Monster class - getting ready for saving now.
-19/7/18 - Created classes and static methods to pack and unpack the furnishing and monster data.
-19/7/18 - Added the remaining pieces to the save game data.
-19/7/18 - Appear to have the game saving correctly.
-22/7/18 - Got save and load game working - appears to be running correctly.
-22/7/18 - Tidy of GameEvents and Quests and Achievements.
-23/7/18 - Added distance functions.
-23/7/18 - Tidy of Resources and User Interface.
-26/7/18 - Added tests of character selection menu - seems to be breaking someting in regular run though.
-26/7/18 - Fixed tests so they don't break full version settings.
-26/7/18 - Reworked the character creation/main menu interaction to pull a lot of stuff out of main menu.
-26/7/18 - Setup basic db connection for testing purposes - started rebuilding map tile tests.
-26/7/18 - Tidied up map tiles and related tests.
-27/7/18 - Added tests of EntityBasicDetails.
-27/7/18 - Added tests of entity basic attributes, other attributes and traits.
-29/7/18 - Added tests of entity setup and concealment.
-29/7/18 - Added tests of Entity Factory.
-30/7/18 - Added furnishing basic tests, setup tests, save/load tests and Id tests.
-30/7/18 - Added a test to load every level.
-30/7/18 - Added tests of the Static DB Connection.
-30/7/18 - Tidied up the last few things - pushed a couple off to next version as well.
+30/7/18 - Started work building out the trait list.
+31/7/18 - Added a Random Number Generator class.
+31/7/18 - Added random number generators to the main program and save/load game.
+1/8/18 - Setup the templates for actors and monsters and updated necessary files.
+1/8/18 - Removed movement modes - will have them as traits instead.
+1/8/18 - Got actors going and into the game.
 
-
-
-For Version 0.3
-
-Tidy / test for:
-
-Levels - furnishing functions
-Levels - Dispose
-Levels - Save/Load
-
+3/8/18 - Parked it here for now - will start putting an actual game together and then come back with the lessons learned.
 
 
 For Version 0.4
 
-Actors and Actions.
-Add movement functions.
-Add randomisation options.
+Add actors to the level specification.
+
+Add movement functions - need to go on both Tiles and Furnishings.
+Figure out movement functions in movement interface.
+
 Add logging here.
-Build out the list of traits as much as possible.
+
+
+Add tests for create actors on DB and Entity Factory.
+Add tests for FGColors on level.
+Add tests for Actors on level.
+Add tests for pathibility on level.
+Add tests for FOV and LOS.
+Add actor tests once actors go in properly.
+Add tests of all UserData classes/functionality - including Save/Load games.
+Add tests for AppSettings
+Add tests for RandomNumberGeneration - including save/load.
+
+
+
 
 For Version 0.5
 
@@ -102,20 +63,23 @@ AOE templates.
 
 Later ToDos:
 
-Figure out movement functions in movement interface.
-Add tests for FGColors on level.
-Add tests for Actors on level.
-Add tests for pathibility on level.
-Add tests for FOV and LOS.
-Add actor tests once actors go in properly.
-Add tests of all UserData classes/functionality - including Save/Load games.
-Add tests for AppSettings
 
 Add player tests.
 Add interaction function tests.
 Add entity update tests.
 Add entity destruction tests.
 Add furnishing details tests once functions go on there.
+
+How to sort them out - seems like an obvious use for delegates.
+How to make sure they all have the same signature.
+
+- Test should be straight forward, actor, current_level, don't really need anything else.
+- How to make sure the action can happen though - 2 types - movement and ability/attack?
+- Could have a list of "Entities" as targets - that means a target selection needs to be in there too though.
+- Keep movement separate - use if no "Action" possible or on other conditions - this seems like it should
+go on the ability class now though instead...
+- What about movement abilities?
+
 
 Add game event tests.
 Add quest and achievement tests.
