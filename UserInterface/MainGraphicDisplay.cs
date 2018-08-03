@@ -1,10 +1,8 @@
-// Tidied up for version 0.2 - no changes for 0.3.
-
 using RLNET;
-using RLEngine.UserInterface;
-using RLEngine.Resources.Palette;
+using TMNS.UserInterface;
+using TMNS.Resources.Palette;
 
-namespace RLEngine
+namespace TMNS
 {
     public static class MainGraphicDisplay
     {
