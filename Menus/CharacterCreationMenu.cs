@@ -1,8 +1,6 @@
-﻿// Tidied up for version 0.3.
+using TMNS.UserData;
 
-using RLEngine.UserData;
-
-namespace RLEngine.Menus
+namespace TMNS.Menus
 {
 	public class CharacterCreationMenu
 	{
@@ -11,6 +9,8 @@ namespace RLEngine.Menus
 			var parameters = new GameData();
 
 			parameters = GetCharacterName(parameters);
+
+			// TODO: Get other pieces here too.
 
 			if (parameters == null)
 				return parameters;
