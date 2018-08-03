@@ -1,9 +1,7 @@
-// Tidied up for version 0.3.
-
 using RLNET;
-using RLEngine.Resources.Palette;
+using TMNS.Resources.Palette;
 
-namespace RLEngine.UserInterface
+namespace TMNS.UserInterface
 {
 	public class MapConsole:BaseConsole
 	{
