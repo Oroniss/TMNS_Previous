@@ -1,10 +1,8 @@
-﻿// Tidied up for version 0.3.
-
 using NUnit.Framework;
-using RLEngine.Entities.MapTiles;
-using RLEngine.Entities;
+using TMNS.Entities.MapTiles;
+using TMNS.Entities;
 
-namespace RLEngine.Tests
+namespace TMNS.Tests
 {
 	[TestFixture]
 	public class MapTileTests
@@ -29,31 +27,35 @@ namespace RLEngine.Tests
 		[Test]
 		public void TestMapTileBasics()
 		{
-			var tile1 = EntityFactory.CreateMapTile(TileType.TestTile1);
-			Assert.AreEqual("GraySeven", tile1.BackgroundColor);
-			Assert.AreEqual("GrayFour", tile1.FogColor);
-			Assert.IsTrue(tile1.HasTrait(Trait.TestTrait2));
+			var tile1 = EntityFactory.CreateMapTile(TileType.StoneFloor);
+			Assert.AreEqual("Silver", tile1.BackgroundColor);
+			Assert.AreEqual("GraySix", tile1.FogColor);
+			Assert.AreEqual("", tile1.Description);
+			Assert.IsFalse(tile1.HasTrait(Trait.TestTrait2));
 			Assert.IsFalse(tile1.HasTrait(Trait.TestTrait1));
 
-			var tile2 = EntityFactory.CreateMapTile(TileType.TestTile2);
-			Assert.AreEqual("Blue", tile2.FogColor);
-			Assert.AreEqual("LightBlue", tile2.BackgroundColor);
-			Assert.IsTrue(tile2.HasTrait(Trait.TestTrait1));
-			Assert.IsFalse(tile2.HasTrait(Trait.TestTrait2));
+			var tile2 = EntityFactory.CreateMapTile(TileType.Wall);
+			Assert.AreEqual("GrayTwo", tile2.FogColor);
+			Assert.AreEqual("GrayTwo", tile2.BackgroundColor);
+			Assert.AreEqual("a wall", tile2.Description);
+			Assert.IsTrue(tile2.HasTrait(Trait.BlockLOS));
+			Assert.IsTrue(tile2.HasTrait(Trait.BlockMove));
+
+			// TODO: Add movement function tests too.
 		}
 
 		[Test]
 		public void TestMapTileDetails()
 		{
 			ErrorLogger.ClearTestMessages();
-			var tile1 = EntityFactory.CreateMapTile(TileType.TestTile1);
+			var tile1 = EntityFactory.CreateMapTile(TileType.StoneFloor);
 			tile1.AddTrait(Trait.TestTrait1);
-			Assert.AreEqual("Tried to add trait TestTrait1 to map tile TestTile1", ErrorLogger.GetNextTestMessage());
+			Assert.AreEqual("Tried to add trait TestTrait1 to map tile StoneFloor", ErrorLogger.GetNextTestMessage());
 			Assert.AreEqual(defaultDebugMessage, ErrorLogger.GetNextTestMessage());
 
 			ErrorLogger.ClearTestMessages();
 			tile1.RemoveTrait(Trait.TestTrait2);
-			Assert.AreEqual("Tried to remove trait TestTrait2 from map tile TestTile1", ErrorLogger.GetNextTestMessage());
+			Assert.AreEqual("Tried to remove trait TestTrait2 from map tile StoneFloor", ErrorLogger.GetNextTestMessage());
 			Assert.AreEqual(defaultDebugMessage, ErrorLogger.GetNextTestMessage());
 		}
 	}
