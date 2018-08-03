@@ -1,9 +1,7 @@
-﻿// Finished for version 0.1 - no change for 0.3.
-
 using NUnit.Framework;
-using RLEngine.Resources.Palette;
+using TMNS.Resources.Palette;
 
-namespace RLEngine.Tests
+namespace TMNS.Tests
 {
 	[TestFixture]
 	public class PaletteTests
