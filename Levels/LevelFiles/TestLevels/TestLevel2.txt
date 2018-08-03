@@ -29,5 +29,5 @@ Circle,5,8
 Circle,5,9
 Stair,22,3,LevelTransition,True,DestinationLevel,TestLevel1,DestinationXLoc,7,DestinationYLoc,5
 Chest,3,8,InteractionTrap,True,TrapType,InteractionTrap2,TrapLevel,1
-Chest,8,10,Concealed,True,ConcealmentLevel,3
+Chest,8,10,Concealed,True,SpotDC,3
 ###
