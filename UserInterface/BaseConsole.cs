@@ -1,8 +1,6 @@
-// Tidied up for version 0.2 - no changes for 0.3.
-
 using RLNET;
 
-namespace RLEngine.UserInterface
+namespace TMNS.UserInterface
 {
 	public abstract class BaseConsole
 	{
