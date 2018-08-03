@@ -1,9 +1,7 @@
-// Tidied up for version 0.3.
-
 using System;
 using System.Collections.Generic;
 
-namespace RLEngine.Entities.Furnishings
+namespace TMNS.Entities.Furnishings
 {
 	[Serializable]
 	public partial class Furnishing:Entity
@@ -16,6 +14,9 @@ namespace RLEngine.Entities.Furnishings
 		static readonly List<Trait> furnishingTraits = new List<Trait> {Trait.ImmuneToPoison };
 
 		int _furnishingId;
+
+		string _description;
+		Material _material;
 
 		string _moveOnFunction;
 		string _moveOffFunction;
@@ -35,6 +36,9 @@ namespace RLEngine.Entities.Furnishings
 				_furnishingId = currentMaxId;
 				currentMaxId++;
 			}
+
+			_description = details.Description;
+			_material = details.Material;
 
 			// Sets up all the functions in here.
 			if (furnishingSetupFunctions.ContainsKey(EntityName))
@@ -61,6 +65,16 @@ namespace RLEngine.Entities.Furnishings
 				}
 				return base.FGColorName;
 			}
+		}
+
+		public override string GetDescription()
+		{
+			return _description;
+		}
+
+		public Material Material
+		{
+			get { return _material; }
 		}
 
 		public string MoveOnFunctionName
