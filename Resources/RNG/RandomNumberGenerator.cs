@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace RLEngine.Resources.RNG
+namespace TMNS.Resources.RNG
 {
 	public class RandomNumberGenerator
 	{
@@ -28,7 +28,8 @@ namespace RLEngine.Resources.RNG
 			return GetRandomInteger(0, int.MaxValue - 1);
 		}
 
-		int GetRandomInteger(int minValue, int maxValue)
+		// Note that the maxValue is included - unlike the built in random.
+		public int GetRandomInteger(int minValue, int maxValue)
 		{
 			var number = _randomNumberGenerator.Next(minValue, maxValue + 1);
 			_numberOfUses++;
@@ -42,6 +43,7 @@ namespace RLEngine.Resources.RNG
 			return number;
 		}
 
+		// Note that this returns a minimum of 0.
 		public int Dice(int num, int max, int add)
 		{
 			int total = add;
@@ -49,12 +51,23 @@ namespace RLEngine.Resources.RNG
 			for (int i = 0; i < num; i++)
 				total += GetRandomInteger(1, max);
 
-			return total;
+			return Math.Max(total, 0);
 		}
 
 		public int Dice(int num, int max)
 		{
 			return Dice(num, max, 0);
+		}
+
+		// Note that this is the traditional D20 - if a random number between 1 and 20 is needed use Dice or GetRandomInt
+		public int D20(int add)
+		{
+			var roll = GetRandomInteger(1, 20);
+			if (roll == 1)
+				roll = -10;
+			if (roll == 20)
+				roll = 30;
+			return roll + add;
 		}
 
 		public RandomNumberSaveData GetSaveData()
