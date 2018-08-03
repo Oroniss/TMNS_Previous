@@ -1,14 +1,10 @@
-﻿using System;
+using System;
 
-namespace RLEngine.Entities
+namespace TMNS.Entities
 {
 	[Serializable]
 	public enum Trait
 	{
-		// Testing traits
-		TestTrait1,
-		TestTrait2,
-
 		// Class traits
 		Player,
 		Actor,
