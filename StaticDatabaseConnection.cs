@@ -1,12 +1,12 @@
 ﻿using System.IO;
 using Mono.Data.Sqlite;
-using RLEngine.Entities.Furnishings;
-using RLEngine.Entities.Monsters;
-using RLEngine.Entities.MapTiles;
-using RLEngine.Entities;
+using TMNS.Entities.Furnishings;
+using TMNS.Entities.Monsters;
+using TMNS.Entities.MapTiles;
+using TMNS.Entities;
 using System;
 
-namespace RLEngine.StaticDatabase
+namespace TMNS.StaticDatabase
 {
 	public static class StaticDatabaseConnection
 	{
@@ -52,14 +52,16 @@ namespace RLEngine.StaticDatabase
 				{
 					char symbol = reader.GetString(1)[0];
 					string fgColorName = reader.GetString(2);
-					Trait[] traits = ParseTraits(reader.GetString(3));
+					string description = SafeGetString(reader, 3);
+					Material material = (Material)Enum.Parse(typeof(Material), reader.GetString(4));
+					Trait[] traits = ParseTraits(SafeGetString(reader,5));
 
-					return new FurnishingDetails(furnishingName, symbol, fgColorName, traits);
+					return new FurnishingDetails(furnishingName, symbol, fgColorName, description, material, traits);
 				}
 			}
 
 			ErrorLogger.AddDebugText("Unknown furnishing: " + furnishingName);
-			return GetFurnishingDetails("TestFurnishing1");
+			return GetFurnishingDetails("Circle");
 		}
 
 		public static MonsterDetails GetMonsterDetails(string monsterName)
@@ -102,14 +104,18 @@ namespace RLEngine.StaticDatabase
 					TileType tileType = (TileType)Enum.Parse(typeof(TileType), reader.GetString(0));
 					string bgColorName = reader.GetString(1);
 					string fogColorName = reader.GetString(2);
-					Trait[] traits = ParseTraits(reader.GetString(3));
+					string description = SafeGetString(reader, 3);
+					string moveOnFunction = SafeGetString(reader, 4);
+					string moveOffFunction = SafeGetString(reader, 5);
+					Trait[] traits = ParseTraits(SafeGetString(reader, 6));
 
-					return new MapTileDetails(tileType, bgColorName, fogColorName, traits);
+					return new MapTileDetails(tileType, bgColorName, fogColorName, description, moveOnFunction,
+											  moveOffFunction, traits);
 				}
 			}
 
 			ErrorLogger.AddDebugText("Unknown map tile type: " + mapTileName);
-			return GetMapTileDetails("TestTile1");
+			return GetMapTileDetails("StoneFloor");
 		}
 
 		public static MapTileDetails GetMapTileDetails(TileType tileType)
@@ -117,9 +123,16 @@ namespace RLEngine.StaticDatabase
 			return GetMapTileDetails(tileType.ToString());
 		}
 
+		static string SafeGetString(SqliteDataReader reader, int columnNumber)
+		{
+			if (!reader.IsDBNull(columnNumber))
+				return reader.GetString(columnNumber);
+			return string.Empty;
+		}
+
 		static Trait[] ParseTraits(string dbField)
 		{
-			if (dbField == null)
+			if (dbField == "")
 				return new Trait[0];
 			var splitTraits = dbField.Split('|');
 			var traits = new Trait[splitTraits.Length];
