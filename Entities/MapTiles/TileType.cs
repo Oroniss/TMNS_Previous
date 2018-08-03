@@ -6,7 +6,7 @@ namespace TMNS.Entities.MapTiles
 		Wall,
 		Space,
 		Water,
-		Icy,
+		Ice,
 		IcyLedge,
 		Grease
 	}
