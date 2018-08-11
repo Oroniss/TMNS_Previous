@@ -39,9 +39,9 @@ namespace TMNS
 		static RandomNumberGenerator _miscRNG;
 
 		// TODO: Set this to the actual first level.
-		static Levels.LevelId _startingLevel = Levels.LevelId.TestLevel2;
-		static int _startingXLoc = 2;
-		static int _startingYLoc = 2;
+		static Levels.LevelId _startingLevel = Levels.LevelId.Level2A;
+		static int _startingXLoc = 24;
+		static int _startingYLoc = 53;
 
 		public static void Main()
 		{

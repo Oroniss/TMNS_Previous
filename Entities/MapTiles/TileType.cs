@@ -8,6 +8,7 @@ namespace TMNS.Entities.MapTiles
 		Water,
 		Ice,
 		IcyLedge,
+		SecretDoor,
 		Grease
 	}
 }

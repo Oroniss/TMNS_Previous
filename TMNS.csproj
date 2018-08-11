@@ -105,6 +105,12 @@
     <Compile Include="Entities\NPCs\MonsterDetails.cs" />
     <Compile Include="Entities\Actors\ActorDetails.cs" />
     <Compile Include="Entities\Entities\Material.cs" />
+    <None Include="Levels\LevelFiles\Level1A.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Levels\LevelFiles\Level2A.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">

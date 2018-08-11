@@ -1,5 +1,3 @@
-// Tidied for version 0.3.
-
 using System.Collections.Generic;
 using System.IO;
 using System;
@@ -12,6 +10,8 @@ namespace TMNS.Levels.LevelDatabase
 		static string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Levels", "LevelFiles");
 		static Dictionary<LevelId, string> levelFilePaths = new Dictionary<LevelId, string>
 		{
+			{LevelId.Level1A, "Level1A.txt"},
+			{LevelId.Level2A, "Level2A.txt"},
 			{LevelId.TestLevel1, Path.Combine("TestLevels", "TestLevel1.txt")},
 			{LevelId.TestLevel2, Path.Combine("TestLevels", "TestLevel2.txt")}
 		};

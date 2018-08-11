@@ -1,13 +1,36 @@
-﻿Version 0.4 Begun - 30 July 2018.
+﻿Version 0.1.1 Begun - 3 August 2018.
 
-30/7/18 - Started work building out the trait list.
-31/7/18 - Added a Random Number Generator class.
-31/7/18 - Added random number generators to the main program and save/load game.
-1/8/18 - Setup the templates for actors and monsters and updated necessary files.
-1/8/18 - Removed movement modes - will have them as traits instead.
-1/8/18 - Got actors going and into the game.
+3/8/18 - Started swapping things over and making TODO lists.
+3/8/18 - Bashed MapTiles into shape.
+3/8/18 - Got furnishings back into the level - still need to cleanup the related tests though.
+3/8/18 - Updated Furnishings as well.
+4/8/18 - Got the map for the actual level 1 in there.
+5/8/18 - Got Level 2 in there as well.
 
-3/8/18 - Parked it here for now - will start putting an actual game together and then come back with the lessons learned.
+
+For version 0.1.1
+
+Add actual level 1 and 2.
+Add the basic furnishings for levels 1 and 2 - including level transitions.
+
+
+Then remove TestLevel1 and TestLevel2.
+
+Go through and strip out of the Python version all the stuff that has been implemented.
+
+Then move onto next version.
+
+
+
+For version 0.1.2.
+
+Get Level transition to stop packing up existing levels.
+Get furnishings into a better state.
+Get doors working.
+I think interaction traps might be worth having their own class?
+
+Do as much low level tidying as possible.
+
 
 
 For Version 0.4
